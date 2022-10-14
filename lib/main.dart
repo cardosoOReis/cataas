@@ -7,6 +7,7 @@ void main() {
     theme: ThemeData(
       primarySwatch: Colors.blue,
     ),
+    debugShowCheckedModeBanner: false,
     home: const HomePage(),
   ));
 }

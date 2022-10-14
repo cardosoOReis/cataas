@@ -52,14 +52,14 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: DefaultAppbar(),
+      appBar: const DefaultAppbar(),
       body: Center(
         child: Container(
           width: MediaQuery.of(context).size.width * .8,
           height: MediaQuery.of(context).size.height * .8,
           color: Colors.red,
           child: FutureBuilder<CatEntity>(
-            future: controller.getRandomCatWithParams(),
+            future: controller.getRandomCatWithParams(tag: 'sunshi', text: 'BUNDUDO', filter: 'sepia'),
             builder: (context, snapshot) {
               List<Widget> children;
               if (snapshot.hasData) {
