@@ -24,7 +24,7 @@ class DefaultGetRandomCatWithParamsDatasourceImp
     if (filter != null) {
       urlBuilder += '&filter=$filter';
     }
-    print(urlBuilder);
+    // print(urlBuilder);
     Uri baseUrl = Uri.parse(urlBuilder);
     var response = await http.get(baseUrl);
     if (response.statusCode == 200) {
@@ -33,7 +33,7 @@ class DefaultGetRandomCatWithParamsDatasourceImp
       jsonResponse['text'] = text;
       jsonResponse['textColor'] = textColor;
       jsonResponse['filter'] = filter;
-      print(jsonResponse);
+      // print(jsonResponse);
       return CatDto.fromJson(jsonResponse);
     } else {
       throw Exception('Request failed with status ${response.statusCode}');

@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:shell/layers/data/datasources/remote/default_get_cat_amount_datasource_imp.dart';
 import 'package:shell/layers/data/datasources/remote/default_get_random_cat_with_params_datasource_imp.dart';
+import 'package:shell/layers/data/repositories/get_cat_amount_repository_imp.dart';
 import 'package:shell/layers/data/repositories/get_random_cat_with_params_repository_imp.dart';
+import 'package:shell/layers/domain/usecases/get_cat_amount/get_cat_amount_usecase_imp.dart';
 import 'package:shell/layers/domain/usecases/get_random_cat_with_params/get_random_cat_with_params_usecase_imp.dart';
+import 'package:shell/layers/presentation/widgets/appbar/default_appbar.dart';
+import 'package:shell/layers/presentation/widgets/drawer/default_drawer.dart';
 
 import '../../data/datasources/remote/default_get_cat_by_id_datasource_imp.dart';
 import '../../data/datasources/remote/default_get_random_cat_datasource_imp.dart';
@@ -33,7 +38,11 @@ class _HomePageState extends State<HomePage> {
     ),
     GetRandomCatWithParamsUsecaseImp(
       GetRandomCatWithParamsRepositoryImp(
-        DefaultGetRandomCatWithParamsDatasourceImp()
+          DefaultGetRandomCatWithParamsDatasourceImp()),
+    ),
+    GetCatAmountUsecaseImp(
+      GetCatAmountRepositoryImp(
+        DefaultGetCatAmountDatasourceImp(),
       ),
     ),
   );
@@ -43,7 +52,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Helo World')),
+      appBar: DefaultAppbar(),
       body: Center(
         child: Container(
           width: MediaQuery.of(context).size.width * .8,
@@ -60,13 +69,13 @@ class _HomePageState extends State<HomePage> {
                   Text('Created At: ${snapshot.data!.createdAt}'),
                   Text('Image ID: ${snapshot.data!.url}'),
                   if (snapshot.data!.text != null)
-                  Text('Text: ${snapshot.data!.text}'),
+                    Text('Text: ${snapshot.data!.text}'),
                   if (snapshot.data!.textColor != null)
-                  Text('Text Color: ${snapshot.data!.textColor}'),
+                    Text('Text Color: ${snapshot.data!.textColor}'),
                   if (snapshot.data!.tags!.isNotEmpty)
-                  Text('Tags: ${snapshot.data!.tags}'),
+                    Text('Tags: ${snapshot.data!.tags}'),
                   if (snapshot.data!.filter != null)
-                  Text('Filter: ${snapshot.data!.filter}')
+                    Text('Filter: ${snapshot.data!.filter}')
                 ];
               } else if (snapshot.hasError) {
                 children = [
@@ -101,6 +110,7 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
       ),
+      drawer: DefaultDrawer(),
     );
   }
 }
