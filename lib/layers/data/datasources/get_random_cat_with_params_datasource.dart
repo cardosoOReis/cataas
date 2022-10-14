@@ -1,4 +1,4 @@
-import 'package:shell/layers/data/dto/cat_dto.dart';
+import '../dto/cat_dto.dart';
 
 abstract class GetRandomCatWithParamsDatasource {
   Future<CatDto> call({
