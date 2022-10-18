@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:shell/core/inject/inject.dart';
 import 'layers/presentation/pages/main_page.dart';
 
 void main() {
+  Inject.init();
   runApp(MaterialApp(
-    title: 'Flutter Demo',
     theme: ThemeData(
       primarySwatch: Colors.blue,
     ),
