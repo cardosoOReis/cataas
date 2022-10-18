@@ -1,6 +1,6 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
-import 'package:shell/layers/presentation/auxiliar/color_palette.dart';
+
+import '../../auxiliar/color_palette.dart';
 
 class DrawerTiles extends StatelessWidget {
   const DrawerTiles({

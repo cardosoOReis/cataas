@@ -1,5 +1,3 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
-
 import 'package:shell/layers/data/datasources/get_cat_amount_datasource.dart';
 import 'package:shell/layers/domain/repositories/get_cat_amount_repository.dart';
 

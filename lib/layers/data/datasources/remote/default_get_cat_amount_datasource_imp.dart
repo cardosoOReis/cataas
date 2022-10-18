@@ -1,9 +1,10 @@
 import 'dart:convert' as convert;
+
 import 'package:http/http.dart' as http;
-import 'package:shell/layers/data/datasources/get_cat_amount_datasource.dart';
+
+import '../get_cat_amount_datasource.dart';
 
 class DefaultGetCatAmountDatasourceImp implements GetCatAmountDatasource {
-  
   @override
   Future<int> call() async {
     Uri baseUrl = Uri.parse('https://cataas.com/api/count');
@@ -15,5 +16,4 @@ class DefaultGetCatAmountDatasourceImp implements GetCatAmountDatasource {
       throw Exception('Request failed with status ${response.statusCode}');
     }
   }
-  
 }

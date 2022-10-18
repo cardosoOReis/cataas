@@ -7,7 +7,8 @@ import 'package:shell/layers/domain/usecases/get_cat_by_id/get_cat_by_id_usecase
 
 void main() {
   test('Should return a catEntity by its id', () async {
-    GetCatByIdUsecase usecase = GetCatByIdUsecaseImp(GetCatByIdRepositoryImp(DefaultGetCatByIdDatasourceImp()));
+    GetCatByIdUsecase usecase = GetCatByIdUsecaseImp(
+        GetCatByIdRepositoryImp(DefaultGetCatByIdDatasourceImp()));
 
     String id = '2kKhMn9BCAhMem6V';
 
@@ -17,7 +18,8 @@ void main() {
   });
 
   test('Should return Cat Entity with id equals to the id passed', () async {
-    GetCatByIdUsecase usecase = GetCatByIdUsecaseImp(GetCatByIdRepositoryImp(DefaultGetCatByIdDatasourceImp()));
+    GetCatByIdUsecase usecase = GetCatByIdUsecaseImp(
+        GetCatByIdRepositoryImp(DefaultGetCatByIdDatasourceImp()));
 
     String id = '2kKhMn9BCAhMem6V';
 
@@ -27,7 +29,8 @@ void main() {
   });
 
   test('Should return Cat Entity with id on the url', () async {
-    GetCatByIdUsecase usecase = GetCatByIdUsecaseImp(GetCatByIdRepositoryImp(DefaultGetCatByIdDatasourceImp()));
+    GetCatByIdUsecase usecase = GetCatByIdUsecaseImp(
+        GetCatByIdRepositoryImp(DefaultGetCatByIdDatasourceImp()));
 
     String id = 'Gtr1p9H06A6O9HYU';
 

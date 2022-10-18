@@ -8,8 +8,12 @@ class GetRandomCatWithParamsUsecaseImp
   GetRandomCatWithParamsUsecaseImp(this._getRandomCatWithParamsRepository);
 
   @override
-  Future<CatEntity> call(
-      {String? text, String? tag, String? textColor, String? filter}) async {
+  Future<CatEntity> call({
+    String? text,
+    String? tag,
+    String? textColor,
+    String? filter,
+  }) async {
     return await _getRandomCatWithParamsRepository(
       text: text,
       tag: tag,

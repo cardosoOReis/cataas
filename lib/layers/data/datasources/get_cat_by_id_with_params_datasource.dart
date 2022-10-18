@@ -1,6 +1,6 @@
-import '../../entities/cat_entity.dart';
+import '../../domain/entities/cat_entity.dart';
 
-abstract class GetCatByIdWithParamsUsecase {
+abstract class GetCatByIdWithParamsDatasource {
   Future<CatEntity> call({
     required String id,
     String? text,

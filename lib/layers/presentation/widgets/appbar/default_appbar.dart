@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fluttericon/font_awesome_icons.dart';
-import 'package:shell/layers/presentation/auxiliar/color_palette.dart';
 
+import '../../auxiliar/color_palette.dart';
 import '../../utils/open_browser.dart';
 
 class DefaultAppbar extends StatelessWidget implements PreferredSizeWidget {
