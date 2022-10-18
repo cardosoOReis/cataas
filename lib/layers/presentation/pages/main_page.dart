@@ -1,9 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get_it/get_it.dart';
-
-import '../../domain/entities/cat_entity.dart';
-import '../bloc/cataas_bloc.dart';
 import '../controller/cat_controller.dart';
 import '../widgets/appbar/default_appbar.dart';
 import '../widgets/drawer/default_drawer.dart';
