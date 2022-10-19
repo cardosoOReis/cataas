@@ -1,4 +1,12 @@
 import 'package:get_it/get_it.dart';
+import 'package:shell/layers/data/datasources/get_tags_datasource.dart';
+import 'package:shell/layers/data/datasources/remote/default_get_tags_datasource_imp.dart';
+import 'package:shell/layers/data/repositories/get_tags_repository_imp.dart';
+import 'package:shell/layers/domain/repositories/get_tags_repository.dart';
+import 'package:shell/layers/domain/usecases/get_cat_by_id_with_params/get_cat_by_id_with_params_usecase.dart';
+import 'package:shell/layers/domain/usecases/get_cat_by_id_with_params/get_cat_by_id_with_params_usecase_imp.dart';
+import 'package:shell/layers/domain/usecases/get_tags/get_tags_usecase.dart';
+import 'package:shell/layers/domain/usecases/get_tags/get_tags_usecase_imp.dart';
 
 import '../../layers/data/datasources/get_cat_amount_datasource.dart';
 import '../../layers/data/datasources/get_cat_by_id_datasource.dart';
@@ -45,6 +53,8 @@ class Inject {
         () => DefaultGetCatAmountDatasourceImp());
     getIt.registerLazySingleton<GetCatByIdWithParamsDatasource>(
         () => DefaultGetCatByIdWithParamsDatasourceImp());
+    getIt.registerLazySingleton<GetTagsDatasource>(
+        () => DefaultGetTagsDatasourceImp());
     // repositories
     getIt.registerLazySingleton<GetCatByIdRepository>(
         () => GetCatByIdRepositoryImp(getIt()));
@@ -56,6 +66,8 @@ class Inject {
         () => GetCatAmountRepositoryImp(getIt()));
     getIt.registerLazySingleton<GetCatByIdWithParamsRepository>(
         () => GetCatByIdWithParamsRepositoryImp(getIt()));
+    getIt.registerLazySingleton<GetTagsRepository>(
+        () => GetTagsRepositoryImp(getIt()));
     // usecases
     getIt.registerLazySingleton<GetCatByIdUsecase>(
         () => GetCatByIdUsecaseImp(getIt()));
@@ -65,10 +77,12 @@ class Inject {
         () => GetRandomCatWithParamsUsecaseImp(getIt()));
     getIt.registerLazySingleton<GetCatAmountUsecase>(
         () => GetCatAmountUsecaseImp(getIt()));
-    getIt.registerLazySingleton<GetRandomCatWithParamsUsecase>(
-        () => GetRandomCatWithParamsUsecaseImp(getIt()));
+    getIt.registerLazySingleton<GetCatByIdWithParamsUsecase>(
+        () => GetCatByIdWithParamsUsecaseImp(getIt()));
+    getIt.registerLazySingleton<GetTagsUsecase>(
+        () => GetTagsUsecaseImp(getIt()));
     // controller
-    getIt.registerFactory<CatController>(
-        () => CatController(getIt(), getIt(), getIt(), getIt(), getIt()));
+    getIt.registerFactory<CatController>(() =>
+        CatController(getIt(), getIt(), getIt(), getIt(), getIt(), getIt()));
   }
 }

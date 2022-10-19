@@ -1,3 +1,5 @@
+import 'package:shell/layers/domain/usecases/get_tags/get_tags_usecase.dart';
+
 import '../../domain/entities/cat_entity.dart';
 import '../../domain/usecases/get_cat_amount/get_cat_amount_usecase.dart';
 import '../../domain/usecases/get_cat_by_id/get_cat_by_id_usecase.dart';
@@ -11,6 +13,7 @@ class CatController {
   final GetRandomCatWithParamsUsecase _getRandomCatWithParamsUsecase;
   final GetCatAmountUsecase _getCatAmountUsecase;
   final GetCatByIdWithParamsUsecase _getCatByIdWithParamsUsecase;
+  final GetTagsUsecase _getTagsUsecase;
 
   CatController(
     this._getRandomCatUsecase,
@@ -18,6 +21,7 @@ class CatController {
     this._getRandomCatWithParamsUsecase,
     this._getCatAmountUsecase,
     this._getCatByIdWithParamsUsecase,
+    this._getTagsUsecase,
   );
 
   Future<CatEntity> getRandomCat() async {
@@ -54,5 +58,9 @@ class CatController {
       textColor: textColor,
       filter: filter,
     );
+  }
+
+  Future<List<String>> getTags() async {
+    return await _getTagsUsecase();
   }
 }

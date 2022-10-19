@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:shell/core/inject/inject.dart';
+
+import 'core/inject/inject.dart';
 import 'layers/presentation/pages/main_page.dart';
 
 void main() {

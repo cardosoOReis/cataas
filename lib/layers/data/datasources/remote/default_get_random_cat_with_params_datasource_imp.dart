@@ -33,7 +33,7 @@ class DefaultGetRandomCatWithParamsDatasourceImp
       jsonResponse['text'] = text;
       jsonResponse['textColor'] = textColor;
       jsonResponse['filter'] = filter;
-      print(jsonResponse);
+      // print(jsonResponse);
       return CatDto.fromJson(jsonResponse);
     } else {
       throw Exception('Request failed with status ${response.statusCode}');
