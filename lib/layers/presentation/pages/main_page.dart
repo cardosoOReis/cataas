@@ -55,7 +55,7 @@ class _HomePageState extends State<HomePage> {
                       Image.network('$baseUrl${catEntity.url}'),
                       Text('ID: ${catEntity.id}'),
                       Text('Created At: ${catEntity.createdAt}'),
-                      Text('Image Url: ${catEntity.url}'),
+                      Text('Image Url: $baseUrl${catEntity.url}'),
                       if (catEntity.text != null)
                         Text('Text: ${catEntity.text}'),
                       if (catEntity.textColor != null && catEntity.text != null)
@@ -66,15 +66,19 @@ class _HomePageState extends State<HomePage> {
                         Text('Filter: ${catEntity.filter}')
                     ];
                   } else if (state is CataasErrorState) {
+                    String? exceptionResponse = state.message;
+                    String response;
+                    if (exceptionResponse == 'Exception: 404') {
+                      response =
+                          "We couldn't find this cat, sorry 😿. Please try again!";
+                    } else {
+                      response =
+                          'Sorry, we commited a mistake 😿. Please try again later!';
+                    }
                     children = [
-                      const Icon(
-                        Icons.error_outline,
-                        color: Colors.red,
-                        size: 60,
-                      ),
                       Padding(
                         padding: const EdgeInsets.only(top: 16),
-                        child: Text('Error: ${state.message}'),
+                        child: Text(response),
                       ),
                     ];
                   } else {
@@ -82,7 +86,9 @@ class _HomePageState extends State<HomePage> {
                       SizedBox(
                         width: 60,
                         height: 60,
-                        child: CircularProgressIndicator(),
+                        child: CircularProgressIndicator(
+                          color: Colors.white,
+                        ),
                       ),
                       Padding(
                         padding: EdgeInsets.only(top: 16),

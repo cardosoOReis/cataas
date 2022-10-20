@@ -15,7 +15,7 @@ class DefaultGetRandomCatDatasourceImp implements GetRandomCatDatasource {
           convert.jsonDecode(response.body) as Map<String, dynamic>;
       return CatDto.fromJson(jsonResponse);
     } else {
-      throw Exception('Request failed with status ${response.statusCode}');
+      throw Exception(response.statusCode);
     }
   }
 }

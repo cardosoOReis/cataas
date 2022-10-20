@@ -15,7 +15,7 @@ class DefaultGetTagsDatasourceImp implements GetTagsDatasource {
       // print(jsonResponse);
       return jsonResponse;
     } else {
-      throw Exception('Request failed with status ${response.statusCode}');
+      throw Exception(response.statusCode);
     }
   }
 }

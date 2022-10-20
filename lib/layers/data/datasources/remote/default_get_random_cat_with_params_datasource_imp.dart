@@ -36,7 +36,7 @@ class DefaultGetRandomCatWithParamsDatasourceImp
       // print(jsonResponse);
       return CatDto.fromJson(jsonResponse);
     } else {
-      throw Exception('Request failed with status ${response.statusCode}');
+      throw Exception(response.statusCode);
     }
   }
 }

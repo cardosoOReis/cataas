@@ -13,7 +13,7 @@ class DefaultGetCatAmountDatasourceImp implements GetCatAmountDatasource {
       Map<String, dynamic> jsonResponse = convert.jsonDecode(response.body);
       return jsonResponse['number'];
     } else {
-      throw Exception('Request failed with status ${response.statusCode}');
+      throw Exception(response.statusCode);
     }
   }
 }
