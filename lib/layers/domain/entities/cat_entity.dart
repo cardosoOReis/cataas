@@ -1,13 +1,26 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/foundation.dart';
+import 'package:hive/hive.dart';
 
-class CatEntity {
+part 'cat_entity.g.dart';
+
+@HiveType(typeId: 0)
+class CatEntity extends HiveObject {
+  @HiveField(0)
   String id;
+  @HiveField(1)
   String type;
+  @HiveField(2)
   String createdAt;
+  @HiveField(3)
   String url;
+  @HiveField(4)
   List<String>? tags;
+  @HiveField(5)
   String? text;
+  @HiveField(6)
   String? textColor;
+  @HiveField(7)
   String? filter;
 
   CatEntity({
@@ -45,5 +58,19 @@ class CatEntity {
         text.hashCode ^
         textColor.hashCode ^
         filter.hashCode;
+  }
+
+  @override
+  String toString() {
+    return '''CatEntity {
+  id: $id,
+  type: $type,
+  createdAt: $createdAt,
+  url: $url,
+  tags: $tags,
+  text: $text,
+  textColor: $textColor,
+  filter: $filter
+}''';
   }
 }
