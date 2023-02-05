@@ -1,9 +1,11 @@
 import 'package:equatable/equatable.dart';
 
+import 'exceptions.dart';
+
 abstract class Failure extends Equatable {}
 
 class ApiFailure extends Failure {
-  final Exception exception;
+  final ApiException exception;
   ApiFailure({
     required this.exception,
   });
@@ -13,7 +15,7 @@ class ApiFailure extends Failure {
 }
 
 class ParseDataFailure extends Failure {
-  final Exception exception;
+  final ParseDataException exception;
   ParseDataFailure({
     required this.exception,
   });
@@ -25,4 +27,14 @@ class ParseDataFailure extends Failure {
 class NoInternetConnectionFailure extends Failure {
   @override
   List<Object?> get props => [];
+}
+
+class SaveCatLocallyFailure extends Failure {
+  final SaveCatLocallyException exception;
+  SaveCatLocallyFailure({
+    required this.exception,
+  });
+
+  @override
+  List<Object?> get props => [exception];
 }

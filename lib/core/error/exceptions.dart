@@ -1,10 +1,15 @@
-class CatNotFoundException implements Exception {
+class ApiException implements Exception {
   final String message;
-  final int code;
-  const CatNotFoundException({
+  final int statusCode;
+  const ApiException({
     required this.message,
-    required this.code,
+    required this.statusCode,
   });
+}
+
+class CatNotFoundException extends ApiException {
+  const CatNotFoundException(
+      {required super.message, required super.statusCode});
 }
 
 class ParseDataException implements Exception {
@@ -12,4 +17,8 @@ class ParseDataException implements Exception {
   const ParseDataException({
     required this.body,
   });
+}
+
+class SaveCatLocallyException implements Exception {
+  const SaveCatLocallyException();
 }

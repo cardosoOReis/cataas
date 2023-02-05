@@ -1,6 +1,7 @@
 import 'package:cataas/features/cataas/domain/usecases/get_cat_by_id_usecase.dart';
 import 'package:cataas/features/cataas/domain/usecases/get_cat_by_tag_usecase.dart';
 import 'package:cataas/features/cataas/domain/usecases/get_random_cat_usecase.dart';
+import 'package:cataas/features/cataas/domain/usecases/save_cat_locally_usecase.dart';
 import 'package:dartz/dartz.dart';
 
 import '../../../../core/error/failures.dart';
@@ -15,5 +16,8 @@ abstract class ICatRepository {
   );
   Future<Either<Failure, CatEntity>> getCatByTag(
     GetCatByTagUsecaseParams params,
+  );
+  Future<Either<Failure, void>> saveCatLocally(
+    SaveCatLocallyUsecaseParams params,
   );
 }

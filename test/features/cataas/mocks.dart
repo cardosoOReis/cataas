@@ -1,6 +1,7 @@
 import 'package:cataas/core/error/exceptions.dart';
 import 'package:cataas/core/error/failures.dart';
 import 'package:cataas/core/network/i_network_info.dart';
+import 'package:cataas/features/cataas/data/datasources/i_cat_local_datasource.dart';
 import 'package:cataas/features/cataas/data/datasources/i_cat_remote_datasource.dart';
 import 'package:cataas/features/cataas/data/models/cat_model.dart';
 import 'package:cataas/features/cataas/domain/entities/cat_entity.dart';
@@ -8,12 +9,15 @@ import 'package:cataas/features/cataas/domain/repositories/i_cat_repository.dart
 import 'package:cataas/features/cataas/domain/usecases/get_cat_by_id_usecase.dart';
 import 'package:cataas/features/cataas/domain/usecases/get_cat_by_tag_usecase.dart';
 import 'package:cataas/features/cataas/domain/usecases/get_random_cat_usecase.dart';
+import 'package:cataas/features/cataas/domain/usecases/save_cat_locally_usecase.dart';
 import 'package:dartz/dartz.dart';
 import 'package:mocktail/mocktail.dart';
 
 class MockICatRepository extends Mock implements ICatRepository {}
 
 class MockRemoteDatasource extends Mock implements ICatRemoteDatasource {}
+
+class MockLocalDatasource extends Mock implements ICatLocalDatasource {}
 
 class MockNetworkInfo extends Mock implements INetworkInfo {}
 
@@ -45,8 +49,10 @@ final mockCatModel = CatModel(
 
 final mockFailure = MockFailure();
 final mockNoInternetConnectionFailure = NoInternetConnectionFailure();
-const mockCatNotFoundException = CatNotFoundException(message: '', code: 0);
+const mockCatNotFoundException =
+    CatNotFoundException(message: '', statusCode: 0);
 const mockParseDataException = ParseDataException(body: {});
+const mockSaveCatLocallyException = SaveCatLocallyException();
 
 const Option<String> mockOptionString = Some('');
 
@@ -67,3 +73,5 @@ const mockGetCatByTagUsecaseParams = GetCatByTagUsecaseParams(
   textColor: None(),
   filter: None(),
 );
+
+const mockSaveCatLocallyUsecaseParams = SaveCatLocallyUsecaseParams(url: '');

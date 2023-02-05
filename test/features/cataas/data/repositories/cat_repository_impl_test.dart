@@ -1,5 +1,6 @@
 import 'package:cataas/core/error/failures.dart';
 import 'package:cataas/core/network/i_network_info.dart';
+import 'package:cataas/features/cataas/data/datasources/i_cat_local_datasource.dart';
 import 'package:cataas/features/cataas/data/datasources/i_cat_remote_datasource.dart';
 import 'package:cataas/features/cataas/data/repositories/cat_repository_impl.dart';
 import 'package:cataas/features/cataas/domain/repositories/i_cat_repository.dart';
@@ -11,17 +12,20 @@ import '../../mocks.dart';
 
 void main() {
   late ICatRemoteDatasource mockRemoteDatasource;
+  late ICatLocalDatasource mockLocalDatasource;
   late INetworkInfo mockNetworkInfo;
   late ICatRepository repository;
   setUp(() {
-    registerFallbackValue(mockOptionString);
     registerFallbackValue(mockGetCatByIdUsecaseParams);
     registerFallbackValue(mockGetCatByTagUsecaseParams);
     registerFallbackValue(mockGetRandomCatUsecaseParams);
+    registerFallbackValue(mockSaveCatLocallyUsecaseParams);
     mockRemoteDatasource = MockRemoteDatasource();
+    mockLocalDatasource = MockLocalDatasource();
     mockNetworkInfo = MockNetworkInfo();
     repository = CatRepositoryImpl(
       remoteDatasource: mockRemoteDatasource,
+      localDatasource: mockLocalDatasource,
       networkInfo: mockNetworkInfo,
     );
   });
@@ -291,6 +295,39 @@ void main() {
 
         // Assert
         expect(result, Left(mockNoInternetConnectionFailure));
+      });
+    });
+  });
+  group('When [saveCatLocally] is called,', () {
+    group('and the call is sucessful,', () {
+      test('should return a Right with a [null]', () async {
+        // Arrange
+        when(() => mockLocalDatasource.saveCatLocally(any()))
+            .thenAnswer((_) async {});
+
+        // Act
+        final result =
+            await repository.saveCatLocally(mockSaveCatLocallyUsecaseParams);
+
+        // Assert
+        expect(result, const Right(null));
+      });
+    });
+    group('and the call is unsucessful,', () {
+      test('should return a Left with a [SaveCatLocallyFailure]', () async {
+        // Arrange
+        when(() => mockLocalDatasource.saveCatLocally(any()))
+            .thenThrow(mockSaveCatLocallyException);
+
+        // Act
+        final result =
+            await repository.saveCatLocally(mockSaveCatLocallyUsecaseParams);
+
+        // Assert
+        expect(
+            result,
+            Left(
+                SaveCatLocallyFailure(exception: mockSaveCatLocallyException)));
       });
     });
   });
