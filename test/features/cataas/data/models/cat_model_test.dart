@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:cataas/core/error/failures.dart';
 import 'package:cataas/features/cataas/data/models/cat_model.dart';
 import 'package:cataas/features/cataas/domain/entities/cat_entity.dart';
 import 'package:dartz/dartz.dart';

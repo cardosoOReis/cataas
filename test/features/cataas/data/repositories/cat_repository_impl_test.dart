@@ -1,5 +1,5 @@
 import 'package:cataas/core/error/failures.dart';
-import 'package:cataas/core/platform/i_network_info.dart';
+import 'package:cataas/core/network/i_network_info.dart';
 import 'package:cataas/features/cataas/data/datasources/i_cat_remote_datasource.dart';
 import 'package:cataas/features/cataas/data/repositories/cat_repository_impl.dart';
 import 'package:cataas/features/cataas/domain/repositories/i_cat_repository.dart';

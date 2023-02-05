@@ -1,6 +1,6 @@
 import 'package:cataas/core/error/exceptions.dart';
 import 'package:cataas/core/error/failures.dart';
-import 'package:cataas/core/platform/i_network_info.dart';
+import 'package:cataas/core/network/i_network_info.dart';
 import 'package:cataas/features/cataas/data/datasources/i_cat_remote_datasource.dart';
 import 'package:cataas/features/cataas/data/models/cat_model.dart';
 import 'package:cataas/features/cataas/domain/entities/cat_entity.dart';
