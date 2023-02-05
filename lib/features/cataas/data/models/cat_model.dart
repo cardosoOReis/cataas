@@ -6,6 +6,7 @@ class CatModel extends CatEntity {
     required super.id,
     required super.fileType,
     required super.requestedAt,
+    required super.url,
     required super.text,
     required super.textColor,
     required super.filter,
@@ -19,6 +20,7 @@ class CatModel extends CatEntity {
           ? FileType.gif
           : FileType.image,
       requestedAt: DateTime.now(),
+      url: json['url'],
       text: json.containsKey('text') ? Some(json['text']) : const None(),
       textColor: json.containsKey('textColor')
           ? Some(json['textColor'])

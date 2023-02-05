@@ -13,6 +13,7 @@ void main() {
       id: '',
       fileType: FileType.image,
       requestedAt: DateTime(2023),
+      url: '',
       text: const None(),
       textColor: const None(),
       filter: const None(),

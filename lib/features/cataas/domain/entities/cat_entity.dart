@@ -5,6 +5,7 @@ class CatEntity extends Equatable {
   final String id;
   final FileType fileType;
   final DateTime requestedAt;
+  final String url;
   final Option<String> text;
   final Option<String> textColor;
   final Option<String> filter;
@@ -13,6 +14,7 @@ class CatEntity extends Equatable {
     required this.id,
     required this.fileType,
     required this.requestedAt,
+    required this.url,
     required this.text,
     required this.textColor,
     required this.filter,
