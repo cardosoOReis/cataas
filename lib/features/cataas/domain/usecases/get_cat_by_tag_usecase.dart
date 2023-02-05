@@ -7,18 +7,13 @@ import '../repositories/i_cat_repository.dart';
 
 class GetCatByTagUsecase
     implements Usecase<CatEntity, GetCatByTagUsecaseParams> {
-  final ICatRepository repository;
+  final ICatRepository _repository;
 
-  GetCatByTagUsecase(this.repository);
+  GetCatByTagUsecase(this._repository);
 
   @override
   Future<Either<Failure, CatEntity>> call(params) {
-    return repository.getCatByTag(
-      tag: params.tag,
-      text: params.text,
-      textColor: params.textColor,
-      filter: params.filter,
-    );
+    return _repository.getCatByTag(params);
   }
 }
 

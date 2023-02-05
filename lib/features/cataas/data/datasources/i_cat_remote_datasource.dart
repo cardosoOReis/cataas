@@ -1,22 +1,17 @@
+import '../../domain/usecases/get_cat_by_id_usecase.dart';
+import '../../domain/usecases/get_cat_by_tag_usecase.dart';
+import '../../domain/usecases/get_random_cat_usecase.dart';
+
 import '../models/cat_model.dart';
-import 'package:dartz/dartz.dart';
 
 abstract class ICatRemoteDatasource {
-  Future<CatModel> getRandomCat({
-    required Option<String> text,
-    required Option<String> textColor,
-    required Option<String> filter,
-  });
-  Future<CatModel> getCatById({
-    required String id,
-    required Option<String> text,
-    required Option<String> textColor,
-    required Option<String> filter,
-  });
-  Future<CatModel> getCatByTag({
-    required String tag,
-    required Option<String> text,
-    required Option<String> textColor,
-    required Option<String> filter,
-  });
+  Future<CatModel> getRandomCat(
+    GetRandomCatUsecaseParams params,
+  );
+  Future<CatModel> getCatById(
+    GetCatByIdUsecaseParams params,
+  );
+  Future<CatModel> getCatByTag(
+    GetCatByTagUsecaseParams params,
+  );
 }

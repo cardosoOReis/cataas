@@ -1,5 +1,8 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:cataas/core/error/exceptions.dart';
+import 'package:cataas/features/cataas/domain/usecases/get_cat_by_id_usecase.dart';
+import 'package:cataas/features/cataas/domain/usecases/get_cat_by_tag_usecase.dart';
+import 'package:cataas/features/cataas/domain/usecases/get_random_cat_usecase.dart';
 import 'package:dartz/dartz.dart';
 
 import 'package:cataas/core/error/failures.dart';
@@ -17,20 +20,12 @@ class CatRepositoryImpl implements ICatRepository {
   });
 
   @override
-  Future<Either<Failure, CatEntity>> getCatById({
-    required String id,
-    required Option<String> text,
-    required Option<String> textColor,
-    required Option<String> filter,
-  }) async {
+  Future<Either<Failure, CatEntity>> getCatById(
+    GetCatByIdUsecaseParams params,
+  ) async {
     if (await networkInfo.isConnected) {
       try {
-        final result = await remoteDatasource.getCatById(
-          id: id,
-          text: text,
-          textColor: textColor,
-          filter: filter,
-        );
+        final result = await remoteDatasource.getCatById(params);
 
         return Right(result);
       } on CatNotFoundException catch (e) {
@@ -46,20 +41,11 @@ class CatRepositoryImpl implements ICatRepository {
   }
 
   @override
-  Future<Either<Failure, CatEntity>> getCatByTag({
-    required String tag,
-    required Option<String> text,
-    required Option<String> textColor,
-    required Option<String> filter,
-  }) async {
+  Future<Either<Failure, CatEntity>> getCatByTag(
+      GetCatByTagUsecaseParams params) async {
     if (await networkInfo.isConnected) {
       try {
-        final result = await remoteDatasource.getCatByTag(
-          tag: tag,
-          text: text,
-          textColor: textColor,
-          filter: filter,
-        );
+        final result = await remoteDatasource.getCatByTag(params);
 
         return Right(result);
       } on CatNotFoundException catch (e) {
@@ -75,18 +61,12 @@ class CatRepositoryImpl implements ICatRepository {
   }
 
   @override
-  Future<Either<Failure, CatEntity>> getRandomCat({
-    required Option<String> text,
-    required Option<String> textColor,
-    required Option<String> filter,
-  }) async {
+  Future<Either<Failure, CatEntity>> getRandomCat(
+    GetRandomCatUsecaseParams params,
+  ) async {
     if (await networkInfo.isConnected) {
       try {
-        final result = await remoteDatasource.getRandomCat(
-          text: text,
-          textColor: textColor,
-          filter: filter,
-        );
+        final result = await remoteDatasource.getRandomCat(params);
 
         return Right(result);
       } on CatNotFoundException catch (e) {

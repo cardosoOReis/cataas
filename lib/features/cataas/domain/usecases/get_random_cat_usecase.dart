@@ -7,16 +7,12 @@ import '../repositories/i_cat_repository.dart';
 
 class GetRandomCatUsecase
     implements Usecase<CatEntity, GetRandomCatUsecaseParams> {
-  final ICatRepository repository;
-  GetRandomCatUsecase(this.repository);
+  final ICatRepository _repository;
+  GetRandomCatUsecase(this._repository);
 
   @override
   Future<Either<Failure, CatEntity>> call(GetRandomCatUsecaseParams params) {
-    return repository.getRandomCat(
-      text: params.text,
-      textColor: params.textColor,
-      filter: params.filter,
-    );
+    return _repository.getRandomCat(params);
   }
 }
 

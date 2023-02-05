@@ -11,7 +11,7 @@ void main() {
   late ICatRepository mockRepository;
 
   setUp(() {
-    registerFallbackValue(const Some(''));
+    registerFallbackValue(mockGetRandomCatUsecaseParams);
     mockRepository = MockICatRepository();
     usecase = GetRandomCatUsecase(mockRepository);
   });
@@ -20,47 +20,28 @@ void main() {
     group('and the call is sucessful,', () {
       test('should return a Right with a [CatEntity]', () async {
         // Arrange
-        when(() => mockRepository.getRandomCat(
-                text: any(named: 'text'),
-                filter: any(named: 'filter'),
-                textColor: any(named: 'textColor')))
+        when(() => mockRepository.getRandomCat(any()))
             .thenAnswer((_) async => Right(mockCatEntity));
         // Act
         final result = await usecase(mockGetRandomCatUsecaseParams);
 
         // Assert
         expect(result, Right(mockCatEntity));
-        verify(
-          () => mockRepository.getRandomCat(
-              text: any(named: 'text'),
-              filter: any(named: 'filter'),
-              textColor: any(named: 'textColor')),
-        ).called(1);
+        verify(() => mockRepository.getRandomCat(any())).called(1);
       });
     });
     group('and the call is unsucessful,', () {
       test('should return an Left with a [Failure]', () async {
         // Arrange
-        when(
-          () => mockRepository.getRandomCat(
-            text: any(named: 'text'),
-            filter: any(named: 'filter'),
-            textColor: any(named: 'textColor'),
-          ),
-        ).thenAnswer((_) async => Left(mockFailure));
+        when(() => mockRepository.getRandomCat(any()))
+            .thenAnswer((_) async => Left(mockFailure));
 
         // Act
         final result = await usecase(mockGetRandomCatUsecaseParams);
 
         // Assert
         expect(result, Left(mockFailure));
-        verify(
-          () => mockRepository.getRandomCat(
-            text: any(named: 'text'),
-            filter: any(named: 'filter'),
-            textColor: any(named: 'textColor'),
-          ),
-        ).called(1);
+        verify(() => mockRepository.getRandomCat(any())).called(1);
       });
     });
   });

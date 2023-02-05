@@ -11,7 +11,7 @@ void main() {
   late ICatRepository mockRepository;
 
   setUp(() {
-    registerFallbackValue(const Some(''));
+    registerFallbackValue(mockGetCatByIdUsecaseParams);
     mockRepository = MockICatRepository();
     usecase = GetCatByIdUsecase(mockRepository);
   });
@@ -20,11 +20,7 @@ void main() {
     group('and the call is sucessful,', () {
       test('should return a Right with a [CatEntity]', () async {
         // Arrange
-        when(() => mockRepository.getCatById(
-                id: any(named: 'id'),
-                text: any(named: 'text'),
-                filter: any(named: 'filter'),
-                textColor: any(named: 'textColor')))
+        when(() => mockRepository.getCatById(any()))
             .thenAnswer((_) async => Right(mockCatEntity));
         // Act
         final result = await usecase(mockGetCatByIdUsecaseParams);
@@ -32,23 +28,15 @@ void main() {
         // Assert
         expect(result, Right(mockCatEntity));
         verify(
-          () => mockRepository.getCatById(
-              id: any(named: 'id'),
-              text: any(named: 'text'),
-              filter: any(named: 'filter'),
-              textColor: any(named: 'textColor')),
+          () => mockRepository.getCatById(any()),
         ).called(1);
       });
     });
     group('and the call is unsucessful,', () {
       test('should return an Left with a [Failure]', () async {
         // Arrange
-        when(() => mockRepository.getCatById(
-              id: any(named: 'id'),
-              text: any(named: 'text'),
-              filter: any(named: 'filter'),
-              textColor: any(named: 'textColor'),
-            )).thenAnswer((_) async => Left(mockFailure));
+        when(() => mockRepository.getCatById(any()))
+            .thenAnswer((_) async => Left(mockFailure));
 
         // Act
         final result = await usecase(mockGetCatByIdUsecaseParams);
@@ -56,12 +44,7 @@ void main() {
         // Assert
         expect(result, Left(mockFailure));
         verify(
-          () => mockRepository.getCatById(
-            id: any(named: 'id'),
-            text: any(named: 'text'),
-            filter: any(named: 'filter'),
-            textColor: any(named: 'textColor'),
-          ),
+          () => mockRepository.getCatById(any()),
         ).called(1);
       });
     });

@@ -12,12 +12,7 @@ class GetCatByIdUsecase implements Usecase<CatEntity, GetCatByIdUsecaseParams> {
 
   @override
   Future<Either<Failure, CatEntity>> call(GetCatByIdUsecaseParams params) {
-    return _repository.getCatById(
-      id: params.id,
-      text: params.text,
-      textColor: params.textColor,
-      filter: params.filter,
-    );
+    return _repository.getCatById(params);
   }
 }
 

@@ -15,6 +15,9 @@ void main() {
   late ICatRepository repository;
   setUp(() {
     registerFallbackValue(mockOptionString);
+    registerFallbackValue(mockGetCatByIdUsecaseParams);
+    registerFallbackValue(mockGetCatByTagUsecaseParams);
+    registerFallbackValue(mockGetRandomCatUsecaseParams);
     mockRemoteDatasource = MockRemoteDatasource();
     mockNetworkInfo = MockNetworkInfo();
     repository = CatRepositoryImpl(
@@ -27,27 +30,17 @@ void main() {
     test('should check if the device is online', () {
       // Arrange
       when(
-        () => mockRemoteDatasource.getRandomCat(
-          text: any(named: 'text'),
-          textColor: any(named: 'textColor'),
-          filter: any(named: 'filter'),
-        ),
+        () => mockRemoteDatasource.getRandomCat(any()),
       ).thenAnswer((_) async => mockCatModel);
       when(
         () => mockNetworkInfo.isConnected,
       ).thenAnswer((_) async => true);
 
       // Act
-      repository.getRandomCat(
-        text: const None(),
-        textColor: const None(),
-        filter: const None(),
-      );
+      repository.getRandomCat(mockGetRandomCatUsecaseParams);
 
       //Assert
-      verify(
-        () => mockNetworkInfo.isConnected,
-      ).called(1);
+      verify(() => mockNetworkInfo.isConnected).called(1);
     });
     group('and is connected to the internet,', () {
       setUp(() {
@@ -59,28 +52,17 @@ void main() {
         test('should return a Right with a [CatModel]', () async {
           // Arrange
           when(
-            () => mockRemoteDatasource.getRandomCat(
-              text: any(named: 'text'),
-              textColor: any(named: 'textColor'),
-              filter: any(named: 'filter'),
-            ),
+            () => mockRemoteDatasource.getRandomCat(any()),
           ).thenAnswer((_) async => mockCatModel);
 
           // Act
-          final result = await repository.getRandomCat(
-            text: const None(),
-            textColor: const None(),
-            filter: const None(),
-          );
+          final result =
+              await repository.getRandomCat(mockGetRandomCatUsecaseParams);
 
           // Assert
           expect(result, Right(mockCatModel));
           verify(
-            () => mockRemoteDatasource.getRandomCat(
-              text: any(named: 'text'),
-              textColor: any(named: 'textColor'),
-              filter: any(named: 'filter'),
-            ),
+            () => mockRemoteDatasource.getRandomCat(any()),
           );
         });
       });
@@ -90,19 +72,12 @@ void main() {
             () async {
           // Arrange
           when(
-            () => mockRemoteDatasource.getRandomCat(
-              text: any(named: 'text'),
-              textColor: any(named: 'textColor'),
-              filter: any(named: 'filter'),
-            ),
+            () => mockRemoteDatasource.getRandomCat(any()),
           ).thenThrow(mockCatNotFoundException);
 
           // Act
-          final result = await repository.getRandomCat(
-            text: const None(),
-            textColor: const None(),
-            filter: const None(),
-          );
+          final result =
+              await repository.getRandomCat(mockGetRandomCatUsecaseParams);
 
           // Assert
           expect(result, Left(ApiFailure(exception: mockCatNotFoundException)));
@@ -112,19 +87,12 @@ void main() {
             () async {
           // Arrange
           when(
-            () => mockRemoteDatasource.getRandomCat(
-              text: any(named: 'text'),
-              textColor: any(named: 'textColor'),
-              filter: any(named: 'filter'),
-            ),
+            () => mockRemoteDatasource.getRandomCat(any()),
           ).thenThrow(mockParseDataException);
 
           // Act
-          final result = await repository.getRandomCat(
-            text: const None(),
-            textColor: const None(),
-            filter: const None(),
-          );
+          final result =
+              await repository.getRandomCat(mockGetRandomCatUsecaseParams);
 
           // Assert
           expect(result,
@@ -140,11 +108,8 @@ void main() {
         ).thenAnswer((_) async => false);
 
         // Act
-        final result = await repository.getRandomCat(
-          text: const None(),
-          textColor: const None(),
-          filter: const None(),
-        );
+        final result =
+            await repository.getRandomCat(mockGetRandomCatUsecaseParams);
 
         // Assert
         expect(result, Left(mockNoInternetConnectionFailure));
@@ -155,24 +120,14 @@ void main() {
     test('should check if the device is online', () {
       // Arrange
       when(
-        () => mockRemoteDatasource.getCatById(
-          id: any(named: 'id'),
-          text: any(named: 'text'),
-          textColor: any(named: 'textColor'),
-          filter: any(named: 'filter'),
-        ),
+        () => mockRemoteDatasource.getCatById(any()),
       ).thenAnswer((_) async => mockCatModel);
       when(
         () => mockNetworkInfo.isConnected,
       ).thenAnswer((_) async => true);
 
       // Act
-      repository.getCatById(
-        id: '',
-        text: const None(),
-        textColor: const None(),
-        filter: const None(),
-      );
+      repository.getCatById(mockGetCatByIdUsecaseParams);
 
       //Assert
       verify(
@@ -189,31 +144,17 @@ void main() {
         test('should return a Right with a [CatModel]', () async {
           // Arrange
           when(
-            () => mockRemoteDatasource.getCatById(
-              id: any(named: 'id'),
-              text: any(named: 'text'),
-              textColor: any(named: 'textColor'),
-              filter: any(named: 'filter'),
-            ),
+            () => mockRemoteDatasource.getCatById(any()),
           ).thenAnswer((_) async => mockCatModel);
 
           // Act
-          final result = await repository.getCatById(
-            id: '',
-            text: const None(),
-            textColor: const None(),
-            filter: const None(),
-          );
+          final result =
+              await repository.getCatById(mockGetCatByIdUsecaseParams);
 
           // Assert
           expect(result, Right(mockCatModel));
           verify(
-            () => mockRemoteDatasource.getCatById(
-              id: any(named: 'id'),
-              text: any(named: 'text'),
-              textColor: any(named: 'textColor'),
-              filter: any(named: 'filter'),
-            ),
+            () => mockRemoteDatasource.getCatById(any()),
           );
         });
       });
@@ -223,21 +164,12 @@ void main() {
             () async {
           // Arrange
           when(
-            () => mockRemoteDatasource.getCatById(
-              id: any(named: 'id'),
-              text: any(named: 'text'),
-              textColor: any(named: 'textColor'),
-              filter: any(named: 'filter'),
-            ),
+            () => mockRemoteDatasource.getCatById(any()),
           ).thenThrow(mockCatNotFoundException);
 
           // Act
-          final result = await repository.getCatById(
-            id: '',
-            text: const None(),
-            textColor: const None(),
-            filter: const None(),
-          );
+          final result =
+              await repository.getCatById(mockGetCatByIdUsecaseParams);
 
           // Assert
           expect(result, Left(ApiFailure(exception: mockCatNotFoundException)));
@@ -247,21 +179,12 @@ void main() {
             () async {
           // Arrange
           when(
-            () => mockRemoteDatasource.getCatById(
-              id: any(named: 'id'),
-              text: any(named: 'text'),
-              textColor: any(named: 'textColor'),
-              filter: any(named: 'filter'),
-            ),
+            () => mockRemoteDatasource.getCatById(any()),
           ).thenThrow(mockParseDataException);
 
           // Act
-          final result = await repository.getCatById(
-            id: '',
-            text: const None(),
-            textColor: const None(),
-            filter: const None(),
-          );
+          final result =
+              await repository.getCatById(mockGetCatByIdUsecaseParams);
 
           // Assert
           expect(result,
@@ -277,12 +200,7 @@ void main() {
         ).thenAnswer((_) async => false);
 
         // Act
-        final result = await repository.getCatById(
-          id: '',
-          text: const None(),
-          textColor: const None(),
-          filter: const None(),
-        );
+        final result = await repository.getCatById(mockGetCatByIdUsecaseParams);
 
         // Assert
         expect(result, Left(mockNoInternetConnectionFailure));
@@ -292,30 +210,15 @@ void main() {
   group('When [getCatByTag] is called,', () {
     test('should check if the device is online', () {
       // Arrange
-      when(
-        () => mockRemoteDatasource.getCatByTag(
-          tag: any(named: 'tag'),
-          text: any(named: 'text'),
-          textColor: any(named: 'textColor'),
-          filter: any(named: 'filter'),
-        ),
-      ).thenAnswer((_) async => mockCatModel);
-      when(
-        () => mockNetworkInfo.isConnected,
-      ).thenAnswer((_) async => true);
+      when(() => mockRemoteDatasource.getCatByTag(any()))
+          .thenAnswer((_) async => mockCatModel);
+      when(() => mockNetworkInfo.isConnected).thenAnswer((_) async => true);
 
       // Act
-      repository.getCatByTag(
-        tag: '',
-        text: const None(),
-        textColor: const None(),
-        filter: const None(),
-      );
+      repository.getCatByTag(mockGetCatByTagUsecaseParams);
 
       //Assert
-      verify(
-        () => mockNetworkInfo.isConnected,
-      ).called(1);
+      verify(() => mockNetworkInfo.isConnected).called(1);
     });
     group('and is connected to the internet,', () {
       setUp(() {
@@ -327,31 +230,17 @@ void main() {
         test('should return a Right with a [CatModel]', () async {
           // Arrange
           when(
-            () => mockRemoteDatasource.getCatByTag(
-              tag: any(named: 'tag'),
-              text: any(named: 'text'),
-              textColor: any(named: 'textColor'),
-              filter: any(named: 'filter'),
-            ),
+            () => mockRemoteDatasource.getCatByTag(any()),
           ).thenAnswer((_) async => mockCatModel);
 
           // Act
-          final result = await repository.getCatByTag(
-            tag: '',
-            text: const None(),
-            textColor: const None(),
-            filter: const None(),
-          );
+          final result =
+              await repository.getCatByTag(mockGetCatByTagUsecaseParams);
 
           // Assert
           expect(result, Right(mockCatModel));
           verify(
-            () => mockRemoteDatasource.getCatByTag(
-              tag: any(named: 'tag'),
-              text: any(named: 'text'),
-              textColor: any(named: 'textColor'),
-              filter: any(named: 'filter'),
-            ),
+            () => mockRemoteDatasource.getCatByTag(any()),
           );
         });
       });
@@ -361,21 +250,12 @@ void main() {
             () async {
           // Arrange
           when(
-            () => mockRemoteDatasource.getCatByTag(
-              tag: any(named: 'tag'),
-              text: any(named: 'text'),
-              textColor: any(named: 'textColor'),
-              filter: any(named: 'filter'),
-            ),
+            () => mockRemoteDatasource.getCatByTag(any()),
           ).thenThrow(mockCatNotFoundException);
 
           // Act
-          final result = await repository.getCatByTag(
-            tag: '',
-            text: const None(),
-            textColor: const None(),
-            filter: const None(),
-          );
+          final result =
+              await repository.getCatByTag(mockGetCatByTagUsecaseParams);
 
           // Assert
           expect(result, Left(ApiFailure(exception: mockCatNotFoundException)));
@@ -385,21 +265,12 @@ void main() {
             () async {
           // Arrange
           when(
-            () => mockRemoteDatasource.getCatByTag(
-              tag: any(named: 'tag'),
-              text: any(named: 'text'),
-              textColor: any(named: 'textColor'),
-              filter: any(named: 'filter'),
-            ),
+            () => mockRemoteDatasource.getCatByTag(any()),
           ).thenThrow(mockParseDataException);
 
           // Act
-          final result = await repository.getCatByTag(
-            tag: '',
-            text: const None(),
-            textColor: const None(),
-            filter: const None(),
-          );
+          final result =
+              await repository.getCatByTag(mockGetCatByTagUsecaseParams);
 
           // Assert
           expect(result,
@@ -415,12 +286,8 @@ void main() {
         ).thenAnswer((_) async => false);
 
         // Act
-        final result = await repository.getCatByTag(
-          tag: '',
-          text: const None(),
-          textColor: const None(),
-          filter: const None(),
-        );
+        final result =
+            await repository.getCatByTag(mockGetCatByTagUsecaseParams);
 
         // Assert
         expect(result, Left(mockNoInternetConnectionFailure));
