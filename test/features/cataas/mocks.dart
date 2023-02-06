@@ -15,6 +15,12 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:mocktail/mocktail.dart';
 
+class MockGetRandomCatUsecase extends Mock implements GetRandomCatUsecase {}
+
+class MockGetCatByIdUsecase extends Mock implements GetCatByIdUsecase {}
+
+class MockGetCatByTagUsecase extends Mock implements GetCatByTagUsecase {}
+
 class MockICatRepository extends Mock implements ICatRepository {}
 
 class MockRemoteDatasource extends Mock implements ICatRemoteDatasource {}
