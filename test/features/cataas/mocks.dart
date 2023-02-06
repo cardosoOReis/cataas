@@ -75,9 +75,9 @@ const mockSaveCatLocallyException = SaveCatLocallyException();
 const Option<String> mockOptionString = Some('');
 
 const mockGetRandomCatUsecaseParams = GetRandomCatUsecaseParams(
-  text: None(),
-  textColor: None(),
-  filter: None(),
+  text: Some('hello'),
+  textColor: Some('red'),
+  filter: Some('sepia'),
 );
 const mockGetCatByIdUsecaseParams = GetCatByIdUsecaseParams(
   id: 'exvMtoKhGj3R7FGL',
@@ -86,10 +86,10 @@ const mockGetCatByIdUsecaseParams = GetCatByIdUsecaseParams(
   filter: Some('sepia'),
 );
 const mockGetCatByTagUsecaseParams = GetCatByTagUsecaseParams(
-  tag: '',
-  text: None(),
-  textColor: None(),
-  filter: None(),
+  tag: 'sunshi',
+  text: Some('hello'),
+  textColor: Some('red'),
+  filter: Some('sepia'),
 );
 
 const mockSaveCatLocallyUsecaseParams = SaveCatLocallyUsecaseParams(url: '');
