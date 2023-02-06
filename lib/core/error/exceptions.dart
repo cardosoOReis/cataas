@@ -19,6 +19,16 @@ class ParseDataException implements Exception {
   });
 }
 
+class ServerException implements Exception {
+  final String message;
+  final int statusCode;
+
+  const ServerException({
+    required this.message,
+    required this.statusCode,
+  });
+}
+
 class SaveCatLocallyException implements Exception {
   const SaveCatLocallyException();
 }

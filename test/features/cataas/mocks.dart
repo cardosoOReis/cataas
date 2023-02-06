@@ -1,6 +1,7 @@
 import 'package:cataas/core/error/exceptions.dart';
 import 'package:cataas/core/error/failures.dart';
 import 'package:cataas/core/network/i_network_info.dart';
+import 'package:cataas/core/services/i_save_image_locally_service.dart';
 import 'package:cataas/features/cataas/data/datasources/i_cat_local_datasource.dart';
 import 'package:cataas/features/cataas/data/datasources/i_cat_remote_datasource.dart';
 import 'package:cataas/features/cataas/data/models/cat_model.dart';
@@ -11,6 +12,7 @@ import 'package:cataas/features/cataas/domain/usecases/get_cat_by_tag_usecase.da
 import 'package:cataas/features/cataas/domain/usecases/get_random_cat_usecase.dart';
 import 'package:cataas/features/cataas/domain/usecases/save_cat_locally_usecase.dart';
 import 'package:dartz/dartz.dart';
+import 'package:dio/dio.dart';
 import 'package:mocktail/mocktail.dart';
 
 class MockICatRepository extends Mock implements ICatRepository {}
@@ -25,11 +27,16 @@ class MockFailure extends Mock implements Failure {}
 
 class MockApiFailure extends Mock implements ApiFailure {}
 
+class MockSaveImageLocallyService extends Mock
+    implements ISaveImageLocallyService {}
+
+class MockDio extends Mock implements Dio {}
+
 final mockCatEntity = CatEntity(
-  id: '',
+  id: 'exvMtoKhGj3R7FGL',
   fileType: FileType.image,
   requestedAt: DateTime(2023),
-  url: '',
+  url: '/cat/exvMtoKhGj3R7FGL',
   text: const None(),
   textColor: const None(),
   filter: const None(),
@@ -37,14 +44,25 @@ final mockCatEntity = CatEntity(
 );
 
 final mockCatModel = CatModel(
-  id: '',
+  id: 'exvMtoKhGj3R7FGL',
   fileType: FileType.image,
   requestedAt: DateTime(2023),
-  url: '',
+  url: '/cat/exvMtoKhGj3R7FGL',
   text: const None(),
   textColor: const None(),
   filter: const None(),
   tags: const None(),
+);
+
+final mockCatModelFromResponse = CatModel(
+  id: 'exvMtoKhGj3R7FGL',
+  fileType: FileType.image,
+  requestedAt: DateTime(2023),
+  url: '/cat/exvMtoKhGj3R7FGL',
+  text: const None(),
+  textColor: const None(),
+  filter: const None(),
+  tags: const Some(['cute', 'sunshi']),
 );
 
 final mockFailure = MockFailure();
@@ -62,10 +80,10 @@ const mockGetRandomCatUsecaseParams = GetRandomCatUsecaseParams(
   filter: None(),
 );
 const mockGetCatByIdUsecaseParams = GetCatByIdUsecaseParams(
-  id: '',
-  text: None(),
-  textColor: None(),
-  filter: None(),
+  id: 'exvMtoKhGj3R7FGL',
+  text: Some('hello'),
+  textColor: Some('red'),
+  filter: Some('sepia'),
 );
 const mockGetCatByTagUsecaseParams = GetCatByTagUsecaseParams(
   tag: '',

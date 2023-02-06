@@ -32,7 +32,14 @@ void main() {
         final Map<String, dynamic> jsonMap = jsonDecode(fixture('cat.json'));
 
         // Act & Assert
-        expect(() => CatModel.fromJson(jsonMap), returnsNormally);
+        expect(
+            () => CatModel.fromJson(
+                  json: jsonMap,
+                  filter: const None(),
+                  text: const None(),
+                  textColor: const None(),
+                ),
+            returnsNormally);
       });
     });
   });
