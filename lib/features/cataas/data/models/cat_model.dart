@@ -22,6 +22,7 @@ class CatModel extends CatEntity {
     required Option<String> filter,
   }) {
     final body = CatModelFromRequest.fromJson(json);
+
     return CatModel(
       id: body.id,
       fileType: body.file.endsWith('gif') ? FileType.gif : FileType.image,

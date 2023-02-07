@@ -32,7 +32,8 @@ class CatRepositoryImpl implements ICatRepository {
 
   @override
   Future<Either<Failure, CatEntity>> getCatByTag(
-      GetCatByTagUsecaseParams params) async {
+    GetCatByTagUsecaseParams params,
+  ) async {
     return await _getCat(() => remoteDatasource.getCatByTag(params));
   }
 
@@ -45,7 +46,8 @@ class CatRepositoryImpl implements ICatRepository {
 
   @override
   Future<Either<Failure, void>> saveCatLocally(
-      SaveCatLocallyUsecaseParams params) async {
+    SaveCatLocallyUsecaseParams params,
+  ) async {
     try {
       final result = await localDatasource.saveCatLocally(params);
 
@@ -56,7 +58,8 @@ class CatRepositoryImpl implements ICatRepository {
   }
 
   Future<Either<Failure, CatEntity>> _getCat<Params>(
-      Future<CatModel> Function() getCat) async {
+    Future<CatModel> Function() getCat,
+  ) async {
     if (await networkInfo.isConnected) {
       try {
         final result = await getCat();

@@ -36,7 +36,7 @@ class MockApiFailure extends Mock implements ApiFailure {}
 class MockSaveImageLocallyService extends Mock
     implements ISaveImageLocallyService {}
 
-class MockDio extends Mock implements Dio {}
+class MockHttpClient extends Mock implements Dio {}
 
 final mockCatEntity = CatEntity(
   id: 'exvMtoKhGj3R7FGL',

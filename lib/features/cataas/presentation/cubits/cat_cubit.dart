@@ -34,7 +34,9 @@ class CatCubit extends Cubit<CatState> {
     );
     final result = await getRandomCatUsecase(params);
     result.fold(
-      (failure) {},
+      (failure) {
+        // TODO -> Add failure treatment
+      },
       (catEntity) {
         emit(
           state.copyWith(
@@ -47,10 +49,12 @@ class CatCubit extends Cubit<CatState> {
     );
   }
 
-  Future<void> onGetCatBySpecificButtonTap(
-    String specific, {
+  Future<void> onGetCatByIdButtonTap(
+    String id, {
     String? text,
     String? textColor,
     String? filter,
-  }) async {}
+  }) async {
+    // TODO
+  }
 }

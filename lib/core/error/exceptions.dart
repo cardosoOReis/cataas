@@ -8,8 +8,10 @@ class ApiException implements Exception {
 }
 
 class CatNotFoundException extends ApiException {
-  const CatNotFoundException(
-      {required super.message, required super.statusCode});
+  const CatNotFoundException({
+    required super.message,
+    required super.statusCode,
+  });
 }
 
 class ParseDataException implements Exception {

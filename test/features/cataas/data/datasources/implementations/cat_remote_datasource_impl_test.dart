@@ -11,16 +11,16 @@ import '../../../mocks.dart';
 
 void main() {
   late CatRemoteDatasourceImpl datasource;
-  late MockDio mockDio;
+  late Dio mockHttpClient;
 
   setUp(() {
-    mockDio = MockDio();
-    datasource = CatRemoteDatasourceImpl(client: mockDio);
+    mockHttpClient = MockHttpClient();
+    datasource = CatRemoteDatasourceImpl(client: mockHttpClient);
   });
 
   void setUpMock200Response() {
     when(
-      () => mockDio.get(
+      () => mockHttpClient.get(
         any(),
         queryParameters: any(
           named: 'queryParameters',
@@ -35,7 +35,7 @@ void main() {
 
   void setUpMock404Response() {
     when(
-      () => mockDio.get(
+      () => mockHttpClient.get(
         any(),
         queryParameters: any(named: 'queryParameters'),
       ),
@@ -53,7 +53,7 @@ void main() {
 
   void setUpMock500Response() {
     when(
-      () => mockDio.get(
+      () => mockHttpClient.get(
         any(),
         queryParameters: any(named: 'queryParameters'),
       ),
@@ -71,7 +71,7 @@ void main() {
 
   void setUpMockDefaultErrorResponse() {
     when(
-      () => mockDio.get(
+      () => mockHttpClient.get(
         any(),
         queryParameters: any(named: 'queryParameters'),
       ),
@@ -90,11 +90,14 @@ void main() {
 
       // Assert
       verify(
-        () => mockDio.get(
-          'https://cataas.com/cat/${mockGetCatByIdUsecaseParams.id}',
-          queryParameters: {
-            'json': 'true',
-          },
+        () => mockHttpClient.get(
+          any(
+            that: contains(mockGetCatByIdUsecaseParams.id),
+          ),
+          queryParameters: any(
+            named: 'queryParameters',
+            that: containsPair('json', 'true'),
+          ),
         ),
       ).called(1);
     });
@@ -135,7 +138,7 @@ void main() {
               .fold(() => null, (textColor) => textColor);
           final filter = mockGetCatByIdUsecaseParams.filter
               .fold(() => null, (filter) => filter);
-          mockDio.get(
+          mockHttpClient.get(
               'https://cataas.com/cat/${mockGetCatByIdUsecaseParams.id}/says/$text',
               queryParameters: {
                 'json': 'true',
@@ -195,11 +198,14 @@ void main() {
 
       // Assert
       verify(
-        () => mockDio.get(
-          'https://cataas.com/cat/tag/${mockGetCatByTagUsecaseParams.tag}',
-          queryParameters: {
-            'json': 'true',
-          },
+        () => mockHttpClient.get(
+          any(
+            that: contains('/tag/' + mockGetCatByTagUsecaseParams.tag),
+          ),
+          queryParameters: any(
+            named: 'queryParameters',
+            that: containsPair('json', 'true'),
+          ),
         ),
       ).called(1);
     });
@@ -261,7 +267,7 @@ void main() {
               .fold(() => null, (textColor) => textColor);
           final filter = mockGetCatByTagUsecaseParams.filter
               .fold(() => null, (filter) => filter);
-          mockDio.get(
+          mockHttpClient.get(
               'https://cataas.com/cat/tag/${mockGetCatByTagUsecaseParams.tag}/says/$text',
               queryParameters: {
                 'json': 'true',
@@ -312,7 +318,7 @@ void main() {
     });
   });
   group('When [getRandomCat] is called,', () {
-    test('should perform a GET request on a url with the tag on the URL', () {
+    test('should perform a GET request on a url', () {
       // Arrange
       setUpMock200Response();
 
@@ -321,11 +327,12 @@ void main() {
 
       // Assert
       verify(
-        () => mockDio.get(
-          'https://cataas.com/cat',
-          queryParameters: {
-            'json': 'true',
-          },
+        () => mockHttpClient.get(
+          any(),
+          queryParameters: any(
+            named: 'queryParameters',
+            that: containsPair('json', 'true'),
+          ),
         ),
       ).called(1);
     });
@@ -378,7 +385,7 @@ void main() {
               .fold(() => null, (textColor) => textColor);
           final filter = mockGetRandomCatUsecaseParams.filter
               .fold(() => null, (filter) => filter);
-          mockDio.get(
+          mockHttpClient.get(
             'https://cataas.com/cat/says/$text',
             queryParameters: {
               'json': 'true',

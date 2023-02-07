@@ -11,7 +11,6 @@ import '../i_cat_remote_datasource.dart';
 
 class CatRemoteDatasourceImpl implements ICatRemoteDatasource {
   // TODO -> Refactor this part to stop using the same code!
-  // TODO -> Create Http service to abstract Dio
   final Dio client;
   CatRemoteDatasourceImpl({
     required this.client,
@@ -23,15 +22,15 @@ class CatRemoteDatasourceImpl implements ICatRemoteDatasource {
       String url = 'https://cataas.com/cat/${params.id}';
       final Map<String, dynamic> queryParameters = {'json': 'true'};
       params.text.fold(
-        () {},
+        () => null,
         (text) => url += '/says/$text',
       );
       params.textColor.fold(
-        () {},
+        () => null,
         (textColor) => queryParameters.addAll({'textColor': textColor}),
       );
       params.filter.fold(
-        () {},
+        () => null,
         (filter) => queryParameters.addAll({'filter': filter}),
       );
 
@@ -74,15 +73,15 @@ class CatRemoteDatasourceImpl implements ICatRemoteDatasource {
       String url = 'https://cataas.com/cat/tag/${params.tag}';
       final Map<String, dynamic> queryParameters = {'json': 'true'};
       params.text.fold(
-        () {},
+        () => null,
         (text) => url += '/says/$text',
       );
       params.textColor.fold(
-        () {},
+        () => null,
         (textColor) => queryParameters.addAll({'textColor': textColor}),
       );
       params.filter.fold(
-        () {},
+        () => null,
         (filter) => queryParameters.addAll({'filter': filter}),
       );
 
@@ -125,15 +124,15 @@ class CatRemoteDatasourceImpl implements ICatRemoteDatasource {
       String url = 'https://cataas.com/cat';
       final Map<String, dynamic> queryParameters = {'json': 'true'};
       params.text.fold(
-        () {},
+        () => null,
         (text) => url += '/says/$text',
       );
       params.textColor.fold(
-        () {},
+        () => null,
         (textColor) => queryParameters.addAll({'textColor': textColor}),
       );
       params.filter.fold(
-        () {},
+        () => null,
         (filter) => queryParameters.addAll({'filter': filter}),
       );
 

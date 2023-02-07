@@ -26,6 +26,7 @@ class CatEntity extends Equatable {
         id,
         fileType,
         requestedAt,
+        url,
         text,
         textColor,
         filter,

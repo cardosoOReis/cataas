@@ -1,14 +1,4 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 part of 'cat_cubit.dart';
-
-enum CatStatus { initial, loading, sucess, failure }
-
-extension CatStatusX on CatStatus {
-  bool get isInitial => this == CatStatus.initial;
-  bool get isLoading => this == CatStatus.loading;
-  bool get isSucess => this == CatStatus.sucess;
-  bool get isFailure => this == CatStatus.failure;
-}
 
 class CatState extends Equatable {
   final CatStatus status;
@@ -28,6 +18,7 @@ class CatState extends Equatable {
   List<Object?> get props => [
         status,
         isSaveCatButtonEnabled,
+        isSearchingById,
         catEntity,
         failure,
       ];
@@ -49,3 +40,12 @@ class CatState extends Equatable {
     );
   }
 }
+
+extension CatStatusX on CatStatus {
+  bool get isInitial => this == CatStatus.initial;
+  bool get isLoading => this == CatStatus.loading;
+  bool get isSucess => this == CatStatus.sucess;
+  bool get isFailure => this == CatStatus.failure;
+}
+
+enum CatStatus { initial, loading, sucess, failure }
