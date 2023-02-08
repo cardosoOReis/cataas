@@ -1,6 +1,6 @@
-import 'package:cataas/core/error/failures.dart';
-import 'package:cataas/core/usecases/usecase.dart';
-import 'package:cataas/features/cataas/domain/repositories/i_cat_repository.dart';
+import '../../../../core/error/failures.dart';
+import '../../../../core/usecases/usecase.dart';
+import '../repositories/i_cat_repository.dart';
 import 'package:dartz/dartz.dart';
 
 class SaveCatLocallyUsecase

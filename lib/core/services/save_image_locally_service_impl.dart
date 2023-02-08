@@ -1,6 +1,6 @@
-import '../error/exceptions.dart';
 import 'package:image_downloader/image_downloader.dart';
 
+import '../error/exceptions.dart';
 import 'i_save_image_locally_service.dart';
 
 class SaveImageLocallyServiceImpl implements ISaveImageLocallyService {
