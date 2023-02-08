@@ -1,8 +1,8 @@
 import 'package:bloc/bloc.dart';
-import 'package:cataas/core/error/failures.dart';
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 
+import '../../../../core/error/failures.dart';
 import '../../domain/entities/cat_entity.dart';
 import '../../domain/usecases/get_cat_by_id_usecase.dart';
 import '../../domain/usecases/get_cat_by_tag_usecase.dart';
@@ -58,6 +58,7 @@ class CatCubit extends Cubit<CatState> {
     String? textColor,
     String? filter,
   }) async {
+    emit(state.copyWith(status: CatStatus.loading));
     final params = GetCatByIdUsecaseParams(
       id: id,
       text: text.toOption(),
@@ -66,8 +67,48 @@ class CatCubit extends Cubit<CatState> {
     );
     final result = await getCatByIdUsecase(params);
     result.fold(
-      (failure) {},
-      (catEntity) {},
+      (failure) {
+        emit(state.copyWith(
+          status: CatStatus.failure,
+          failure: failure,
+        ));
+      },
+      (catEntity) {
+        emit(state.copyWith(
+          status: CatStatus.success,
+          catEntity: catEntity,
+        ));
+      },
+    );
+  }
+
+  Future<void> onGetCatByTagButtonTap(
+    String tag, {
+    String? text,
+    String? textColor,
+    String? filter,
+  }) async {
+    emit(state.copyWith(status: CatStatus.loading));
+    final params = GetCatByTagUsecaseParams(
+      tag: tag,
+      text: text.toOption(),
+      textColor: textColor.toOption(),
+      filter: filter.toOption(),
+    );
+    final result = await getCatByTagUsecase(params);
+    result.fold(
+      (failure) {
+        emit(state.copyWith(
+          status: CatStatus.failure,
+          failure: failure,
+        ));
+      },
+      (catEntity) {
+        emit(state.copyWith(
+          status: CatStatus.success,
+          catEntity: catEntity,
+        ));
+      },
     );
   }
 }
