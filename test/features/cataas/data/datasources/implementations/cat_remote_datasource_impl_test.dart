@@ -101,7 +101,7 @@ void main() {
         ),
       ).called(1);
     });
-    group('and the call is sucessful,', () {
+    group('and the call is successful,', () {
       test('should return an [CatModel]', () async {
         //Arrange
         setUpMock200Response();
@@ -148,7 +148,7 @@ void main() {
         }).called(1);
       });
     });
-    group('and the call is unsucessful,', () {
+    group('and the call is unsuccessful,', () {
       test('and the statusCode is 404, should throw a [CatNotFoundException]',
           () async {
         //Arrange
@@ -209,7 +209,7 @@ void main() {
         ),
       ).called(1);
     });
-    group('and the call is sucessful,', () {
+    group('and the call is successful,', () {
       test('should return an [CatModel]', () async {
         //Arrange
         setUpMock200Response();
@@ -277,7 +277,7 @@ void main() {
         }).called(1);
       });
     });
-    group('and the call is unsucessful,', () {
+    group('and the call is unsuccessful,', () {
       test('and the statusCode is 404, should throw a [CatNotFoundException]',
           () async {
         //Arrange
@@ -336,7 +336,7 @@ void main() {
         ),
       ).called(1);
     });
-    group('and the call is sucessful,', () {
+    group('and the call is successful,', () {
       test('should return an [CatModel]', () async {
         //Arrange
         setUpMock200Response();
@@ -396,7 +396,7 @@ void main() {
         }).called(1);
       });
     });
-    group('and the call is unsucessful,', () {
+    group('and the call is unsuccessful,', () {
       test('and the statusCode is 404, should throw a [CatNotFoundException]',
           () async {
         //Arrange

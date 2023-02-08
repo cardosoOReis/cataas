@@ -18,7 +18,7 @@ void main() {
   });
 
   group('When [SaveCatLocallyUsecase] is called,', () {
-    group('and the call is sucessful,', () {
+    group('and the call is successful,', () {
       test('should return a Right with a [null]', () async {
         // Arrange
         when(() => mockRepository.saveCatLocally(any()))
@@ -31,7 +31,7 @@ void main() {
         expect(result, const Right(null));
       });
     });
-    group('and the call is unsucessful,', () {
+    group('and the call is unsuccessful,', () {
       test('should return a Left with a [SaveCatLocallyFailure]', () async {
         // Arrange
         when(() => mockRepository.saveCatLocally(any())).thenAnswer(

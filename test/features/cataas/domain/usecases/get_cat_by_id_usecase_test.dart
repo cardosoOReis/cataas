@@ -17,7 +17,7 @@ void main() {
   });
 
   group('When [GetCatByIdUsecase] is called,', () {
-    group('and the call is sucessful,', () {
+    group('and the call is successful,', () {
       test('should return a Right with a [CatEntity]', () async {
         // Arrange
         when(() => mockRepository.getCatById(any()))
@@ -32,7 +32,7 @@ void main() {
         ).called(1);
       });
     });
-    group('and the call is unsucessful,', () {
+    group('and the call is unsuccessful,', () {
       test('should return an Left with a [Failure]', () async {
         // Arrange
         when(() => mockRepository.getCatById(any()))

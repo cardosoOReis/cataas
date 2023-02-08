@@ -25,12 +25,12 @@ void main() {
   });
 
   group('When [onGetRandomCatButtonTap] is called,', () {
-    group('and the call is sucess,', () {
+    group('and the call is success,', () {
       blocTest<CatCubit, CatState>(
-        'emits [loading, sucess] when getRandomCatUsecase returns a [CatEntity].',
+        'emits [loading, success] when getRandomCatUsecase returns a [CatEntity].',
         setUp: () {
           when(() => mockGetRandomCatUsecase(any()))
-              .thenAnswer((invocation) async => Right(mockCatEntity));
+              .thenAnswer((_) async => Right(mockCatEntity));
         },
         build: () => cubit,
         act: (bloc) => bloc.onGetRandomCatButtonTap(),
@@ -40,7 +40,7 @@ void main() {
               .having(
                 (state) => state.status,
                 'status',
-                CatStatus.sucess,
+                CatStatus.success,
               )
               .having(
                 (state) => state.catEntity,
@@ -53,6 +53,44 @@ void main() {
                 true,
               ),
         ],
+        verify: (bloc) {
+          verify(
+            () => mockGetRandomCatUsecase(any()),
+          ).called(1);
+        },
+      );
+      blocTest<CatCubit, CatState>(
+        'emits [loading, failure] when getRandomCatUsecase returns a [Failure].',
+        setUp: () {
+          when(() => mockGetRandomCatUsecase(any()))
+              .thenAnswer((_) async => Left(mockFailure));
+        },
+        build: () => cubit,
+        act: (bloc) => bloc.onGetRandomCatButtonTap(),
+        expect: () => <dynamic>[
+          const CatState(status: CatStatus.loading),
+          isA<CatState>()
+              .having(
+                (state) => state.status,
+                'status',
+                CatStatus.failure,
+              )
+              .having(
+                (state) => state.failure,
+                'failure',
+                mockFailure,
+              )
+              .having(
+                (state) => state.isSaveCatButtonEnabled,
+                'isSaveCatButtonEnabled',
+                false,
+              ),
+        ],
+        verify: (bloc) {
+          verify(
+            () => mockGetRandomCatUsecase(any()),
+          ).called(1);
+        },
       );
     });
   });

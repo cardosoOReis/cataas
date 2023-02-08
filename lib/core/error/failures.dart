@@ -1,14 +1,22 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:equatable/equatable.dart';
 
 import 'exceptions.dart';
 
-abstract class Failure extends Equatable {}
+abstract class Failure extends Equatable {
+  const Failure();
+  String get message;
+}
 
 class ApiFailure extends Failure {
   final ApiException exception;
-  ApiFailure({
+  const ApiFailure({
     required this.exception,
   });
+
+  @override
+  String get message =>
+      'Sorry, it looks like something went wrong when fetching your cat 😿';
 
   @override
   List<Object?> get props => [exception];
@@ -16,24 +24,66 @@ class ApiFailure extends Failure {
 
 class ParseDataFailure extends Failure {
   final ParseDataException exception;
-  ParseDataFailure({
+  const ParseDataFailure({
     required this.exception,
   });
+
+  @override
+  String get message =>
+      'Sorry, it looks like something went wrong when fetching your cat 😿.';
 
   @override
   List<Object?> get props => [exception];
 }
 
 class NoInternetConnectionFailure extends Failure {
+  const NoInternetConnectionFailure();
+
+  @override
+  String get message =>
+      "Uh oh, it looks like you don't have internet connection 😿. Could you please try again later?";
+
   @override
   List<Object?> get props => [];
 }
 
 class SaveCatLocallyFailure extends Failure {
   final SaveCatLocallyException exception;
-  SaveCatLocallyFailure({
+  const SaveCatLocallyFailure({
     required this.exception,
   });
+
+  @override
+  String get message =>
+      'Sorry, it looks like something went wrong when saving your cat 😿.';
+
+  @override
+  List<Object?> get props => [exception];
+}
+
+class ServerFailure extends Failure {
+  final ServerException exception;
+  const ServerFailure({
+    required this.exception,
+  });
+
+  @override
+  String get message =>
+      'Sorry, we are having some problems with our servers 🙀. Could you please try again later?';
+
+  @override
+  List<Object?> get props => [exception];
+}
+
+class GeneralFailure extends Failure {
+  final Exception exception;
+  const GeneralFailure({
+    required this.exception,
+  });
+
+  @override
+  String get message =>
+      'Uh oh, it appears something went wrong 🙀. Could you please try again later?';
 
   @override
   List<Object?> get props => [exception];

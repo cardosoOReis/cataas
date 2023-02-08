@@ -52,7 +52,7 @@ void main() {
           () => mockNetworkInfo.isConnected,
         ).thenAnswer((_) async => true);
       });
-      group('and the call is sucessful,', () {
+      group('and the call is successful,', () {
         test('should return a Right with a [CatModel]', () async {
           // Arrange
           when(
@@ -70,7 +70,7 @@ void main() {
           );
         });
       });
-      group('and the call is unsucessful,', () {
+      group('and the call is unsuccessful,', () {
         test(
             'and the reason is [CatNotFoundException], should return a Left with a [ApiFailure]',
             () async {
@@ -101,6 +101,21 @@ void main() {
           // Assert
           expect(result,
               Left(ParseDataFailure(exception: mockParseDataException)));
+        });
+        test(
+            'and the reason is [ServerException], should return a Left with a [ServerFailure]',
+            () async {
+          // Arrange
+          when(
+            () => mockRemoteDatasource.getRandomCat(any()),
+          ).thenThrow(mockServerException);
+
+          // Act
+          final result =
+              await repository.getRandomCat(mockGetRandomCatUsecaseParams);
+
+          // Assert
+          expect(result, Left(ServerFailure(exception: mockServerException)));
         });
       });
     });
@@ -144,7 +159,7 @@ void main() {
           () => mockNetworkInfo.isConnected,
         ).thenAnswer((_) async => true);
       });
-      group('and the call is sucessful,', () {
+      group('and the call is successful,', () {
         test('should return a Right with a [CatModel]', () async {
           // Arrange
           when(
@@ -162,7 +177,7 @@ void main() {
           );
         });
       });
-      group('and the call is unsucessful,', () {
+      group('and the call is unsuccessful,', () {
         test(
             'and the reason is [CatNotFoundException], should return a Left with a [ApiFailure]',
             () async {
@@ -193,6 +208,21 @@ void main() {
           // Assert
           expect(result,
               Left(ParseDataFailure(exception: mockParseDataException)));
+        });
+        test(
+            'and the reason is [ServerException], should return a Left with a [ServerFailure]',
+            () async {
+          // Arrange
+          when(
+            () => mockRemoteDatasource.getCatById(any()),
+          ).thenThrow(mockServerException);
+
+          // Act
+          final result =
+              await repository.getCatById(mockGetCatByIdUsecaseParams);
+
+          // Assert
+          expect(result, Left(ServerFailure(exception: mockServerException)));
         });
       });
     });
@@ -230,7 +260,7 @@ void main() {
           () => mockNetworkInfo.isConnected,
         ).thenAnswer((_) async => true);
       });
-      group('and the call is sucessful,', () {
+      group('and the call is successful,', () {
         test('should return a Right with a [CatModel]', () async {
           // Arrange
           when(
@@ -248,7 +278,7 @@ void main() {
           );
         });
       });
-      group('and the call is unsucessful,', () {
+      group('and the call is unsuccessful,', () {
         test(
             'and the reason is [CatNotFoundException], should return a Left with a [ApiFailure]',
             () async {
@@ -280,6 +310,21 @@ void main() {
           expect(result,
               Left(ParseDataFailure(exception: mockParseDataException)));
         });
+        test(
+            'and the reason is [ServerException], should return a Left with a [ServerFailure]',
+            () async {
+          // Arrange
+          when(
+            () => mockRemoteDatasource.getCatByTag(any()),
+          ).thenThrow(mockServerException);
+
+          // Act
+          final result =
+              await repository.getCatByTag(mockGetCatByTagUsecaseParams);
+
+          // Assert
+          expect(result, Left(ServerFailure(exception: mockServerException)));
+        });
       });
     });
     group('and is not connected to the internet,', () {
@@ -299,7 +344,7 @@ void main() {
     });
   });
   group('When [saveCatLocally] is called,', () {
-    group('and the call is sucessful,', () {
+    group('and the call is successful,', () {
       test('should return a Right with a [null]', () async {
         // Arrange
         when(() => mockLocalDatasource.saveCatLocally(any()))
@@ -313,7 +358,7 @@ void main() {
         expect(result, const Right(null));
       });
     });
-    group('and the call is unsucessful,', () {
+    group('and the call is unsuccessful,', () {
       test('should return a Left with a [SaveCatLocallyFailure]', () async {
         // Arrange
         when(() => mockLocalDatasource.saveCatLocally(any()))

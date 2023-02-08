@@ -27,22 +27,25 @@ class CatCubit extends Cubit<CatState> {
   }) async {
     emit(state.copyWith(status: CatStatus.loading));
     final params = GetRandomCatUsecaseParams(
-      text: text != null && text != '' ? Some(text) : const None(),
-      textColor:
-          textColor != null && textColor != '' ? Some(textColor) : const None(),
-      filter: filter != null && filter != '' ? Some(filter) : const None(),
+      text: text != null && text.isNotEmpty ? Some(text) : const None(),
+      textColor: textColor != null && textColor.isNotEmpty
+          ? Some(textColor)
+          : const None(),
+      filter: filter != null && filter.isNotEmpty ? Some(filter) : const None(),
     );
     final result = await getRandomCatUsecase(params);
     result.fold(
       (failure) {
-        // TODO -> Add failure treatment
+        emit(state.copyWith(
+          status: CatStatus.failure,
+          failure: failure,
+        ));
       },
       (catEntity) {
         emit(
           state.copyWith(
-            status: CatStatus.sucess,
+            status: CatStatus.success,
             catEntity: catEntity,
-            isSaveCatButtonEnabled: true,
           ),
         );
       },
@@ -55,6 +58,18 @@ class CatCubit extends Cubit<CatState> {
     String? textColor,
     String? filter,
   }) async {
-    // TODO
+    final params = GetCatByIdUsecaseParams(
+      id: id,
+      text: text != null && text.isNotEmpty ? Some(text) : const None(),
+      textColor: textColor != null && textColor.isNotEmpty
+          ? Some(textColor)
+          : const None(),
+      filter: filter != null && filter.isNotEmpty ? Some(filter) : const None(),
+    );
+    final result = await getCatByIdUsecase(params);
+    result.fold(
+      (failure) {},
+      (catEntity) {},
+    );
   }
 }

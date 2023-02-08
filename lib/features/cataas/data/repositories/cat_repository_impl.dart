@@ -69,6 +69,8 @@ class CatRepositoryImpl implements ICatRepository {
         return Left(ApiFailure(exception: e));
       } on ParseDataException catch (e) {
         return Left(ParseDataFailure(exception: e));
+      } on ServerException catch (e) {
+        return Left(ServerFailure(exception: e));
       } catch (_) {
         rethrow;
       }

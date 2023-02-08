@@ -77,6 +77,7 @@ const mockCatNotFoundException =
     CatNotFoundException(message: '', statusCode: 0);
 const mockParseDataException = ParseDataException(body: {});
 const mockSaveCatLocallyException = SaveCatLocallyException();
+const mockServerException = ServerException(message: '', statusCode: 0);
 
 const Option<String> mockOptionString = Some('');
 

@@ -15,7 +15,7 @@ void main() {
   });
 
   group('When [saveCatLocally] is called,', () {
-    group('and is saved sucessfuly,', () {
+    group('and is saved successfuly,', () {
       test('should return a null', () async {
         // Arrange
         when(
@@ -35,7 +35,7 @@ void main() {
             isA<void>());
       });
     });
-    group('and is unsucessful,', () {
+    group('and is unsuccessful,', () {
       test('should throw a [SaveCatLocallyException]', () {
         // Arrange
         when(
