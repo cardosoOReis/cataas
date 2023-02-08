@@ -12,10 +12,10 @@ import '../../models/cat_model.dart';
 import '../i_cat_remote_datasource.dart';
 
 class CatRemoteDatasourceImpl implements ICatRemoteDatasource {
-  final Dio client;
+  final Dio _client;
   CatRemoteDatasourceImpl({
-    required this.client,
-  });
+    required Dio client,
+  }) : _client = client;
 
   @override
   Future<CatModel> getCatById(GetCatByIdUsecaseParams params) async {
@@ -72,7 +72,7 @@ class CatRemoteDatasourceImpl implements ICatRemoteDatasource {
         (filter) => queryParameters.addAll({'filter': filter}),
       );
 
-      final response = await client.get(
+      final response = await _client.get(
         url,
         queryParameters: queryParameters,
       );

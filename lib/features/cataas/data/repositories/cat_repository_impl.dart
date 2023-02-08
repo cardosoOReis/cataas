@@ -14,34 +14,36 @@ import '../datasources/i_cat_remote_datasource.dart';
 import '../models/cat_model.dart';
 
 class CatRepositoryImpl implements ICatRepository {
-  final ICatRemoteDatasource remoteDatasource;
-  final ICatLocalDatasource localDatasource;
-  final INetworkInfo networkInfo;
+  final ICatRemoteDatasource _remoteDatasource;
+  final ICatLocalDatasource _localDatasource;
+  final INetworkInfo _networkInfo;
   CatRepositoryImpl({
-    required this.remoteDatasource,
-    required this.localDatasource,
-    required this.networkInfo,
-  });
+    required ICatRemoteDatasource remoteDatasource,
+    required ICatLocalDatasource localDatasource,
+    required INetworkInfo networkInfo,
+  })  : _networkInfo = networkInfo,
+        _localDatasource = localDatasource,
+        _remoteDatasource = remoteDatasource;
 
   @override
   Future<Either<Failure, CatEntity>> getCatById(
     GetCatByIdUsecaseParams params,
   ) async {
-    return await _getCat(() => remoteDatasource.getCatById(params));
+    return await _getCat(() => _remoteDatasource.getCatById(params));
   }
 
   @override
   Future<Either<Failure, CatEntity>> getCatByTag(
     GetCatByTagUsecaseParams params,
   ) async {
-    return await _getCat(() => remoteDatasource.getCatByTag(params));
+    return await _getCat(() => _remoteDatasource.getCatByTag(params));
   }
 
   @override
   Future<Either<Failure, CatEntity>> getRandomCat(
     GetRandomCatUsecaseParams params,
   ) async {
-    return await _getCat(() => remoteDatasource.getRandomCat(params));
+    return await _getCat(() => _remoteDatasource.getRandomCat(params));
   }
 
   @override
@@ -49,7 +51,7 @@ class CatRepositoryImpl implements ICatRepository {
     SaveCatLocallyUsecaseParams params,
   ) async {
     try {
-      final result = await localDatasource.saveCatLocally(params);
+      final result = await _localDatasource.saveCatLocally(params);
 
       return Right(result);
     } on SaveCatLocallyException catch (e) {
@@ -60,7 +62,7 @@ class CatRepositoryImpl implements ICatRepository {
   Future<Either<Failure, CatEntity>> _getCat<Params>(
     Future<CatModel> Function() getCat,
   ) async {
-    if (await networkInfo.isConnected) {
+    if (await _networkInfo.isConnected) {
       try {
         final result = await getCat();
 

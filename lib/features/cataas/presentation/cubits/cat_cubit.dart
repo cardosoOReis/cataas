@@ -11,14 +11,17 @@ import '../../domain/usecases/get_random_cat_usecase.dart';
 part 'cat_state.dart';
 
 class CatCubit extends Cubit<CatState> {
-  final GetRandomCatUsecase getRandomCatUsecase;
-  final GetCatByIdUsecase getCatByIdUsecase;
-  final GetCatByTagUsecase getCatByTagUsecase;
+  final GetRandomCatUsecase _getRandomCatUsecase;
+  final GetCatByIdUsecase _getCatByIdUsecase;
+  final GetCatByTagUsecase _getCatByTagUsecase;
   CatCubit({
-    required this.getRandomCatUsecase,
-    required this.getCatByIdUsecase,
-    required this.getCatByTagUsecase,
-  }) : super(const CatState());
+    required GetRandomCatUsecase getRandomCatUsecase,
+    required GetCatByIdUsecase getCatByIdUsecase,
+    required GetCatByTagUsecase getCatByTagUsecase,
+  })  : _getCatByTagUsecase = getCatByTagUsecase,
+        _getCatByIdUsecase = getCatByIdUsecase,
+        _getRandomCatUsecase = getRandomCatUsecase,
+        super(const CatState());
 
   Future<void> onGetRandomCatButtonTap({
     String? text,
@@ -33,7 +36,7 @@ class CatCubit extends Cubit<CatState> {
           : const None(),
       filter: filter != null && filter.isNotEmpty ? Some(filter) : const None(),
     );
-    final result = await getRandomCatUsecase(params);
+    final result = await _getRandomCatUsecase(params);
     result.fold(
       (failure) {
         emit(state.copyWith(
@@ -65,7 +68,7 @@ class CatCubit extends Cubit<CatState> {
       textColor: textColor.toOption(),
       filter: filter.toOption(),
     );
-    final result = await getCatByIdUsecase(params);
+    final result = await _getCatByIdUsecase(params);
     result.fold(
       (failure) {
         emit(state.copyWith(
@@ -95,7 +98,7 @@ class CatCubit extends Cubit<CatState> {
       textColor: textColor.toOption(),
       filter: filter.toOption(),
     );
-    final result = await getCatByTagUsecase(params);
+    final result = await _getCatByTagUsecase(params);
     result.fold(
       (failure) {
         emit(state.copyWith(

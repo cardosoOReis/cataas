@@ -174,7 +174,7 @@ void main() {
             throwsA(isA<ServerException>()));
       });
       test(
-          'and the status code is not >= 500 or == 400, should throw an [ApiException]',
+          'and the status code is not >= 500 or == 404, should throw an [ApiException]',
           () {
         // Arrange
         setUpMockDefaultErrorResponse();
@@ -303,7 +303,7 @@ void main() {
             throwsA(isA<ServerException>()));
       });
       test(
-          'and the status code is not >= 500 or == 400, should throw an [ApiException]',
+          'and the status code is not >= 500 or == 404, should throw an [ApiException]',
           () {
         // Arrange
         setUpMockDefaultErrorResponse();
