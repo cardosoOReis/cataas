@@ -60,11 +60,9 @@ class CatCubit extends Cubit<CatState> {
   }) async {
     final params = GetCatByIdUsecaseParams(
       id: id,
-      text: text != null && text.isNotEmpty ? Some(text) : const None(),
-      textColor: textColor != null && textColor.isNotEmpty
-          ? Some(textColor)
-          : const None(),
-      filter: filter != null && filter.isNotEmpty ? Some(filter) : const None(),
+      text: text.toOption(),
+      textColor: textColor.toOption(),
+      filter: filter.toOption(),
     );
     final result = await getCatByIdUsecase(params);
     result.fold(
@@ -72,4 +70,10 @@ class CatCubit extends Cubit<CatState> {
       (catEntity) {},
     );
   }
+}
+
+extension ToOptionString on String? {
+  Option<String> toOption() => this != null && this != ''
+      ? Some(this!) // ignore: avoid-non-null-assertion
+      : None();
 }
