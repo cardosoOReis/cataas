@@ -12,7 +12,6 @@ import '../../models/cat_model.dart';
 import '../i_cat_remote_datasource.dart';
 
 class CatRemoteDatasourceImpl implements ICatRemoteDatasource {
-  // TODO -> Refactor this part to stop using the same code!
   final Dio client;
   CatRemoteDatasourceImpl({
     required this.client,
