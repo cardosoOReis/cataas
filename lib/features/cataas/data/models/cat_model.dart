@@ -30,7 +30,7 @@ class CatModel extends CatEntity {
       text: text,
       textColor: textColor,
       filter: filter,
-      tags: Some(body.tags),
+      tags: body.tags.isNotEmpty ? Some(body.tags) : None(),
     );
   }
 }
