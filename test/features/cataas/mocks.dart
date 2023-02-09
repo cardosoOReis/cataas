@@ -7,19 +7,22 @@ import 'package:cataas/features/cataas/data/datasources/i_cat_remote_datasource.
 import 'package:cataas/features/cataas/data/models/cat_model.dart';
 import 'package:cataas/features/cataas/domain/entities/cat_entity.dart';
 import 'package:cataas/features/cataas/domain/repositories/i_cat_repository.dart';
-import 'package:cataas/features/cataas/domain/usecases/get_cat_by_id_usecase.dart';
-import 'package:cataas/features/cataas/domain/usecases/get_cat_by_tag_usecase.dart';
-import 'package:cataas/features/cataas/domain/usecases/get_random_cat_usecase.dart';
-import 'package:cataas/features/cataas/domain/usecases/save_cat_locally_usecase.dart';
+import 'package:cataas/features/cataas/domain/usecases/get_cat_by_id_usecase_impl.dart';
+import 'package:cataas/features/cataas/domain/usecases/get_cat_by_tag_usecase_impl.dart';
+import 'package:cataas/features/cataas/domain/usecases/get_random_cat_usecase_impl.dart';
+import 'package:cataas/features/cataas/presentation/usecases/i_get_cat_by_id_usecase.dart';
+import 'package:cataas/features/cataas/presentation/usecases/i_get_cat_by_tag_usecase.dart';
+import 'package:cataas/features/cataas/presentation/usecases/i_get_random_cat_usecase.dart';
+import 'package:cataas/features/cataas/presentation/usecases/i_save_cat_locally_usecase.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:mocktail/mocktail.dart';
 
-class MockGetRandomCatUsecase extends Mock implements GetRandomCatUsecase {}
+class MockGetRandomCatUsecase extends Mock implements GetRandomCatUsecaseImpl {}
 
-class MockGetCatByIdUsecase extends Mock implements GetCatByIdUsecase {}
+class MockGetCatByIdUsecase extends Mock implements GetCatByIdUsecaseImpl {}
 
-class MockGetCatByTagUsecase extends Mock implements GetCatByTagUsecase {}
+class MockGetCatByTagUsecase extends Mock implements GetCatByTagUsecaseImpl {}
 
 class MockICatRepository extends Mock implements ICatRepository {}
 

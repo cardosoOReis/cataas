@@ -1,10 +1,10 @@
-import '../usecases/get_cat_by_id_usecase.dart';
-import '../usecases/get_cat_by_tag_usecase.dart';
-import '../usecases/get_random_cat_usecase.dart';
-import '../usecases/save_cat_locally_usecase.dart';
 import 'package:dartz/dartz.dart';
 
 import '../../../../core/error/failures.dart';
+import '../../presentation/usecases/i_get_cat_by_id_usecase.dart';
+import '../../presentation/usecases/i_get_cat_by_tag_usecase.dart';
+import '../../presentation/usecases/i_get_random_cat_usecase.dart';
+import '../../presentation/usecases/i_save_cat_locally_usecase.dart';
 import '../entities/cat_entity.dart';
 
 abstract class ICatRepository {

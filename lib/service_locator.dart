@@ -63,7 +63,7 @@ Future<void> initServices() async {
   );
 
   // Usecases
-  sl.registerLazySingleton(() => GetRandomCatUsecase(sl()));
+  sl.registerLazySingleton(() => GetRandomCatUsecaseImpl(sl()));
   sl.registerLazySingleton(() => GetCatByIdUsecase(sl()));
   sl.registerLazySingleton(() => GetCatByTagUsecase(sl()));
 }

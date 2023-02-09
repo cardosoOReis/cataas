@@ -1,23 +1,26 @@
 import 'package:bloc/bloc.dart';
+import 'package:cataas/features/cataas/presentation/usecases/i_get_random_cat_usecase.dart';
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 
 import '../../../../core/error/failures.dart';
 import '../../domain/entities/cat_entity.dart';
-import '../../domain/usecases/get_cat_by_id_usecase.dart';
-import '../../domain/usecases/get_cat_by_tag_usecase.dart';
-import '../../domain/usecases/get_random_cat_usecase.dart';
+import '../../domain/usecases/get_cat_by_id_usecase_impl.dart';
+import '../../domain/usecases/get_cat_by_tag_usecase_impl.dart';
+import '../../domain/usecases/get_random_cat_usecase_impl.dart';
+import '../usecases/i_get_cat_by_id_usecase.dart';
+import '../usecases/i_get_cat_by_tag_usecase.dart';
 
 part 'cat_state.dart';
 
 class CatCubit extends Cubit<CatState> {
-  final GetRandomCatUsecase _getRandomCatUsecase;
-  final GetCatByIdUsecase _getCatByIdUsecase;
-  final GetCatByTagUsecase _getCatByTagUsecase;
+  final GetRandomCatUsecaseImpl _getRandomCatUsecase;
+  final GetCatByIdUsecaseImpl _getCatByIdUsecase;
+  final GetCatByTagUsecaseImpl _getCatByTagUsecase;
   CatCubit({
-    required GetRandomCatUsecase getRandomCatUsecase,
-    required GetCatByIdUsecase getCatByIdUsecase,
-    required GetCatByTagUsecase getCatByTagUsecase,
+    required GetRandomCatUsecaseImpl getRandomCatUsecase,
+    required GetCatByIdUsecaseImpl getCatByIdUsecase,
+    required GetCatByTagUsecaseImpl getCatByTagUsecase,
   })  : _getCatByTagUsecase = getCatByTagUsecase,
         _getCatByIdUsecase = getCatByIdUsecase,
         _getRandomCatUsecase = getRandomCatUsecase,

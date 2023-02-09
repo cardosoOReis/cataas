@@ -1,5 +1,5 @@
 import '../../../../../core/services/i_save_image_locally_service.dart';
-import '../../../domain/usecases/save_cat_locally_usecase.dart';
+import '../../../presentation/usecases/i_save_cat_locally_usecase.dart';
 import '../i_cat_local_datasource.dart';
 
 class CatLocalDatasourceImpl implements ICatLocalDatasource {

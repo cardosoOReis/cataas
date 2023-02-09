@@ -1,5 +1,5 @@
 import 'package:cataas/features/cataas/domain/repositories/i_cat_repository.dart';
-import 'package:cataas/features/cataas/domain/usecases/get_cat_by_id_usecase.dart';
+import 'package:cataas/features/cataas/domain/usecases/get_cat_by_id_usecase_impl.dart';
 import 'package:dartz/dartz.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -7,13 +7,13 @@ import 'package:flutter_test/flutter_test.dart';
 import '../../mocks.dart';
 
 void main() {
-  late GetCatByIdUsecase usecase;
+  late GetCatByIdUsecaseImpl usecase;
   late ICatRepository mockRepository;
 
   setUp(() {
     registerFallbackValue(mockGetCatByIdUsecaseParams);
     mockRepository = MockICatRepository();
-    usecase = GetCatByIdUsecase(mockRepository);
+    usecase = GetCatByIdUsecaseImpl(mockRepository);
   });
 
   group('When [GetCatByIdUsecase] is called,', () {
