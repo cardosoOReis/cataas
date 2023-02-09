@@ -14,9 +14,9 @@ import '../usecases/i_get_cat_by_tag_usecase.dart';
 part 'cat_state.dart';
 
 class CatCubit extends Cubit<CatState> {
-  final GetRandomCatUsecaseImpl _getRandomCatUsecase;
-  final GetCatByIdUsecaseImpl _getCatByIdUsecase;
-  final GetCatByTagUsecaseImpl _getCatByTagUsecase;
+  final IGetRandomCatUsecase _getRandomCatUsecase;
+  final IGetCatByIdUsecase _getCatByIdUsecase;
+  final IGetCatByTagUsecase _getCatByTagUsecase;
   CatCubit({
     required GetRandomCatUsecaseImpl getRandomCatUsecase,
     required GetCatByIdUsecaseImpl getCatByIdUsecase,

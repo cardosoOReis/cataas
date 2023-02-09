@@ -1,20 +1,26 @@
-import 'package:cataas/core/network/i_network_info.dart';
-import 'package:cataas/core/network/network_info_impl.dart';
-import 'package:cataas/core/services/i_save_image_locally_service.dart';
-import 'package:cataas/core/services/save_image_locally_service_impl.dart';
-import 'package:cataas/features/cataas/data/datasources/i_cat_local_datasource.dart';
-import 'package:cataas/features/cataas/data/datasources/i_cat_remote_datasource.dart';
-import 'package:cataas/features/cataas/data/datasources/implementations/cat_local_datasource_impl.dart';
-import 'package:cataas/features/cataas/data/datasources/implementations/cat_remote_datasource_impl.dart';
-import 'package:cataas/features/cataas/data/repositories/cat_repository_impl.dart';
-import 'package:cataas/features/cataas/domain/repositories/i_cat_repository.dart';
-import 'package:cataas/features/cataas/domain/usecases/get_cat_by_id_usecase.dart';
-import 'package:cataas/features/cataas/domain/usecases/get_cat_by_tag_usecase.dart';
-import 'package:cataas/features/cataas/domain/usecases/get_random_cat_usecase.dart';
-import 'package:cataas/features/cataas/presentation/cubits/cat_cubit.dart';
+import 'package:cataas/features/cataas/domain/usecases/save_cat_locally_usecase_impl.dart';
+import 'package:cataas/features/cataas/presentation/usecases/i_save_cat_locally_usecase.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
+
+import 'core/network/i_network_info.dart';
+import 'core/network/network_info_impl.dart';
+import 'core/services/i_save_image_locally_service.dart';
+import 'core/services/save_image_locally_service_impl.dart';
+import 'features/cataas/data/datasources/i_cat_local_datasource.dart';
+import 'features/cataas/data/datasources/i_cat_remote_datasource.dart';
+import 'features/cataas/data/datasources/implementations/cat_local_datasource_impl.dart';
+import 'features/cataas/data/datasources/implementations/cat_remote_datasource_impl.dart';
+import 'features/cataas/data/repositories/cat_repository_impl.dart';
+import 'features/cataas/domain/repositories/i_cat_repository.dart';
+import 'features/cataas/domain/usecases/get_cat_by_id_usecase_impl.dart';
+import 'features/cataas/domain/usecases/get_cat_by_tag_usecase_impl.dart';
+import 'features/cataas/domain/usecases/get_random_cat_usecase_impl.dart';
+import 'features/cataas/presentation/cubits/cat_cubit.dart';
+import 'features/cataas/presentation/usecases/i_get_cat_by_id_usecase.dart';
+import 'features/cataas/presentation/usecases/i_get_cat_by_tag_usecase.dart';
+import 'features/cataas/presentation/usecases/i_get_random_cat_usecase.dart';
 
 final sl = GetIt.instance;
 
@@ -63,7 +69,16 @@ Future<void> initServices() async {
   );
 
   // Usecases
-  sl.registerLazySingleton(() => GetRandomCatUsecaseImpl(sl()));
-  sl.registerLazySingleton(() => GetCatByIdUsecase(sl()));
-  sl.registerLazySingleton(() => GetCatByTagUsecase(sl()));
+  sl.registerLazySingleton<IGetRandomCatUsecase>(
+    () => GetRandomCatUsecaseImpl(sl()),
+  );
+  sl.registerLazySingleton<IGetCatByIdUsecase>(
+    () => GetCatByIdUsecaseImpl(sl()),
+  );
+  sl.registerLazySingleton<IGetCatByTagUsecase>(
+    () => GetCatByTagUsecaseImpl(sl()),
+  );
+  sl.registerLazySingleton<ISaveCatLocallyUsecase>(
+    () => SaveCatLocallyUsecaseImpl(sl()),
+  );
 }
