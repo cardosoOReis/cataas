@@ -5,6 +5,7 @@ import 'package:dio/dio.dart';
 
 import '../../../../../api_endpoints.dart';
 import '../../../../../core/error/exceptions.dart';
+import '../../../../../core/extensions/dartz_extensions.dart';
 import '../../../presentation/usecases/i_get_cat_by_id_usecase.dart';
 import '../../../presentation/usecases/i_get_cat_by_tag_usecase.dart';
 import '../../../presentation/usecases/i_get_random_cat_usecase.dart';
@@ -59,17 +60,18 @@ class CatRemoteDatasourceImpl implements ICatRemoteDatasource {
   }) async {
     try {
       final Map<String, dynamic> queryParameters = {'json': 'true'};
-      params.text.fold(
-        () => null,
+      params.text.foldSome(
         (text) => url += '/says/$text',
       );
-      params.textColor.fold(
-        () => null,
-        (textColor) => queryParameters.addAll({'textColor': textColor}),
+      params.textColor.foldSome(
+        (textColor) {
+          queryParameters.addAll({'textColor': textColor});
+        },
       );
-      params.filter.fold(
-        () => null,
-        (filter) => queryParameters.addAll({'filter': filter}),
+      params.filter.foldSome(
+        (filter) {
+          queryParameters.addAll({'filter': filter});
+        },
       );
 
       final response = await _client.get(

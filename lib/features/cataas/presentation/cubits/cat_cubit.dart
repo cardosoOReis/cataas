@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:cataas/core/extensions/dartz_extensions.dart';
 import 'package:cataas/features/cataas/presentation/usecases/i_get_random_cat_usecase.dart';
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
@@ -117,10 +118,4 @@ class CatCubit extends Cubit<CatState> {
       },
     );
   }
-}
-
-extension ToOptionString on String? {
-  Option<String> toOption() => this != null && this != ''
-      ? Some(this!) // ignore: avoid-non-null-assertion
-      : None();
 }
