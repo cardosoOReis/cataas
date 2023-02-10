@@ -60,15 +60,15 @@ class CatRemoteDatasourceImpl implements ICatRemoteDatasource {
   }) async {
     try {
       final Map<String, dynamic> queryParameters = {'json': 'true'};
-      params.text.foldSome(
+      params.text.ifSome(
         (text) => url += '/says/$text',
       );
-      params.textColor.foldSome(
+      params.textColor.ifSome(
         (textColor) {
           queryParameters.addAll({'textColor': textColor});
         },
       );
-      params.filter.foldSome(
+      params.filter.ifSome(
         (filter) {
           queryParameters.addAll({'filter': filter});
         },
