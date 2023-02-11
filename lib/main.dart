@@ -1,8 +1,9 @@
-import 'package:cataas/features/cataas/presentation/cubits/cat_cubit.dart';
-import 'package:cataas/features/cataas/presentation/pages/cat_page.dart';
-import 'package:cataas/service_locator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'features/cataas/presentation/cubits/cat_cubit.dart';
+import 'features/cataas/presentation/pages/cat_page.dart';
+import 'service_locator.dart';
 
 void main() {
   initServices();
@@ -17,11 +18,18 @@ class Main extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: BlocProvider(
-        create: (context) => sl<CatCubit>(),
+        create: (context) => _initCubit(),
         child: CatPage(),
       ),
       title: 'Cat as a Service',
       theme: ThemeData(primaryColor: Color.fromRGBO(233, 84, 32, 1)),
     );
+  }
+
+  CatCubit _initCubit() {
+    final cubit = sl<CatCubit>();
+    cubit.onInit();
+
+    return cubit;
   }
 }

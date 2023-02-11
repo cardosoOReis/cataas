@@ -1,15 +1,16 @@
 import 'package:bloc/bloc.dart';
-import 'package:cataas/api_endpoints.dart';
-import 'package:cataas/core/extensions/dartz_extensions.dart';
-import 'package:cataas/core/services/i_open_url_on_browser_service.dart';
-import 'package:cataas/features/cataas/presentation/usecases/i_get_random_cat_usecase.dart';
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 
+import '../../../../api_endpoints.dart';
 import '../../../../core/error/failures.dart';
+import '../../../../core/extensions/dartz_extensions.dart';
+import '../../../../core/services/i_open_url_on_browser_service.dart';
 import '../../domain/entities/cat_entity.dart';
 import '../usecases/i_get_cat_by_id_usecase.dart';
 import '../usecases/i_get_cat_by_tag_usecase.dart';
+import '../usecases/i_get_random_cat_usecase.dart';
+import '../utils/app_strings.dart';
 
 part 'cat_state.dart';
 
@@ -27,6 +28,38 @@ class CatCubit extends Cubit<CatState> {
   String? _text;
   String? _textColor;
   String? _filter;
+
+  Future<void> onInit() async {
+    await _getWelcomeCat();
+  }
+
+  Future<void> _getWelcomeCat() async {
+    emit(state.copyWith(status: CatStatus.loading));
+    final params = GetRandomCatUsecaseParams(
+      text: Some(AppStrings.initialCatText),
+      textColor: None(),
+      filter: None(),
+    );
+    final result = await getRandomCatUsecase(params);
+    result.fold(
+      (failure) {
+        emit(
+          state.copyWith(
+            status: CatStatus.failure,
+            failure: failure,
+          ),
+        );
+      },
+      (catEntity) {
+        emit(
+          state.copyWith(
+            status: CatStatus.success,
+            catEntity: catEntity,
+          ),
+        );
+      },
+    );
+  }
 
   Future<void> onGetRandomCatButtonTap() async {
     emit(state.copyWith(status: CatStatus.loading));
