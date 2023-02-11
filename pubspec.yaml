@@ -45,6 +45,7 @@ dependencies:
   bloc: ^8.1.1
   flutter_bloc: ^8.1.2
   url_launcher: ^6.1.9
+  font_awesome_flutter: ^10.4.0
 
 dev_dependencies:
   flutter_test:

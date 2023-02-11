@@ -16,6 +16,7 @@ class ResultDisplayOrganism extends StatelessWidget {
       child: ConstrainedBox(
         constraints: BoxConstraints(
           minHeight: 50,
+          minWidth: double.maxFinite,
         ),
         child: BlocBuilder<CatCubit, CatState>(
           builder: (context, state) {

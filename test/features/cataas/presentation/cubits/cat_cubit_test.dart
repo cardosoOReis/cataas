@@ -11,6 +11,7 @@ void main() {
   late MockGetCatByIdUsecase mockGetCatByIdUsecase;
   late MockGetCatByTagUsecase mockGetCatByTagUsecase;
   late MockGetRandomCatUsecase mockGetRandomCatUsecase;
+  late MockOpenUrlOnBrowser mockOpenUrlOnBrowserService;
 
   setUp(() {
     registerFallbackValue(mockGetRandomCatUsecaseParams);
@@ -19,10 +20,12 @@ void main() {
     mockGetCatByIdUsecase = MockGetCatByIdUsecase();
     mockGetCatByTagUsecase = MockGetCatByTagUsecase();
     mockGetRandomCatUsecase = MockGetRandomCatUsecase();
+    mockOpenUrlOnBrowserService = MockOpenUrlOnBrowser();
     cubit = CatCubit(
       getRandomCatUsecase: mockGetRandomCatUsecase,
       getCatByIdUsecase: mockGetCatByIdUsecase,
       getCatByTagUsecase: mockGetCatByTagUsecase,
+      openUrlOnBrowserService: mockOpenUrlOnBrowserService,
     );
   });
 

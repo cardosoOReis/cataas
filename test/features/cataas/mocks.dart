@@ -1,6 +1,7 @@
 import 'package:cataas/core/error/exceptions.dart';
 import 'package:cataas/core/error/failures.dart';
 import 'package:cataas/core/network/i_network_info.dart';
+import 'package:cataas/core/services/i_open_url_on_browser_service.dart';
 import 'package:cataas/core/services/i_save_image_locally_service.dart';
 import 'package:cataas/features/cataas/data/datasources/i_cat_local_datasource.dart';
 import 'package:cataas/features/cataas/data/datasources/i_cat_remote_datasource.dart';
@@ -31,6 +32,8 @@ class MockRemoteDatasource extends Mock implements ICatRemoteDatasource {}
 class MockLocalDatasource extends Mock implements ICatLocalDatasource {}
 
 class MockNetworkInfo extends Mock implements INetworkInfo {}
+
+class MockOpenUrlOnBrowser extends Mock implements IOpenUrlOnBrowserService {}
 
 class MockFailure extends Mock implements Failure {}
 

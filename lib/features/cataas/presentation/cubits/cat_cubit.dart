@@ -1,5 +1,7 @@
 import 'package:bloc/bloc.dart';
+import 'package:cataas/api_endpoints.dart';
 import 'package:cataas/core/extensions/dartz_extensions.dart';
+import 'package:cataas/core/services/i_open_url_on_browser_service.dart';
 import 'package:cataas/features/cataas/presentation/usecases/i_get_random_cat_usecase.dart';
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
@@ -15,10 +17,12 @@ class CatCubit extends Cubit<CatState> {
   final IGetRandomCatUsecase getRandomCatUsecase;
   final IGetCatByIdUsecase getCatByIdUsecase;
   final IGetCatByTagUsecase getCatByTagUsecase;
+  final IOpenUrlOnBrowserService openUrlOnBrowserService;
   CatCubit({
     required this.getRandomCatUsecase,
     required this.getCatByIdUsecase,
     required this.getCatByTagUsecase,
+    required this.openUrlOnBrowserService,
   }) : super(const CatState());
   String? _text;
   String? _textColor;
@@ -120,5 +124,13 @@ class CatCubit extends Cubit<CatState> {
 
   void onFilterTextFieldValueChanged(String? text) {
     _filter = text;
+  }
+
+  void onBeerIconTap() {
+    openUrlOnBrowserService(ApiEndpoints.buyMeABeer());
+  }
+
+  void onTwitterIconTap() {
+    openUrlOnBrowserService(ApiEndpoints.twitter());
   }
 }

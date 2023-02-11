@@ -5,6 +5,7 @@ import 'package:cataas/features/cataas/presentation/cubits/cat_cubit.dart';
 import 'package:cataas/features/cataas/presentation/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../atomic/molecules/default_cat_app_bar_molecule.dart';
 import '../atomic/organisms/result_display_organism.dart';
 
@@ -14,19 +15,35 @@ class CatPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final cubit = BlocProvider.of<CatCubit>(context);
+    final appBarIcons = <AppBarIcon>[
+      AppBarIcon(
+        onIconTap: cubit.onBeerIconTap,
+        icon: FaIcon(
+          FontAwesomeIcons.beerMugEmpty,
+          color: AppColors.white,
+        ),
+      ),
+      AppBarIcon(
+        onIconTap: cubit.onTwitterIconTap,
+        icon: FaIcon(
+          FontAwesomeIcons.twitter,
+          color: AppColors.white,
+        ),
+      ),
+      AppBarIcon(
+        onIconTap: () => null,
+        icon: FaIcon(
+          FontAwesomeIcons.circleInfo,
+          color: AppColors.white,
+        ),
+      ),
+    ];
 
     return Scaffold(
       appBar: DefaultCatAppBarMolecule(
         title: 'Cat as a Service',
         icons: [
-          AppBarIcon(
-            onIconTap: () => print("Funcionando"),
-            icon: Icon(Icons.flutter_dash),
-          ),
-          AppBarIcon(
-            onIconTap: () => print("Funcionando"),
-            icon: Icon(Icons.install_mobile_rounded),
-          ),
+          ...appBarIcons,
         ],
       ),
       body: SingleChildScrollView(
@@ -36,16 +53,16 @@ class CatPage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: ResultDisplayOrganism(),
+              ),
+              Padding(
                 padding: const EdgeInsets.symmetric(vertical: 20),
                 child: GetRandomCatButtonAtom(
                   onTap: cubit.onGetRandomCatButtonTap,
                   title: 'Get a random Cat',
                   backgroundColor: AppColors.primary,
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: ResultDisplayOrganism(),
               ),
               CatControlsOrganism(
                 onGetRandomCatButtonTap: cubit.onGetRandomCatButtonTap,
