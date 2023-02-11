@@ -1,7 +1,11 @@
 class ApiEndpoints {
-  static String get baseUrl => 'https://cataas.com/cat';
+  static String get baseUrl => 'https://cataas.com';
 
-  static String getCatById(String id) => '$baseUrl/$id';
+  static String get catsEndpoint => '/cat';
 
-  static String getCatByTag(String tag) => '$baseUrl/tag/$tag';
+  static String getRandomCat() => '$baseUrl$catsEndpoint';
+
+  static String getCatById(String id) => '$baseUrl$catsEndpoint/$id';
+
+  static String getCatByTag(String tag) => '$baseUrl$catsEndpoint/tag/$tag';
 }

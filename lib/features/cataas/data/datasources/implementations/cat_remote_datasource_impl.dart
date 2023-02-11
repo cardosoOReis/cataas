@@ -45,7 +45,7 @@ class CatRemoteDatasourceImpl implements ICatRemoteDatasource {
   @override
   Future<CatModel> getRandomCat(GetRandomCatUsecaseParams params) async {
     return await _getCat(
-      ApiEndpoints.baseUrl,
+      ApiEndpoints.getRandomCat(),
       params: _QueryParams(
         text: params.text,
         textColor: params.textColor,
@@ -80,7 +80,7 @@ class CatRemoteDatasourceImpl implements ICatRemoteDatasource {
       );
       try {
         final model = CatModel.fromJson(
-          json: jsonDecode(response.data),
+          json: response.data,
           text: params.text,
           textColor: params.textColor,
           filter: params.filter,
@@ -88,7 +88,7 @@ class CatRemoteDatasourceImpl implements ICatRemoteDatasource {
 
         return model;
       } catch (_) {
-        throw ParseDataException(body: jsonDecode(response.data));
+        throw ParseDataException(body: response.data);
       }
     } on DioError catch (e) {
       final statusCode = e.response?.statusCode ?? 0;

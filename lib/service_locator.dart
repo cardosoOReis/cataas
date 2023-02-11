@@ -69,16 +69,16 @@ void initServices() {
   );
 
   // Usecases
-  sl.registerFactory<IGetRandomCatUsecase>(
+  sl.registerLazySingleton<IGetRandomCatUsecase>(
     () => GetRandomCatUsecaseImpl(sl()),
   );
-  sl.registerFactory<IGetCatByIdUsecase>(
+  sl.registerLazySingleton<IGetCatByIdUsecase>(
     () => GetCatByIdUsecaseImpl(sl()),
   );
-  sl.registerFactory<IGetCatByTagUsecase>(
+  sl.registerLazySingleton<IGetCatByTagUsecase>(
     () => GetCatByTagUsecaseImpl(sl()),
   );
-  sl.registerFactory<ISaveCatLocallyUsecase>(
+  sl.registerLazySingleton<ISaveCatLocallyUsecase>(
     () => SaveCatLocallyUsecaseImpl(sl()),
   );
 }

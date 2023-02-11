@@ -1,5 +1,9 @@
 import 'package:cataas/features/cataas/presentation/atomic/atoms/app_bar_icon.dart';
+import 'package:cataas/features/cataas/presentation/atomic/atoms/cat_display_atom.dart';
+import 'package:cataas/features/cataas/presentation/atomic/atoms/loading_widget_atom.dart';
+import 'package:cataas/features/cataas/presentation/atomic/atoms/messaage_display_atom.dart';
 import 'package:cataas/features/cataas/presentation/cubits/cat_cubit.dart';
+import 'package:cataas/features/cataas/presentation/utils/app_colors.dart';
 import 'package:cataas/service_locator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -10,6 +14,8 @@ class CatPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final dimens = MediaQuery.of(context).size;
+
     return Scaffold(
       appBar: DefaultCatAppBarMolecule(
         title: 'Cat as a Service',
@@ -18,15 +24,120 @@ class CatPage extends StatelessWidget {
             onIconTap: () => print("Funcionando"),
             icon: Icon(Icons.flutter_dash),
           ),
+          AppBarIcon(
+            onIconTap: () => print("Funcionando"),
+            icon: Icon(Icons.install_mobile_rounded),
+          ),
         ],
       ),
-      body: BlocBuilder<CatCubit, CatState>(
-        builder: (context, state) {
-          return Placeholder();
-        },
-        bloc: sl<CatCubit>(),
-        buildWhen: (previous, current) => previous.status != current.status,
+      body: BlocProvider(
+        create: (_) => sl<CatCubit>(),
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: DecoratedBox(
+                    decoration: BoxDecoration(
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black,
+                          spreadRadius: 3,
+                        ),
+                      ],
+                      border: const Border.fromBorderSide(
+                        BorderSide(
+                          color: AppColors.white,
+                          width: 2,
+                        ),
+                      ),
+                    ),
+                    child: SizedBox(
+                      height: dimens.height * 0.6,
+                      width: double.maxFinite,
+                      child: BlocBuilder<CatCubit, CatState>(
+                        builder: (context, state) {
+                          if (state.status.isInitial) {
+                            return MessaageDisplayAtom(message: 'Get a Cat 😺');
+                          }
+                          if (state.status.isLoading) {
+                            return LoadingWidgetAtom();
+                          }
+                          if (state.status.isSuccess) {
+                            return CatDisplayAtom(
+                              catEntity: state.catEntity!,
+                            );
+                          }
+                          if (state.status.isFailure) {
+                            return MessaageDisplayAtom(
+                              message: state.failure!.message,
+                            );
+                          }
+
+                          return Placeholder();
+                        },
+                      ),
+                    ),
+                  ),
+                ),
+                CatControls(),
+              ],
+            ),
+          ),
+        ),
       ),
+    );
+  }
+}
+
+// ignore: prefer-single-widget-per-file
+class CatControls extends StatefulWidget {
+  const CatControls({super.key});
+
+  @override
+  State<CatControls> createState() => _CatControlsState();
+}
+
+class _CatControlsState extends State<CatControls> {
+  String inputTextField = '';
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 20),
+          child: SizedBox(
+            width: 200,
+            height: 40,
+            child: ElevatedButton(
+              onPressed:
+                  BlocProvider.of<CatCubit>(context).onGetRandomCatButtonTap,
+              child: Text(
+                'Get a random Cat',
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
+              ),
+              style: ButtonStyle(
+                backgroundColor:
+                    MaterialStatePropertyAll<Color>(AppColors.primary),
+              ),
+            ),
+          ),
+        ),
+        TextField(
+          decoration: InputDecoration(
+            labelText: 'Text',
+            hintText: 'Add some text to your cat image.',
+            border: OutlineInputBorder(),
+          ),
+          onChanged: (value) {
+            inputTextField = value;
+          },
+        ),
+      ],
     );
   }
 }

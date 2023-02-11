@@ -1,3 +1,4 @@
+import 'package:cataas/api_endpoints.dart';
 import 'package:dartz/dartz.dart';
 
 import '../../domain/entities/cat_entity.dart';
@@ -52,7 +53,7 @@ class CatModelFromRequest {
       tags: json['tags'].cast<String>(),
       file: json['file'],
       id: json['_id'],
-      url: json['url'],
+      url: ApiEndpoints.baseUrl + json['url'],
     );
   }
 }

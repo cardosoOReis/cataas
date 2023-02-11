@@ -42,7 +42,6 @@ dart_code_metrics:
     - avoid-expanded-as-spacer
     - avoid-global-state
     - avoid-nested-conditional-expressions
-    - avoid-non-null-assertion
     - avoid-returning-widgets
     - avoid-shrink-wrap-in-lists
     - avoid-unnecessary-conditionals

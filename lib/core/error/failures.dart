@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:equatable/equatable.dart';
 
 import 'exceptions.dart';
@@ -86,4 +87,15 @@ class GeneralFailure extends Failure {
 
   @override
   List<Object?> get props => [exception];
+}
+
+class CouldntOpenUrlOnBrowserFailure extends Failure {
+  const CouldntOpenUrlOnBrowserFailure();
+
+  @override
+  String get message =>
+      "Uh oh, it appears we can't open this right now, sorry 😿. ";
+
+  @override
+  List<Object?> get props => [];
 }
