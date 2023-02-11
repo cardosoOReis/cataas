@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:cataas/core/error/exceptions.dart';
 import 'package:cataas/features/cataas/data/datasources/implementations/cat_remote_datasource_impl.dart';
 import 'package:cataas/features/cataas/data/models/cat_model.dart';
@@ -28,7 +30,7 @@ void main() {
       ),
     ).thenAnswer((_) async => Response(
           requestOptions: RequestOptions(path: ''),
-          data: fixture('cat.json'),
+          data: jsonDecode(fixture('cat.json')),
           statusCode: 200,
         ));
   }
