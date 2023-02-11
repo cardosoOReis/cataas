@@ -35,7 +35,7 @@ class DefaultCatAppBarMolecule extends StatelessWidget
             children: [
               Text(
                 title,
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 22,
                   color: AppColors.white,
                   fontWeight: FontWeight.w600,

@@ -202,7 +202,7 @@ void main() {
       verify(
         () => mockHttpClient.get(
           any(
-            that: contains('/tag/' + mockGetCatByTagUsecaseParams.tag),
+            that: contains('/tag/${mockGetCatByTagUsecaseParams.tag}'),
           ),
           queryParameters: any(
             named: 'queryParameters',

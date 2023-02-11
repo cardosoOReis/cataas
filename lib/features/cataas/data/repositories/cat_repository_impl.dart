@@ -77,7 +77,7 @@ class CatRepositoryImpl implements ICatRepository {
         rethrow;
       }
     } else {
-      return Left(NoInternetConnectionFailure());
+      return const Left(NoInternetConnectionFailure());
     }
   }
 }

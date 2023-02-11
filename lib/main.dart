@@ -19,10 +19,10 @@ class Main extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: BlocProvider(
         create: (context) => _initCubit(),
-        child: CatPage(),
+        child: const CatPage(),
       ),
       title: 'Cat as a Service',
-      theme: ThemeData(primaryColor: Color.fromRGBO(233, 84, 32, 1)),
+      theme: ThemeData(primaryColor: const Color.fromRGBO(233, 84, 32, 1)),
     );
   }
 

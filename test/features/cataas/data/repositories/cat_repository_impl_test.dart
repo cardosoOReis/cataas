@@ -84,7 +84,8 @@ void main() {
               await repository.getRandomCat(mockGetRandomCatUsecaseParams);
 
           // Assert
-          expect(result, Left(ApiFailure(exception: mockCatNotFoundException)));
+          expect(result,
+              const Left(ApiFailure(exception: mockCatNotFoundException)));
         });
         test(
             'and the reason is [ParseDataException], should return a Left with a [ParseDataFailure]',
@@ -100,7 +101,7 @@ void main() {
 
           // Assert
           expect(result,
-              Left(ParseDataFailure(exception: mockParseDataException)));
+              const Left(ParseDataFailure(exception: mockParseDataException)));
         });
         test(
             'and the reason is [ServerException], should return a Left with a [ServerFailure]',
@@ -115,7 +116,8 @@ void main() {
               await repository.getRandomCat(mockGetRandomCatUsecaseParams);
 
           // Assert
-          expect(result, Left(ServerFailure(exception: mockServerException)));
+          expect(result,
+              const Left(ServerFailure(exception: mockServerException)));
         });
       });
     });
@@ -131,7 +133,7 @@ void main() {
             await repository.getRandomCat(mockGetRandomCatUsecaseParams);
 
         // Assert
-        expect(result, Left(mockNoInternetConnectionFailure));
+        expect(result, const Left(mockNoInternetConnectionFailure));
       });
     });
   });
@@ -191,7 +193,8 @@ void main() {
               await repository.getCatById(mockGetCatByIdUsecaseParams);
 
           // Assert
-          expect(result, Left(ApiFailure(exception: mockCatNotFoundException)));
+          expect(result,
+              const Left(ApiFailure(exception: mockCatNotFoundException)));
         });
         test(
             'and the reason is [ParseDataException], should return a Left with a [ParseDataFailure]',
@@ -207,7 +210,7 @@ void main() {
 
           // Assert
           expect(result,
-              Left(ParseDataFailure(exception: mockParseDataException)));
+              const Left(ParseDataFailure(exception: mockParseDataException)));
         });
         test(
             'and the reason is [ServerException], should return a Left with a [ServerFailure]',
@@ -222,7 +225,8 @@ void main() {
               await repository.getCatById(mockGetCatByIdUsecaseParams);
 
           // Assert
-          expect(result, Left(ServerFailure(exception: mockServerException)));
+          expect(result,
+              const Left(ServerFailure(exception: mockServerException)));
         });
       });
     });
@@ -237,7 +241,7 @@ void main() {
         final result = await repository.getCatById(mockGetCatByIdUsecaseParams);
 
         // Assert
-        expect(result, Left(mockNoInternetConnectionFailure));
+        expect(result, const Left(mockNoInternetConnectionFailure));
       });
     });
   });
@@ -292,7 +296,8 @@ void main() {
               await repository.getCatByTag(mockGetCatByTagUsecaseParams);
 
           // Assert
-          expect(result, Left(ApiFailure(exception: mockCatNotFoundException)));
+          expect(result,
+              const Left(ApiFailure(exception: mockCatNotFoundException)));
         });
         test(
             'and the reason is [ParseDataException], should return a Left with a [ParseDataFailure]',
@@ -308,7 +313,7 @@ void main() {
 
           // Assert
           expect(result,
-              Left(ParseDataFailure(exception: mockParseDataException)));
+              const Left(ParseDataFailure(exception: mockParseDataException)));
         });
         test(
             'and the reason is [ServerException], should return a Left with a [ServerFailure]',
@@ -323,7 +328,8 @@ void main() {
               await repository.getCatByTag(mockGetCatByTagUsecaseParams);
 
           // Assert
-          expect(result, Left(ServerFailure(exception: mockServerException)));
+          expect(result,
+              const Left(ServerFailure(exception: mockServerException)));
         });
       });
     });
@@ -339,7 +345,7 @@ void main() {
             await repository.getCatByTag(mockGetCatByTagUsecaseParams);
 
         // Assert
-        expect(result, Left(mockNoInternetConnectionFailure));
+        expect(result, const Left(mockNoInternetConnectionFailure));
       });
     });
   });
@@ -371,7 +377,7 @@ void main() {
         // Assert
         expect(
             result,
-            Left(
+            const Left(
                 SaveCatLocallyFailure(exception: mockSaveCatLocallyException)));
       });
     });

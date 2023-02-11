@@ -31,7 +31,7 @@ class CatModel extends CatEntity {
       text: text,
       textColor: textColor,
       filter: filter,
-      tags: body.tags.isNotEmpty ? Some(body.tags) : None(),
+      tags: body.tags.isNotEmpty ? Some(body.tags) : const None(),
     );
   }
 }

@@ -35,7 +35,7 @@ void main() {
       test('should return a Left with a [SaveCatLocallyFailure]', () async {
         // Arrange
         when(() => mockRepository.saveCatLocally(any())).thenAnswer(
-            (invocation) async => Left(
+            (invocation) async => const Left(
                 SaveCatLocallyFailure(exception: mockSaveCatLocallyException)));
 
         // Act
@@ -44,7 +44,7 @@ void main() {
         // Assert
         expect(
             result,
-            Left(
+            const Left(
                 SaveCatLocallyFailure(exception: mockSaveCatLocallyException)));
       });
     });

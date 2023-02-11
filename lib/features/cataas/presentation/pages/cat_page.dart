@@ -19,21 +19,21 @@ class CatPage extends StatelessWidget {
     final appBarIcons = <AppBarIcon>[
       AppBarIcon(
         onIconTap: cubit.onBeerIconTap,
-        icon: FaIcon(
+        icon: const FaIcon(
           FontAwesomeIcons.beerMugEmpty,
           color: AppColors.white,
         ),
       ),
       AppBarIcon(
         onIconTap: cubit.onTwitterIconTap,
-        icon: FaIcon(
+        icon: const FaIcon(
           FontAwesomeIcons.twitter,
           color: AppColors.white,
         ),
       ),
       AppBarIcon(
         onIconTap: () => null,
-        icon: FaIcon(
+        icon: const FaIcon(
           FontAwesomeIcons.circleInfo,
           color: AppColors.white,
         ),
@@ -53,8 +53,8 @@ class CatPage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
+              const Padding(
+                padding: EdgeInsets.all(8.0),
                 child: ResultDisplayOrganism(),
               ),
               Padding(

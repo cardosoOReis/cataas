@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 
 class GetRandomCatButtonAtom extends StatelessWidget {
   final void Function() onTap;
@@ -20,12 +18,12 @@ class GetRandomCatButtonAtom extends StatelessWidget {
       height: 40,
       child: ElevatedButton(
         onPressed: () => onTap(),
-        child: Text(
-          title,
-          style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
-        ),
         style: ButtonStyle(
           backgroundColor: MaterialStatePropertyAll<Color>(backgroundColor),
+        ),
+        child: Text(
+          title,
+          style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
         ),
       ),
     );

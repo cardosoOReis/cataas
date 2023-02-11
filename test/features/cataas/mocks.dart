@@ -78,7 +78,7 @@ final mockCatModelFromResponse = CatModel(
 );
 
 final mockFailure = MockFailure();
-final mockNoInternetConnectionFailure = NoInternetConnectionFailure();
+const mockNoInternetConnectionFailure = NoInternetConnectionFailure();
 const mockCatNotFoundException =
     CatNotFoundException(message: '', statusCode: 0);
 const mockParseDataException = ParseDataException(body: {});

@@ -23,7 +23,7 @@ class _DefaultCatTextFieldState extends State<DefaultCatTextField> {
         labelText: widget.labelText,
         hintText: widget.hintText,
         // TODO -> Give border color to the text field
-        border: OutlineInputBorder(),
+        border: const OutlineInputBorder(),
       ),
       onChanged: widget.onValueChanged,
     );

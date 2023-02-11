@@ -14,12 +14,12 @@ class MainPageTemplate extends StatelessWidget {
         title: 'Cat as a Service',
         icons: [
           AppBarIcon(
-            onIconTap: () => print("Funcionando"),
-            icon: Icon(Icons.flutter_dash),
+            onIconTap: () {},
+            icon: const Icon(Icons.flutter_dash),
           ),
           AppBarIcon(
-            onIconTap: () => print("Funcionando"),
-            icon: Icon(Icons.install_mobile_rounded),
+            onIconTap: () => {},
+            icon: const Icon(Icons.install_mobile_rounded),
           ),
         ],
       ),

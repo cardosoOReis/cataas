@@ -37,8 +37,8 @@ class CatCubit extends Cubit<CatState> {
     emit(state.copyWith(status: CatStatus.loading));
     final params = GetRandomCatUsecaseParams(
       text: Some(AppStrings.initialCatText),
-      textColor: None(),
-      filter: None(),
+      textColor: const None(),
+      filter: const None(),
     );
     final result = await getRandomCatUsecase(params);
     result.fold(
