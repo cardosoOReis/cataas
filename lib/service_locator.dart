@@ -1,3 +1,5 @@
+import 'package:cataas/core/services/i_open_url_on_browser_service.dart';
+import 'package:cataas/core/services/open_url_on_browser_service_impl.dart';
 import 'package:cataas/features/cataas/domain/usecases/save_cat_locally_usecase_impl.dart';
 import 'package:cataas/features/cataas/presentation/usecases/i_save_cat_locally_usecase.dart';
 import 'package:dio/dio.dart';
@@ -36,14 +38,18 @@ void initServices() {
   sl.registerLazySingleton<ISaveImageLocallyService>(
     () => SaveImageLocallyServiceImpl(),
   );
+  sl.registerLazySingleton<IOpenUrlOnBrowserService>(
+    () => OpenUrlOnBrowserServiceImpl(),
+  );
 
   // Feature/CatAAS
   // Cubits
   sl.registerFactory<CatCubit>(
     () => CatCubit(
-      getRandomCatUsecase: sl(),
-      getCatByIdUsecase: sl(),
-      getCatByTagUsecase: sl(),
+      getRandomCatUsecase: sl<IGetRandomCatUsecase>(),
+      getCatByIdUsecase: sl<IGetCatByIdUsecase>(),
+      getCatByTagUsecase: sl<IGetCatByTagUsecase>(),
+      openUrlOnBrowserService: sl<IOpenUrlOnBrowserService>(),
     ),
   );
 
@@ -55,30 +61,30 @@ void initServices() {
   );
   sl.registerLazySingleton<ICatLocalDatasource>(
     () => CatLocalDatasourceImpl(
-      service: sl(),
+      service: sl<ISaveImageLocallyService>(),
     ),
   );
 
   // Repositories
   sl.registerLazySingleton<ICatRepository>(
     () => CatRepositoryImpl(
-      remoteDatasource: sl(),
-      localDatasource: sl(),
-      networkInfo: sl(),
+      remoteDatasource: sl<ICatRemoteDatasource>(),
+      localDatasource: sl<ICatLocalDatasource>(),
+      networkInfo: sl<INetworkInfo>(),
     ),
   );
 
   // Usecases
   sl.registerLazySingleton<IGetRandomCatUsecase>(
-    () => GetRandomCatUsecaseImpl(sl()),
+    () => GetRandomCatUsecaseImpl(sl<ICatRepository>()),
   );
   sl.registerLazySingleton<IGetCatByIdUsecase>(
-    () => GetCatByIdUsecaseImpl(sl()),
+    () => GetCatByIdUsecaseImpl(sl<ICatRepository>()),
   );
   sl.registerLazySingleton<IGetCatByTagUsecase>(
-    () => GetCatByTagUsecaseImpl(sl()),
+    () => GetCatByTagUsecaseImpl(sl<ICatRepository>()),
   );
   sl.registerLazySingleton<ISaveCatLocallyUsecase>(
-    () => SaveCatLocallyUsecaseImpl(sl()),
+    () => SaveCatLocallyUsecaseImpl(sl<ICatRepository>()),
   );
 }

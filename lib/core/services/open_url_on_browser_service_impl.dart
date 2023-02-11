@@ -4,7 +4,7 @@ import 'package:url_launcher/url_launcher.dart';
 import '../error/failures.dart';
 import 'i_open_url_on_browser_service.dart';
 
-class OpenUrlOnBrowserService implements IOpenUrlOnBrowserService {
+class OpenUrlOnBrowserServiceImpl implements IOpenUrlOnBrowserService {
   @override
   Future<Either<Failure, void>> call(String url) async {
     final result = await launchUrl(Uri.parse(url));
