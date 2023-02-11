@@ -1,4 +1,4 @@
-import 'package:cataas/core/usecases/usecase.dart';
+import '../../../../core/usecases/usecase.dart';
 
 abstract class ISaveCatLocallyUsecase
     extends Usecase<void, SaveCatLocallyUsecaseParams> {}

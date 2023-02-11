@@ -1,6 +1,7 @@
-import 'package:cataas/features/cataas/domain/entities/cat_entity.dart';
-import 'package:cataas/features/cataas/presentation/atomic/atoms/loading_widget_atom.dart';
 import 'package:flutter/material.dart';
+
+import '../../../domain/entities/cat_entity.dart';
+import 'loading_widget_atom.dart';
 
 class CatDisplayAtom extends StatelessWidget {
   final CatEntity catEntity;

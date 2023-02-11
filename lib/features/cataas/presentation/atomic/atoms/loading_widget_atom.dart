@@ -1,5 +1,6 @@
-import 'package:cataas/features/cataas/presentation/utils/app_colors.dart';
 import 'package:flutter/material.dart';
+
+import '../../utils/app_colors.dart';
 
 class LoadingWidgetAtom extends StatelessWidget {
   final double? value;

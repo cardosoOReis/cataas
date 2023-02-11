@@ -1,14 +1,15 @@
-import 'package:cataas/features/cataas/presentation/atomic/atoms/app_bar_icon.dart';
-import 'package:cataas/features/cataas/presentation/atomic/atoms/get_random_cat_button_atom.dart';
-import 'package:cataas/features/cataas/presentation/atomic/organisms/cat_controls_organism.dart';
-import 'package:cataas/features/cataas/presentation/cubits/cat_cubit.dart';
-import 'package:cataas/features/cataas/presentation/utils/app_colors.dart';
-import 'package:cataas/features/cataas/presentation/utils/app_strings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+import '../atomic/atoms/app_bar_icon.dart';
+import '../atomic/atoms/get_random_cat_button_atom.dart';
 import '../atomic/molecules/default_cat_app_bar_molecule.dart';
+import '../atomic/organisms/cat_controls_organism.dart';
 import '../atomic/organisms/result_display_organism.dart';
+import '../cubits/cat_cubit.dart';
+import '../utils/app_colors.dart';
+import '../utils/app_strings.dart';
 
 class CatPage extends StatelessWidget {
   const CatPage({super.key});

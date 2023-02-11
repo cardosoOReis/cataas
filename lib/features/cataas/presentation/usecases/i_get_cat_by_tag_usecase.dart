@@ -1,6 +1,7 @@
-import 'package:cataas/core/usecases/usecase.dart';
-import 'package:cataas/features/cataas/domain/entities/cat_entity.dart';
 import 'package:dartz/dartz.dart';
+
+import '../../../../core/usecases/usecase.dart';
+import '../../domain/entities/cat_entity.dart';
 
 abstract class IGetCatByTagUsecase
     extends Usecase<CatEntity, GetCatByTagUsecaseParams> {}

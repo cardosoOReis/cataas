@@ -1,6 +1,6 @@
-import 'package:cataas/api_endpoints.dart';
 import 'package:dartz/dartz.dart';
 
+import '../../../../api_endpoints.dart';
 import '../../domain/entities/cat_entity.dart';
 
 class CatModel extends CatEntity {

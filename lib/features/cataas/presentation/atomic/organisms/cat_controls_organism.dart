@@ -1,5 +1,6 @@
-import 'package:cataas/features/cataas/presentation/atomic/atoms/default_cat_text_field.dart';
 import 'package:flutter/material.dart';
+
+import '../atoms/default_cat_text_field.dart';
 
 class CatControlsOrganism extends StatefulWidget {
   final void Function() onGetRandomCatButtonTap;
