@@ -15,14 +15,18 @@ class GetRandomCatButtonAtom extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-      onPressed: () => onTap(),
-      child: Text(
-        title,
-        style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
-      ),
-      style: ButtonStyle(
-        backgroundColor: MaterialStatePropertyAll<Color>(backgroundColor),
+    return SizedBox(
+      width: 200,
+      height: 40,
+      child: ElevatedButton(
+        onPressed: () => onTap(),
+        child: Text(
+          title,
+          style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
+        ),
+        style: ButtonStyle(
+          backgroundColor: MaterialStatePropertyAll<Color>(backgroundColor),
+        ),
       ),
     );
   }

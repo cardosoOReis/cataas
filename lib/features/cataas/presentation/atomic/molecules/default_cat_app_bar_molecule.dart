@@ -5,12 +5,12 @@ import '../../utils/app_colors.dart';
 class DefaultCatAppBarMolecule extends StatelessWidget
     implements PreferredSizeWidget {
   final String title;
-  final List<AppBarIcon>? icons;
+  final List<AppBarIcon> icons;
 
   const DefaultCatAppBarMolecule({
     Key? key,
     required this.title,
-    this.icons,
+    required this.icons,
   }) : super(key: key);
 
   final double preferredSizeHeight = 117;
@@ -41,7 +41,16 @@ class DefaultCatAppBarMolecule extends StatelessWidget
                   fontWeight: FontWeight.w600,
                 ),
               ),
-              ...?icons,
+              Row(
+                children: icons
+                    .map(
+                      (icon) => Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 10),
+                        child: icon,
+                      ),
+                    )
+                    .toList(),
+              ),
             ],
           ),
         ),
