@@ -1,4 +1,3 @@
-import 'package:cataas/features/cataas/presentation/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class DefaultCatTextField extends StatefulWidget {
@@ -26,6 +25,7 @@ class _DefaultCatTextFieldState extends State<DefaultCatTextField> {
         // TODO -> Give border color to the text field
         border: OutlineInputBorder(),
       ),
+      onChanged: widget.onValueChanged,
     );
   }
 }

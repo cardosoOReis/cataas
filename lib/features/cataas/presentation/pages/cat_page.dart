@@ -1,12 +1,9 @@
 import 'package:cataas/features/cataas/presentation/atomic/atoms/app_bar_icon.dart';
 import 'package:cataas/features/cataas/presentation/atomic/atoms/cat_display_atom.dart';
-import 'package:cataas/features/cataas/presentation/atomic/atoms/get_random_cat_button_atom.dart';
 import 'package:cataas/features/cataas/presentation/atomic/atoms/loading_widget_atom.dart';
 import 'package:cataas/features/cataas/presentation/atomic/atoms/messaage_display_atom.dart';
 import 'package:cataas/features/cataas/presentation/atomic/organisms/cat_controls_organism.dart';
 import 'package:cataas/features/cataas/presentation/cubits/cat_cubit.dart';
-import 'package:cataas/features/cataas/presentation/utils/app_colors.dart';
-import 'package:cataas/service_locator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../atomic/molecules/default_cat_app_bar_molecule.dart';
@@ -16,7 +13,7 @@ class CatPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final dimens = MediaQuery.of(context).size;
+    final cubit = BlocProvider.of<CatCubit>(context);
 
     return Scaffold(
       appBar: DefaultCatAppBarMolecule(
@@ -45,15 +42,16 @@ class CatPage extends StatelessWidget {
                     boxShadow: [
                       BoxShadow(
                         color: Colors.black,
-                        spreadRadius: 3,
+                        spreadRadius: 5,
+                      ),
+                      BoxShadow(
+                        color: Colors.white,
+                        spreadRadius: 2.5,
+                      ),
+                      BoxShadow(
+                        color: Colors.black,
                       ),
                     ],
-                    border: const Border.fromBorderSide(
-                      BorderSide(
-                        color: AppColors.white,
-                        width: 2,
-                      ),
-                    ),
                   ),
                   child: SizedBox(
                     height: 400,
@@ -67,6 +65,8 @@ class CatPage extends StatelessWidget {
                           return LoadingWidgetAtom();
                         }
                         if (state.status.isSuccess) {
+                          print(state.catEntity?.text);
+
                           return CatDisplayAtom(
                             catEntity: state.catEntity!,
                           );
@@ -84,9 +84,8 @@ class CatPage extends StatelessWidget {
                 ),
               ),
               CatControlsOrganism(
-                onGetRandomCatButtonTap:
-                    BlocProvider.of<CatCubit>(context).onGetRandomCatButtonTap,
-                onTextTextFieldChanged: (text) => null,
+                onGetRandomCatButtonTap: cubit.onGetRandomCatButtonTap,
+                onTextTextFieldChanged: cubit.onTextTextFieldValueChanged,
               ),
             ],
           ),

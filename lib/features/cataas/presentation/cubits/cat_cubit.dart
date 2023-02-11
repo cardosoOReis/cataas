@@ -20,19 +20,16 @@ class CatCubit extends Cubit<CatState> {
     required this.getCatByIdUsecase,
     required this.getCatByTagUsecase,
   }) : super(const CatState());
+  String? _text;
+  String? _textColor;
+  String? _filter;
 
-  Future<void> onGetRandomCatButtonTap({
-    String? text,
-    String? textColor,
-    String? filter,
-  }) async {
+  Future<void> onGetRandomCatButtonTap() async {
     emit(state.copyWith(status: CatStatus.loading));
     final params = GetRandomCatUsecaseParams(
-      text: text != null && text.isNotEmpty ? Some(text) : const None(),
-      textColor: textColor != null && textColor.isNotEmpty
-          ? Some(textColor)
-          : const None(),
-      filter: filter != null && filter.isNotEmpty ? Some(filter) : const None(),
+      text: _text.toOption(),
+      textColor: _textColor.toOption(),
+      filter: _filter.toOption(),
     );
     final result = await getRandomCatUsecase(params);
     result.fold(
@@ -111,5 +108,17 @@ class CatCubit extends Cubit<CatState> {
         ));
       },
     );
+  }
+
+  void onTextTextFieldValueChanged(String? text) {
+    _text = text;
+  }
+
+  void onTextColorTextFieldValueChanged(String? text) {
+    _textColor = text;
+  }
+
+  void onFilterTextFieldValueChanged(String? text) {
+    _filter = text;
   }
 }
