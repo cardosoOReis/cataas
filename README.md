@@ -1,16 +1,11 @@
-# cataas
+# Cat as a Service
 
-A new Flutter project.
+Cat as a Service is a mobile application that uses the Cat as a Service REST API to spread peace and love (or not) thanks to cats!
 
-## Getting Started
+## How It Works
 
-This project is a starting point for a Flutter application.
+You can request a photo of a random cat, a photo of a cat by its id, or you can search by a specific tag! You can also personalize the requested cat, giving him something to say, a filter, and add some color to the text! (NOTE: I think adding color to the text isn't working in this version of the API)
 
-A few resources to get you started if this is your first Flutter project:
+## Architecture
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+I'm using Clean Architexture for this project https://medium.com/ruangguru/an-introduction-to-flutter-clean-architecture-ae00154001b0
