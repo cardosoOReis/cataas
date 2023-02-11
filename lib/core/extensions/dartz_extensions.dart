@@ -13,6 +13,6 @@ extension ToOption<T> on T? {
 }
 
 extension FoldEither<L, R> on Either<L, R> {
-  void ifOk(void Function(R) ifOk) => this.fold((l) => null, ifOk);
-  void ifErr(void Function(L) ifErr) => this.fold(ifErr, (r) => null);
+  void ifOk(void Function(R) ifOk) => this.fold((_) => null, ifOk);
+  void ifErr(void Function(L) ifErr) => this.fold(ifErr, (_) => null);
 }

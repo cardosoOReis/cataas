@@ -35,8 +35,6 @@ dart_code_metrics:
     - test/**
     - lib/core/**
   rules:
-    - arguments-ordering:
-        child-last: true
     - avoid-border-all
     - avoid-collection-methods-with-unrelated-types:
         strict: true

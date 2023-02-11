@@ -6,26 +6,20 @@ import 'package:equatable/equatable.dart';
 
 import '../../../../core/error/failures.dart';
 import '../../domain/entities/cat_entity.dart';
-import '../../domain/usecases/get_cat_by_id_usecase_impl.dart';
-import '../../domain/usecases/get_cat_by_tag_usecase_impl.dart';
-import '../../domain/usecases/get_random_cat_usecase_impl.dart';
 import '../usecases/i_get_cat_by_id_usecase.dart';
 import '../usecases/i_get_cat_by_tag_usecase.dart';
 
 part 'cat_state.dart';
 
 class CatCubit extends Cubit<CatState> {
-  final IGetRandomCatUsecase _getRandomCatUsecase;
-  final IGetCatByIdUsecase _getCatByIdUsecase;
-  final IGetCatByTagUsecase _getCatByTagUsecase;
+  final IGetRandomCatUsecase getRandomCatUsecase;
+  final IGetCatByIdUsecase getCatByIdUsecase;
+  final IGetCatByTagUsecase getCatByTagUsecase;
   CatCubit({
-    required GetRandomCatUsecaseImpl getRandomCatUsecase,
-    required GetCatByIdUsecaseImpl getCatByIdUsecase,
-    required GetCatByTagUsecaseImpl getCatByTagUsecase,
-  })  : _getCatByTagUsecase = getCatByTagUsecase,
-        _getCatByIdUsecase = getCatByIdUsecase,
-        _getRandomCatUsecase = getRandomCatUsecase,
-        super(const CatState());
+    required this.getRandomCatUsecase,
+    required this.getCatByIdUsecase,
+    required this.getCatByTagUsecase,
+  }) : super(const CatState());
 
   Future<void> onGetRandomCatButtonTap({
     String? text,
@@ -40,7 +34,7 @@ class CatCubit extends Cubit<CatState> {
           : const None(),
       filter: filter != null && filter.isNotEmpty ? Some(filter) : const None(),
     );
-    final result = await _getRandomCatUsecase(params);
+    final result = await getRandomCatUsecase(params);
     result.fold(
       (failure) {
         emit(state.copyWith(
@@ -72,7 +66,7 @@ class CatCubit extends Cubit<CatState> {
       textColor: textColor.toOption(),
       filter: filter.toOption(),
     );
-    final result = await _getCatByIdUsecase(params);
+    final result = await getCatByIdUsecase(params);
     result.fold(
       (failure) {
         emit(state.copyWith(
@@ -102,7 +96,7 @@ class CatCubit extends Cubit<CatState> {
       textColor: textColor.toOption(),
       filter: filter.toOption(),
     );
-    final result = await _getCatByTagUsecase(params);
+    final result = await getCatByTagUsecase(params);
     result.fold(
       (failure) {
         emit(state.copyWith(

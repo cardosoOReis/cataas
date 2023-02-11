@@ -24,7 +24,7 @@ import 'features/cataas/presentation/usecases/i_get_random_cat_usecase.dart';
 
 final sl = GetIt.instance;
 
-Future<void> initServices() async {
+void initServices() {
   // Core
   // Network
   sl.registerLazySingleton<INetworkInfo>(
@@ -69,16 +69,16 @@ Future<void> initServices() async {
   );
 
   // Usecases
-  sl.registerLazySingleton<IGetRandomCatUsecase>(
+  sl.registerFactory<IGetRandomCatUsecase>(
     () => GetRandomCatUsecaseImpl(sl()),
   );
-  sl.registerLazySingleton<IGetCatByIdUsecase>(
+  sl.registerFactory<IGetCatByIdUsecase>(
     () => GetCatByIdUsecaseImpl(sl()),
   );
-  sl.registerLazySingleton<IGetCatByTagUsecase>(
+  sl.registerFactory<IGetCatByTagUsecase>(
     () => GetCatByTagUsecaseImpl(sl()),
   );
-  sl.registerLazySingleton<ISaveCatLocallyUsecase>(
+  sl.registerFactory<ISaveCatLocallyUsecase>(
     () => SaveCatLocallyUsecaseImpl(sl()),
   );
 }
