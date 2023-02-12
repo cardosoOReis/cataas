@@ -3,5 +3,5 @@ class AppStrings {
 
   static String get getRandomCat => 'Get a random Cat';
 
-  static String get initialCatText => 'Welcome Back :D';
+  static String get initialCatText => 'Welcome Back!';
 }

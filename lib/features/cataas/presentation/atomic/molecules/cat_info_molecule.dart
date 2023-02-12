@@ -5,6 +5,7 @@ import '../../utils/app_colors.dart';
 
 class CatInfoMolecule extends StatelessWidget {
   final String catId;
+  final String url;
   final void Function(String url) onShareCatIconTap;
   final void Function(String url) onSaveCatIconTap;
   const CatInfoMolecule({
@@ -12,6 +13,7 @@ class CatInfoMolecule extends StatelessWidget {
     required this.catId,
     required this.onShareCatIconTap,
     required this.onSaveCatIconTap,
+    required this.url,
   }) : super(key: key);
 
   @override
@@ -36,7 +38,7 @@ class CatInfoMolecule extends StatelessWidget {
             ),
           ),
           InkWell(
-            onTap: () {},
+            onTap: () => onShareCatIconTap(url),
             child: const SizedBox.square(
               dimension: 35,
               child: DecoratedBox(
@@ -56,7 +58,9 @@ class CatInfoMolecule extends StatelessWidget {
             width: 10,
           ),
           InkWell(
-            onTap: () {},
+            onTap: () {
+              onSaveCatIconTap(url);
+            },
             child: const SizedBox.square(
               dimension: 35,
               child: DecoratedBox(

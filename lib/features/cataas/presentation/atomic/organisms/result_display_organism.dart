@@ -1,16 +1,22 @@
+import 'package:cataas/features/cataas/presentation/atomic/molecules/cat_info_molecule.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../cubits/cat_cubit.dart';
-import '../../utils/app_colors.dart';
 import '../atoms/cat_display_atom.dart';
 import '../atoms/loading_widget_atom.dart';
 import '../atoms/main_cat_frame_atom.dart';
 import '../atoms/message_display_atom.dart';
 
 class ResultDisplayOrganism extends StatelessWidget {
-  const ResultDisplayOrganism({Key? key}) : super(key: key);
+  final void Function(String url) onShareCatIconTap;
+  final void Function(String url) onSaveCatIconTap;
+
+  const ResultDisplayOrganism({
+    Key? key,
+    required this.onShareCatIconTap,
+    required this.onSaveCatIconTap,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -37,66 +43,11 @@ class ResultDisplayOrganism extends StatelessWidget {
                     CatDisplayAtom(
                       catEntity: state.catEntity!,
                     ),
-                    Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 10),
-                      width: double.maxFinite,
-                      height: 50,
-                      decoration: const BoxDecoration(
-                        border: Border(
-                          top: BorderSide(
-                            color: Colors.black,
-                            width: 2,
-                          ),
-                        ),
-                      ),
-                      child: Row(
-                        children: [
-                          Expanded(
-                            child: Text(
-                              'Cat ID: ${state.catEntity?.id}',
-                            ),
-                          ),
-                          InkWell(
-                            onTap: () {},
-                            child: const SizedBox.square(
-                              dimension: 35,
-                              child: DecoratedBox(
-                                decoration: BoxDecoration(
-                                  color: AppColors.secondary,
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(5)),
-                                ),
-                                child: Center(
-                                  child: FaIcon(
-                                    Icons.share,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          InkWell(
-                            onTap: () {},
-                            child: const SizedBox.square(
-                              dimension: 35,
-                              child: DecoratedBox(
-                                decoration: BoxDecoration(
-                                  color: AppColors.secondary,
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(5)),
-                                ),
-                                child: Center(
-                                  child: FaIcon(
-                                    Icons.download,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
+                    CatInfoMolecule(
+                      catId: state.catEntity!.id,
+                      onShareCatIconTap: onShareCatIconTap,
+                      onSaveCatIconTap: onSaveCatIconTap,
+                      url: state.catEntity!.url,
                     ),
                   ],
                 ),

@@ -49,6 +49,7 @@ void initServices() {
       getRandomCatUsecase: sl<IGetRandomCatUsecase>(),
       getCatByIdUsecase: sl<IGetCatByIdUsecase>(),
       getCatByTagUsecase: sl<IGetCatByTagUsecase>(),
+      saveCatLocallyUsecase: sl<ISaveCatLocallyUsecase>(),
       openUrlOnBrowserService: sl<IOpenUrlOnBrowserService>(),
     ),
   );

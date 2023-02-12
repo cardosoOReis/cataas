@@ -11,6 +11,7 @@ import 'package:cataas/features/cataas/domain/repositories/i_cat_repository.dart
 import 'package:cataas/features/cataas/domain/usecases/get_cat_by_id_usecase_impl.dart';
 import 'package:cataas/features/cataas/domain/usecases/get_cat_by_tag_usecase_impl.dart';
 import 'package:cataas/features/cataas/domain/usecases/get_random_cat_usecase_impl.dart';
+import 'package:cataas/features/cataas/domain/usecases/save_cat_locally_usecase_impl.dart';
 import 'package:cataas/features/cataas/presentation/usecases/i_get_cat_by_id_usecase.dart';
 import 'package:cataas/features/cataas/presentation/usecases/i_get_cat_by_tag_usecase.dart';
 import 'package:cataas/features/cataas/presentation/usecases/i_get_random_cat_usecase.dart';
@@ -24,6 +25,9 @@ class MockGetRandomCatUsecase extends Mock implements GetRandomCatUsecaseImpl {}
 class MockGetCatByIdUsecase extends Mock implements GetCatByIdUsecaseImpl {}
 
 class MockGetCatByTagUsecase extends Mock implements GetCatByTagUsecaseImpl {}
+
+class MockSaveCatLocallyUsecase extends Mock
+    implements SaveCatLocallyUsecaseImpl {}
 
 class MockICatRepository extends Mock implements ICatRepository {}
 

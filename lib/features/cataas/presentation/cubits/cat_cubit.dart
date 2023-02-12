@@ -1,6 +1,8 @@
 import 'package:bloc/bloc.dart';
+import 'package:cataas/features/cataas/presentation/usecases/i_save_cat_locally_usecase.dart';
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter/material.dart';
 
 import '../../../../api_endpoints.dart';
 import '../../../../core/error/failures.dart';
@@ -18,11 +20,13 @@ class CatCubit extends Cubit<CatState> {
   final IGetRandomCatUsecase getRandomCatUsecase;
   final IGetCatByIdUsecase getCatByIdUsecase;
   final IGetCatByTagUsecase getCatByTagUsecase;
+  final ISaveCatLocallyUsecase saveCatLocallyUsecase;
   final IOpenUrlOnBrowserService openUrlOnBrowserService;
   CatCubit({
     required this.getRandomCatUsecase,
     required this.getCatByIdUsecase,
     required this.getCatByTagUsecase,
+    required this.saveCatLocallyUsecase,
     required this.openUrlOnBrowserService,
   }) : super(const CatState());
   String? _text;
@@ -146,6 +150,30 @@ class CatCubit extends Cubit<CatState> {
       },
     );
   }
+
+  Future<void> onSaveCatIconTap(String url) async {
+    final result =
+        await saveCatLocallyUsecase(SaveCatLocallyUsecaseParams(url: url));
+    result.fold(
+      (failure) {
+        if (failure is SaveCatLocallyFailure) {}
+        emit(
+          state.copyWith(
+            savingCatStatus: CatStatus.failure,
+          ),
+        );
+      },
+      (_) {
+        emit(
+          state.copyWith(
+            savingCatStatus: CatStatus.success,
+          ),
+        );
+      },
+    );
+  }
+
+  Future<void> onShareCatIconTap(String url) async {}
 
   void onTextTextFieldValueChanged(String? text) {
     _text = text;
