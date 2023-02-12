@@ -98,3 +98,14 @@ class CouldntOpenUrlOnBrowserFailure extends Failure {
   @override
   List<Object?> get props => [];
 }
+
+class ShareCatFailure extends Failure {
+  const ShareCatFailure();
+
+  @override
+  String get message =>
+      'It appears that an error happened when we tried to share this cat. We are sorry 😿.';
+
+  @override
+  List<Object?> get props => [];
+}

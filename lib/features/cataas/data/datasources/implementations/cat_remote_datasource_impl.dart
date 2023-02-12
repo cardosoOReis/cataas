@@ -1,5 +1,8 @@
+import 'package:cataas/core/services/share_image/i_share_image_service.dart';
+import 'package:cataas/features/cataas/presentation/usecases/i_share_cat_usecase.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
+import 'package:share_plus/share_plus.dart';
 
 import '../../../../../api_endpoints.dart';
 import '../../../../../core/error/exceptions.dart';
@@ -12,9 +15,12 @@ import '../i_cat_remote_datasource.dart';
 
 class CatRemoteDatasourceImpl implements ICatRemoteDatasource {
   final Dio _client;
+  final IShareImageService _shareImageService;
   CatRemoteDatasourceImpl({
     required Dio client,
-  }) : _client = client;
+    required IShareImageService shareImageService,
+  })  : _shareImageService = shareImageService,
+        _client = client;
 
   @override
   Future<CatModel> getCatById(GetCatByIdUsecaseParams params) async {
@@ -100,6 +106,17 @@ class CatRemoteDatasourceImpl implements ICatRemoteDatasource {
         message: e.message,
         statusCode: statusCode,
       );
+    } catch (_) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<void> shareCat(ShareCatUsecaseParams params) async {
+    try {
+      final result = await _shareImageService(url: params.url);
+
+      return result;
     } catch (_) {
       rethrow;
     }

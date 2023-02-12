@@ -34,3 +34,7 @@ class ServerException implements Exception {
 class SaveCatLocallyException implements Exception {
   const SaveCatLocallyException();
 }
+
+class ShareCatException implements Exception {
+  const ShareCatException();
+}

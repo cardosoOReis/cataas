@@ -1,13 +1,15 @@
+import 'package:cataas/core/services/share_image/i_share_image_service.dart';
+import 'package:cataas/core/services/share_image/share_image_service_impl.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 
 import 'core/network/i_network_info.dart';
 import 'core/network/network_info_impl.dart';
-import 'core/services/i_open_url_on_browser_service.dart';
-import 'core/services/i_save_image_locally_service.dart';
-import 'core/services/open_url_on_browser_service_impl.dart';
-import 'core/services/save_image_locally_service_impl.dart';
+import 'core/services/open_url_on_browser/i_open_url_on_browser_service.dart';
+import 'core/services/save_image_locally/i_save_image_locally_service.dart';
+import 'core/services/open_url_on_browser/open_url_on_browser_service_impl.dart';
+import 'core/services/save_image_locally/save_image_locally_service_impl.dart';
 import 'features/cataas/data/datasources/i_cat_local_datasource.dart';
 import 'features/cataas/data/datasources/i_cat_remote_datasource.dart';
 import 'features/cataas/data/datasources/implementations/cat_local_datasource_impl.dart';
@@ -41,6 +43,9 @@ void initServices() {
   sl.registerLazySingleton<IOpenUrlOnBrowserService>(
     () => OpenUrlOnBrowserServiceImpl(),
   );
+  sl.registerLazySingleton<IShareImageService>(
+    () => ShareImageServiceImpl(),
+  );
 
   // Feature/CatAAS
   // Cubits
@@ -58,6 +63,7 @@ void initServices() {
   sl.registerLazySingleton<ICatRemoteDatasource>(
     () => CatRemoteDatasourceImpl(
       client: Dio(),
+      shareImageService: sl<IShareImageService>(),
     ),
   );
   sl.registerLazySingleton<ICatLocalDatasource>(

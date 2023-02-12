@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import '../../../../api_endpoints.dart';
 import '../../../../core/error/failures.dart';
 import '../../../../core/extensions/dartz_extensions.dart';
-import '../../../../core/services/i_open_url_on_browser_service.dart';
+import '../../../../core/services/open_url_on_browser/i_open_url_on_browser_service.dart';
 import '../../domain/entities/cat_entity.dart';
 import '../usecases/i_get_cat_by_id_usecase.dart';
 import '../usecases/i_get_cat_by_tag_usecase.dart';

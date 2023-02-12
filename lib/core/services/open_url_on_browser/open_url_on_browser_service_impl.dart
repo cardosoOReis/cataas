@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../error/failures.dart';
+import '../../error/failures.dart';
 import 'i_open_url_on_browser_service.dart';
 
 class OpenUrlOnBrowserServiceImpl implements IOpenUrlOnBrowserService {

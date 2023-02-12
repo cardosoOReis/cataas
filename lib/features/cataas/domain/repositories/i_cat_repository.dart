@@ -5,6 +5,7 @@ import '../../presentation/usecases/i_get_cat_by_id_usecase.dart';
 import '../../presentation/usecases/i_get_cat_by_tag_usecase.dart';
 import '../../presentation/usecases/i_get_random_cat_usecase.dart';
 import '../../presentation/usecases/i_save_cat_locally_usecase.dart';
+import '../../presentation/usecases/i_share_cat_usecase.dart';
 import '../entities/cat_entity.dart';
 
 abstract class ICatRepository {
@@ -19,5 +20,8 @@ abstract class ICatRepository {
   );
   Future<Either<Failure, void>> saveCatLocally(
     SaveCatLocallyUsecaseParams params,
+  );
+  Future<Either<Failure, void>> shareCat(
+    ShareCatUsecaseParams params,
   );
 }

@@ -1,3 +1,5 @@
+import 'package:cataas/core/services/share_image/i_share_image_service.dart';
+import 'package:cataas/features/cataas/presentation/usecases/i_share_cat_usecase.dart';
 import 'package:dartz/dartz.dart';
 
 import '../../../../core/error/exceptions.dart';
@@ -78,6 +80,17 @@ class CatRepositoryImpl implements ICatRepository {
       }
     } else {
       return const Left(NoInternetConnectionFailure());
+    }
+  }
+
+  @override
+  Future<Either<Failure, void>> shareCat(ShareCatUsecaseParams params) async {
+    try {
+      final result = await _remoteDatasource.shareCat(params);
+
+      return Right(result);
+    } on ShareCatException {
+      return const Left(ShareCatFailure());
     }
   }
 }

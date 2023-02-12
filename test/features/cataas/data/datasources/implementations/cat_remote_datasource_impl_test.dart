@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:cataas/core/error/exceptions.dart';
+import 'package:cataas/core/services/share_image/i_share_image_service.dart';
 import 'package:cataas/features/cataas/data/datasources/implementations/cat_remote_datasource_impl.dart';
 import 'package:cataas/features/cataas/data/models/cat_model.dart';
 import 'package:dartz/dartz.dart';
@@ -13,11 +14,16 @@ import '../../../mocks.dart';
 
 void main() {
   late CatRemoteDatasourceImpl datasource;
+  late IShareImageService mockShareImageService;
   late Dio mockHttpClient;
 
   setUp(() {
     mockHttpClient = MockHttpClient();
-    datasource = CatRemoteDatasourceImpl(client: mockHttpClient);
+    mockShareImageService = MockShareImageService();
+    datasource = CatRemoteDatasourceImpl(
+      client: mockHttpClient,
+      shareImageService: mockShareImageService,
+    );
   });
 
   void setUpMock200Response() {
@@ -435,6 +441,45 @@ void main() {
         // Assert
         expect(() => call(mockGetRandomCatUsecaseParams),
             throwsA(isA<ApiException>()));
+      });
+    });
+  });
+  group('When [shareCat] is called,', () {
+    group('and the call is sucessful,', () {
+      test('should return a [null]', () async {
+        //Arrange
+        when(
+          () => mockShareImageService(url: any(named: 'url')),
+        ).thenAnswer((_) async {});
+
+        //Act
+        await datasource.shareCat(mockShareCatUsecaseParams);
+
+        //Assert
+        verify(
+          () => mockShareImageService(url: any(named: 'url')),
+        ).called(1);
+        expect(
+          () async => datasource.shareCat(mockShareCatUsecaseParams),
+          isA<void>(),
+        );
+      });
+    });
+    group('and the call is unsuccessful,', () {
+      test('should throw a [ShareCatException]', () async {
+        //Arrange
+        when(
+          () => mockShareImageService(url: any(named: 'url')),
+        ).thenThrow(mockShareCatException);
+
+        //Act
+        final call = datasource.shareCat;
+
+        //Assert
+        expect(
+          () async => call(mockShareCatUsecaseParams),
+          throwsA(isA<ShareCatException>()),
+        );
       });
     });
   });

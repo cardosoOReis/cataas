@@ -1,4 +1,4 @@
-import '../../../../../core/services/i_save_image_locally_service.dart';
+import '../../../../../core/services/save_image_locally/i_save_image_locally_service.dart';
 import '../../../presentation/usecases/i_save_cat_locally_usecase.dart';
 import '../i_cat_local_datasource.dart';
 

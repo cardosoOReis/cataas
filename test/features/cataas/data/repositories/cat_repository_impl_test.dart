@@ -20,6 +20,7 @@ void main() {
     registerFallbackValue(mockGetCatByTagUsecaseParams);
     registerFallbackValue(mockGetRandomCatUsecaseParams);
     registerFallbackValue(mockSaveCatLocallyUsecaseParams);
+    registerFallbackValue(mockShareCatUsecaseParams);
     mockRemoteDatasource = MockRemoteDatasource();
     mockLocalDatasource = MockLocalDatasource();
     mockNetworkInfo = MockNetworkInfo();
@@ -379,6 +380,36 @@ void main() {
             result,
             const Left(
                 SaveCatLocallyFailure(exception: mockSaveCatLocallyException)));
+      });
+    });
+  });
+  group('When [shareCat] is called,', () {
+    group('and the call is successful,', () {
+      test('should return a Right with a [null]', () async {
+        //Arrange
+        when(
+          () => mockRemoteDatasource.shareCat(any()),
+        ).thenAnswer((_) async {});
+
+        //Act
+        final result = await repository.shareCat(mockShareCatUsecaseParams);
+
+        //Assert
+        expect(result, const Right(null));
+      });
+    });
+    group('and the call is unsuccessful,', () {
+      test('should return a Left with a [ShareCatFailure]', () async {
+        //Arrange
+        when(
+          () => mockRemoteDatasource.shareCat(any()),
+        ).thenThrow(mockShareCatException);
+
+        //Act
+        final result = await repository.shareCat(mockShareCatUsecaseParams);
+
+        //Assert
+        expect(result, const Left(ShareCatFailure()));
       });
     });
   });
