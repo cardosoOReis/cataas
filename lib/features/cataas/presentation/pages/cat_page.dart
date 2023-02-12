@@ -29,13 +29,6 @@ class CatPage extends StatelessWidget {
           color: AppColors.white,
         ),
       ),
-      AppBarIcon(
-        onIconTap: () => null,
-        icon: const FaIcon(
-          FontAwesomeIcons.circleInfo,
-          color: AppColors.white,
-        ),
-      ),
     ];
 
     return MainPageTemplate(

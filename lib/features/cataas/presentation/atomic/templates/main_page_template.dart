@@ -31,9 +31,7 @@ class MainPageTemplate extends StatelessWidget {
     return Scaffold(
       appBar: DefaultCatAppBarMolecule(
         title: title,
-        icons: [
-          ...appBarIcons,
-        ],
+        icons: appBarIcons,
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -46,14 +44,6 @@ class MainPageTemplate extends StatelessWidget {
                 child: ResultDisplayOrganism(
                   onSaveCatIconTap: onSaveCatIconTap,
                   onShareCatIconTap: onShareCatIconTap,
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 20),
-                child: GetRandomCatButtonAtom(
-                  onTap: onGetRandomCatButtonTap,
-                  title: AppStrings.getRandomCat,
-                  backgroundColor: AppColors.primary,
                 ),
               ),
               CatControlsOrganism(

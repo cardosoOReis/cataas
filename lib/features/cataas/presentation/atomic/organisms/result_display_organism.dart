@@ -25,12 +25,12 @@ class ResultDisplayOrganism extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MainCatFrameAtom(
-      child: ConstrainedBox(
-        constraints: const BoxConstraints(
-          minHeight: 150,
-          minWidth: double.maxFinite,
-        ),
+    return ConstrainedBox(
+      constraints: const BoxConstraints(
+        minHeight: 150,
+        minWidth: double.maxFinite,
+      ),
+      child: MainCatFrameAtom(
         child: BlocConsumer<CatCubit, CatState>(
           listener: (context, state) {
             if (state.savingCatStatus.isSuccess) {
@@ -65,20 +65,21 @@ class ResultDisplayOrganism extends StatelessWidget {
               return const LoadingWidgetAtom();
             }
             if (state.status.isSuccess) {
-              return Center(
-                child: Column(
-                  children: [
-                    CatDisplayAtom(
+              return Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Center(
+                    child: CatDisplayAtom(
                       catEntity: state.catEntity!,
                     ),
-                    CatInfoMolecule(
-                      catId: state.catEntity!.id,
-                      onShareCatIconTap: onShareCatIconTap,
-                      onSaveCatIconTap: onSaveCatIconTap,
-                      url: state.catEntity!.url,
-                    ),
-                  ],
-                ),
+                  ),
+                  CatInfoMolecule(
+                    catId: state.catEntity!.id,
+                    onShareCatIconTap: onShareCatIconTap,
+                    onSaveCatIconTap: onSaveCatIconTap,
+                    url: state.catEntity!.url,
+                  ),
+                ],
               );
             }
             if (state.status.isFailure) {
