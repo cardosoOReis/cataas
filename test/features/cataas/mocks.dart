@@ -31,6 +31,8 @@ class MockGetCatByTagUsecase extends Mock implements GetCatByTagUsecaseImpl {}
 class MockSaveCatLocallyUsecase extends Mock
     implements SaveCatLocallyUsecaseImpl {}
 
+class MockShareCatUsecase extends Mock implements IShareCatUsecase {}
+
 class MockICatRepository extends Mock implements ICatRepository {}
 
 class MockRemoteDatasource extends Mock implements ICatRemoteDatasource {}

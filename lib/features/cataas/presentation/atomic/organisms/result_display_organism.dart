@@ -35,7 +35,7 @@ class ResultDisplayOrganism extends StatelessWidget {
           listener: (context, state) {
             if (state.savingCatStatus.isSuccess) {
               FToast().init(context).showToast(
-                    child: SavedCatToast(
+                    child: CatToast(
                       text: AppStrings.saveCatLocallySuccess,
                       icon: const Icon(Icons.check),
                       color: Colors.greenAccent,
@@ -45,8 +45,17 @@ class ResultDisplayOrganism extends StatelessWidget {
             if (state.savingCatStatus.isFailure) {
               FToast().init(context).showToast(
                     toastDuration: const Duration(seconds: 4),
-                    child: SavedCatToast(
+                    child: CatToast(
                       text: AppStrings.saveCatLocallyFailure,
+                      icon: const Icon(Icons.error),
+                      color: Colors.redAccent,
+                    ),
+                  );
+            }
+            if (state.shareCatStatus.isFailure) {
+              FToast().init(context).showToast(
+                    child: CatToast(
+                      text: AppStrings.shareCatFailure,
                       icon: const Icon(Icons.error),
                       color: Colors.redAccent,
                     ),
@@ -54,7 +63,8 @@ class ResultDisplayOrganism extends StatelessWidget {
             }
           },
           listenWhen: (previous, current) =>
-              previous.savingCatStatus != current.savingCatStatus,
+              previous.savingCatStatus != current.savingCatStatus ||
+              previous.shareCatStatus != current.shareCatStatus,
           builder: (context, state) {
             if (state.status.isInitial) {
               return const Center(

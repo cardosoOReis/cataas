@@ -11,4 +11,7 @@ class AppStrings {
 
   static String get saveCatLocallyFailure =>
       'Sorry, it looks like something went wrong when saving your cat 😿.';
+
+  static String get shareCatFailure =>
+      'It appears that an error happened when we tried to share this cat. We are sorry 😿.';
 }

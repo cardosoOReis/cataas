@@ -1,5 +1,7 @@
 import 'package:cataas/core/services/share_image/i_share_image_service.dart';
 import 'package:cataas/core/services/share_image/share_image_service_impl.dart';
+import 'package:cataas/features/cataas/domain/usecases/share_cat_usecase_impl.dart';
+import 'package:cataas/features/cataas/presentation/usecases/i_share_cat_usecase.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
@@ -55,6 +57,7 @@ void initServices() {
       getCatByIdUsecase: sl<IGetCatByIdUsecase>(),
       getCatByTagUsecase: sl<IGetCatByTagUsecase>(),
       saveCatLocallyUsecase: sl<ISaveCatLocallyUsecase>(),
+      shareCatUsecase: sl<IShareCatUsecase>(),
       openUrlOnBrowserService: sl<IOpenUrlOnBrowserService>(),
     ),
   );
@@ -93,5 +96,8 @@ void initServices() {
   );
   sl.registerLazySingleton<ISaveCatLocallyUsecase>(
     () => SaveCatLocallyUsecaseImpl(sl<ICatRepository>()),
+  );
+  sl.registerLazySingleton<IShareCatUsecase>(
+    () => ShareCatUsecaseImpl(sl<ICatRepository>()),
   );
 }

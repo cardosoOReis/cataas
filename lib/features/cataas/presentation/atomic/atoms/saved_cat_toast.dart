@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-class SavedCatToast extends StatelessWidget {
+class CatToast extends StatelessWidget {
   final String text;
   final Widget icon;
   final Color color;
-  const SavedCatToast({
+  const CatToast({
     Key? key,
     required this.text,
     required this.icon,

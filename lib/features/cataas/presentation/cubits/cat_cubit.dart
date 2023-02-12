@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:cataas/features/cataas/presentation/usecases/i_save_cat_locally_usecase.dart';
+import 'package:cataas/features/cataas/presentation/usecases/i_share_cat_usecase.dart';
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
@@ -17,18 +18,26 @@ import '../utils/app_strings.dart';
 part 'cat_state.dart';
 
 class CatCubit extends Cubit<CatState> {
-  final IGetRandomCatUsecase getRandomCatUsecase;
-  final IGetCatByIdUsecase getCatByIdUsecase;
-  final IGetCatByTagUsecase getCatByTagUsecase;
-  final ISaveCatLocallyUsecase saveCatLocallyUsecase;
-  final IOpenUrlOnBrowserService openUrlOnBrowserService;
+  final IGetRandomCatUsecase _getRandomCatUsecase;
+  final IGetCatByIdUsecase _getCatByIdUsecase;
+  final IGetCatByTagUsecase _getCatByTagUsecase;
+  final ISaveCatLocallyUsecase _saveCatLocallyUsecase;
+  final IShareCatUsecase _shareCatUsecase;
+  final IOpenUrlOnBrowserService _openUrlOnBrowserService;
   CatCubit({
-    required this.getRandomCatUsecase,
-    required this.getCatByIdUsecase,
-    required this.getCatByTagUsecase,
-    required this.saveCatLocallyUsecase,
-    required this.openUrlOnBrowserService,
-  }) : super(const CatState());
+    required IGetRandomCatUsecase getRandomCatUsecase,
+    required IGetCatByIdUsecase getCatByIdUsecase,
+    required IGetCatByTagUsecase getCatByTagUsecase,
+    required ISaveCatLocallyUsecase saveCatLocallyUsecase,
+    required IShareCatUsecase shareCatUsecase,
+    required IOpenUrlOnBrowserService openUrlOnBrowserService,
+  })  : _openUrlOnBrowserService = openUrlOnBrowserService,
+        _shareCatUsecase = shareCatUsecase,
+        _saveCatLocallyUsecase = saveCatLocallyUsecase,
+        _getCatByTagUsecase = getCatByTagUsecase,
+        _getCatByIdUsecase = getCatByIdUsecase,
+        _getRandomCatUsecase = getRandomCatUsecase,
+        super(const CatState());
   String? _text;
   String? _textColor;
   String? _filter;
@@ -44,7 +53,7 @@ class CatCubit extends Cubit<CatState> {
       textColor: const None(),
       filter: const None(),
     );
-    final result = await getRandomCatUsecase(params);
+    final result = await _getRandomCatUsecase(params);
     result.fold(
       (failure) {
         emit(
@@ -72,7 +81,7 @@ class CatCubit extends Cubit<CatState> {
       textColor: _textColor.toOption(),
       filter: _filter.toOption(),
     );
-    final result = await getRandomCatUsecase(params);
+    final result = await _getRandomCatUsecase(params);
     result.fold(
       (failure) {
         emit(state.copyWith(
@@ -104,7 +113,7 @@ class CatCubit extends Cubit<CatState> {
       textColor: textColor.toOption(),
       filter: filter.toOption(),
     );
-    final result = await getCatByIdUsecase(params);
+    final result = await _getCatByIdUsecase(params);
     result.fold(
       (failure) {
         emit(state.copyWith(
@@ -134,7 +143,7 @@ class CatCubit extends Cubit<CatState> {
       textColor: textColor.toOption(),
       filter: filter.toOption(),
     );
-    final result = await getCatByTagUsecase(params);
+    final result = await _getCatByTagUsecase(params);
     result.fold(
       (failure) {
         emit(state.copyWith(
@@ -154,7 +163,7 @@ class CatCubit extends Cubit<CatState> {
   Future<void> onSaveCatIconTap(String url) async {
     emit(state.copyWith(savingCatStatus: CatStatus.loading));
     final result =
-        await saveCatLocallyUsecase(SaveCatLocallyUsecaseParams(url: url));
+        await _saveCatLocallyUsecase(SaveCatLocallyUsecaseParams(url: url));
     result.fold(
       (_) {
         emit(
@@ -173,7 +182,26 @@ class CatCubit extends Cubit<CatState> {
     );
   }
 
-  Future<void> onShareCatIconTap(String url) async {}
+  Future<void> onShareCatIconTap(String url) async {
+    emit(state.copyWith(shareCatStatus: CatStatus.loading));
+    final result = await _shareCatUsecase(ShareCatUsecaseParams(url: url));
+    result.fold(
+      (_) {
+        emit(
+          state.copyWith(
+            shareCatStatus: CatStatus.failure,
+          ),
+        );
+      },
+      (_) {
+        emit(
+          state.copyWith(
+            shareCatStatus: CatStatus.success,
+          ),
+        );
+      },
+    );
+  }
 
   void onTextTextFieldValueChanged(String? text) {
     _text = text;
@@ -188,10 +216,10 @@ class CatCubit extends Cubit<CatState> {
   }
 
   void onBeerIconTap() {
-    openUrlOnBrowserService(ApiEndpoints.buyMeABeer());
+    _openUrlOnBrowserService(ApiEndpoints.buyMeABeer());
   }
 
   void onTwitterIconTap() {
-    openUrlOnBrowserService(ApiEndpoints.twitter());
+    _openUrlOnBrowserService(ApiEndpoints.twitter());
   }
 }
