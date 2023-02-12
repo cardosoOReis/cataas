@@ -7,7 +7,8 @@ import '../repositories/i_cat_repository.dart';
 
 class GetRandomCatUsecaseImpl implements IGetRandomCatUsecase {
   final ICatRepository _repository;
-  GetRandomCatUsecaseImpl(this._repository);
+
+  const GetRandomCatUsecaseImpl(this._repository);
 
   @override
   Future<Either<Failure, CatEntity>> call(GetRandomCatUsecaseParams params) {

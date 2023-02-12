@@ -8,7 +8,7 @@ import '../repositories/i_cat_repository.dart';
 class GetCatByIdUsecaseImpl implements IGetCatByIdUsecase {
   final ICatRepository _repository;
 
-  GetCatByIdUsecaseImpl(this._repository);
+  const GetCatByIdUsecaseImpl(this._repository);
 
   @override
   Future<Either<Failure, CatEntity>> call(GetCatByIdUsecaseParams params) {

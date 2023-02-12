@@ -1,9 +1,9 @@
-import 'package:cataas/features/cataas/presentation/atomic/atoms/get_random_cat_button_atom.dart';
-import 'package:cataas/features/cataas/presentation/utils/app_colors.dart';
-import 'package:cataas/features/cataas/presentation/utils/app_strings.dart';
 import 'package:flutter/material.dart';
 
+import '../../utils/app_colors.dart';
+import '../../utils/app_strings.dart';
 import '../atoms/default_cat_text_field.dart';
+import '../atoms/get_random_cat_button_atom.dart';
 
 class CatControlsOrganism extends StatefulWidget {
   final void Function() onGetRandomCatButtonTap;

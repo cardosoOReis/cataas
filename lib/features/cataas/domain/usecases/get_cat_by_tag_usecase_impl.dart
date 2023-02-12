@@ -8,7 +8,7 @@ import '../repositories/i_cat_repository.dart';
 class GetCatByTagUsecaseImpl implements IGetCatByTagUsecase {
   final ICatRepository _repository;
 
-  GetCatByTagUsecaseImpl(this._repository);
+  const GetCatByTagUsecaseImpl(this._repository);
 
   @override
   Future<Either<Failure, CatEntity>> call(params) {

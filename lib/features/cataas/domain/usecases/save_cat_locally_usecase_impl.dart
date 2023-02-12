@@ -7,7 +7,7 @@ import '../repositories/i_cat_repository.dart';
 class SaveCatLocallyUsecaseImpl implements ISaveCatLocallyUsecase {
   final ICatRepository _repository;
 
-  SaveCatLocallyUsecaseImpl(this._repository);
+  const SaveCatLocallyUsecaseImpl(this._repository);
 
   @override
   Future<Either<Failure, void>> call(SaveCatLocallyUsecaseParams params) {

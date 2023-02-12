@@ -1,9 +1,6 @@
 import 'package:bloc/bloc.dart';
-import 'package:cataas/features/cataas/presentation/usecases/i_save_cat_locally_usecase.dart';
-import 'package:cataas/features/cataas/presentation/usecases/i_share_cat_usecase.dart';
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutter/material.dart';
 
 import '../../../../api_endpoints.dart';
 import '../../../../core/error/failures.dart';
@@ -13,6 +10,8 @@ import '../../domain/entities/cat_entity.dart';
 import '../usecases/i_get_cat_by_id_usecase.dart';
 import '../usecases/i_get_cat_by_tag_usecase.dart';
 import '../usecases/i_get_random_cat_usecase.dart';
+import '../usecases/i_save_cat_locally_usecase.dart';
+import '../usecases/i_share_cat_usecase.dart';
 import '../utils/app_strings.dart';
 
 part 'cat_state.dart';

@@ -1,17 +1,15 @@
-import 'package:cataas/core/error/failures.dart';
-import 'package:cataas/features/cataas/presentation/atomic/atoms/saved_cat_toast.dart';
-import 'package:cataas/features/cataas/presentation/atomic/molecules/cat_info_molecule.dart';
-import 'package:cataas/features/cataas/presentation/utils/app_colors.dart';
-import 'package:cataas/features/cataas/presentation/utils/app_strings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 import '../../cubits/cat_cubit.dart';
+import '../../utils/app_strings.dart';
 import '../atoms/cat_display_atom.dart';
 import '../atoms/loading_widget_atom.dart';
 import '../atoms/main_cat_frame_atom.dart';
 import '../atoms/message_display_atom.dart';
+import '../atoms/saved_cat_toast.dart';
+import '../molecules/cat_info_molecule.dart';
 
 class ResultDisplayOrganism extends StatelessWidget {
   final void Function(String url) onShareCatIconTap;
@@ -34,32 +32,38 @@ class ResultDisplayOrganism extends StatelessWidget {
         child: BlocConsumer<CatCubit, CatState>(
           listener: (context, state) {
             if (state.savingCatStatus.isSuccess) {
-              FToast().init(context).showToast(
-                    child: CatToast(
-                      text: AppStrings.saveCatLocallySuccess,
-                      icon: const Icon(Icons.check),
-                      color: Colors.greenAccent,
-                    ),
-                  );
+              FToast()
+                ..init(context)
+                ..showToast(
+                  child: CatToast(
+                    text: AppStrings.saveCatLocallySuccess,
+                    icon: const Icon(Icons.check),
+                    color: Colors.greenAccent,
+                  ),
+                );
             }
             if (state.savingCatStatus.isFailure) {
-              FToast().init(context).showToast(
-                    toastDuration: const Duration(seconds: 4),
-                    child: CatToast(
-                      text: AppStrings.saveCatLocallyFailure,
-                      icon: const Icon(Icons.error),
-                      color: Colors.redAccent,
-                    ),
-                  );
+              FToast()
+                ..init(context)
+                ..showToast(
+                  toastDuration: const Duration(seconds: 4),
+                  child: CatToast(
+                    text: AppStrings.saveCatLocallyFailure,
+                    icon: const Icon(Icons.error),
+                    color: Colors.redAccent,
+                  ),
+                );
             }
             if (state.shareCatStatus.isFailure) {
-              FToast().init(context).showToast(
-                    child: CatToast(
-                      text: AppStrings.shareCatFailure,
-                      icon: const Icon(Icons.error),
-                      color: Colors.redAccent,
-                    ),
-                  );
+              FToast()
+                ..init(context)
+                ..showToast(
+                  child: CatToast(
+                    text: AppStrings.shareCatFailure,
+                    icon: const Icon(Icons.error),
+                    color: Colors.redAccent,
+                  ),
+                );
             }
           },
           listenWhen: (previous, current) =>

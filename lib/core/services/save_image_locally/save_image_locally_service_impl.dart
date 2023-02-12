@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:image_downloader/image_downloader.dart';
 
 import '../../error/exceptions.dart';
@@ -14,7 +15,8 @@ class SaveImageLocallyServiceImpl implements ISaveImageLocallyService {
       }
 
       return;
-    } catch (_) {
+    } catch (e) {
+      debugPrint(e.toString());
       throw const SaveCatLocallyException();
     }
   }

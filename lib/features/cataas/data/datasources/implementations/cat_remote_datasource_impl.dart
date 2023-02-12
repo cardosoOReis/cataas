@@ -1,15 +1,14 @@
-import 'package:cataas/core/services/share_image/i_share_image_service.dart';
-import 'package:cataas/features/cataas/presentation/usecases/i_share_cat_usecase.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
-import 'package:share_plus/share_plus.dart';
 
 import '../../../../../api_endpoints.dart';
 import '../../../../../core/error/exceptions.dart';
 import '../../../../../core/extensions/dartz_extensions.dart';
+import '../../../../../core/services/share_image/i_share_image_service.dart';
 import '../../../presentation/usecases/i_get_cat_by_id_usecase.dart';
 import '../../../presentation/usecases/i_get_cat_by_tag_usecase.dart';
 import '../../../presentation/usecases/i_get_random_cat_usecase.dart';
+import '../../../presentation/usecases/i_share_cat_usecase.dart';
 import '../../models/cat_model.dart';
 import '../i_cat_remote_datasource.dart';
 

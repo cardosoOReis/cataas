@@ -1,7 +1,8 @@
-import 'package:cataas/core/error/exceptions.dart';
-import 'package:cataas/core/services/share_image/i_share_image_service.dart';
 import 'package:flutter/material.dart';
 import 'package:share_plus/share_plus.dart';
+
+import '../../error/exceptions.dart';
+import 'i_share_image_service.dart';
 
 class ShareImageServiceImpl implements IShareImageService {
   @override

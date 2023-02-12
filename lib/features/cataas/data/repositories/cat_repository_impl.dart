@@ -1,5 +1,3 @@
-import 'package:cataas/core/services/share_image/i_share_image_service.dart';
-import 'package:cataas/features/cataas/presentation/usecases/i_share_cat_usecase.dart';
 import 'package:dartz/dartz.dart';
 
 import '../../../../core/error/exceptions.dart';
@@ -11,6 +9,7 @@ import '../../presentation/usecases/i_get_cat_by_id_usecase.dart';
 import '../../presentation/usecases/i_get_cat_by_tag_usecase.dart';
 import '../../presentation/usecases/i_get_random_cat_usecase.dart';
 import '../../presentation/usecases/i_save_cat_locally_usecase.dart';
+import '../../presentation/usecases/i_share_cat_usecase.dart';
 import '../datasources/i_cat_local_datasource.dart';
 import '../datasources/i_cat_remote_datasource.dart';
 import '../models/cat_model.dart';
