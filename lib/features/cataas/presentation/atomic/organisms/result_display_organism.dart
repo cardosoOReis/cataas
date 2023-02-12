@@ -1,6 +1,11 @@
+import 'package:cataas/core/error/failures.dart';
+import 'package:cataas/features/cataas/presentation/atomic/atoms/saved_cat_toast.dart';
 import 'package:cataas/features/cataas/presentation/atomic/molecules/cat_info_molecule.dart';
+import 'package:cataas/features/cataas/presentation/utils/app_colors.dart';
+import 'package:cataas/features/cataas/presentation/utils/app_strings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 import '../../cubits/cat_cubit.dart';
 import '../atoms/cat_display_atom.dart';
@@ -23,10 +28,33 @@ class ResultDisplayOrganism extends StatelessWidget {
     return MainCatFrameAtom(
       child: ConstrainedBox(
         constraints: const BoxConstraints(
-          minHeight: 100,
+          minHeight: 150,
           minWidth: double.maxFinite,
         ),
-        child: BlocBuilder<CatCubit, CatState>(
+        child: BlocConsumer<CatCubit, CatState>(
+          listener: (context, state) {
+            if (state.savingCatStatus.isSuccess) {
+              FToast().init(context).showToast(
+                    child: SavedCatToast(
+                      text: AppStrings.saveCatLocallySuccess,
+                      icon: const Icon(Icons.check),
+                      color: Colors.greenAccent,
+                    ),
+                  );
+            }
+            if (state.savingCatStatus.isFailure) {
+              FToast().init(context).showToast(
+                    toastDuration: const Duration(seconds: 4),
+                    child: SavedCatToast(
+                      text: AppStrings.saveCatLocallyFailure,
+                      icon: const Icon(Icons.error),
+                      color: Colors.redAccent,
+                    ),
+                  );
+            }
+          },
+          listenWhen: (previous, current) =>
+              previous.savingCatStatus != current.savingCatStatus,
           builder: (context, state) {
             if (state.status.isInitial) {
               return const Center(
