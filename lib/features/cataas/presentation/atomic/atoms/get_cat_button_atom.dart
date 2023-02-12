@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-class GetRandomCatButtonAtom extends StatelessWidget {
+class GetCatButtonAtom extends StatelessWidget {
   final void Function() onTap;
   final String title;
   final Color backgroundColor;
-  const GetRandomCatButtonAtom({
+  const GetCatButtonAtom({
     super.key,
     required this.onTap,
     required this.title,

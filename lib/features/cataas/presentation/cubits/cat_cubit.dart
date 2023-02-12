@@ -37,6 +37,8 @@ class CatCubit extends Cubit<CatState> {
         _getCatByIdUsecase = getCatByIdUsecase,
         _getRandomCatUsecase = getRandomCatUsecase,
         super(const CatState());
+  String? _id;
+  String? _tag;
   String? _text;
   String? _textColor;
   String? _filter;
@@ -99,18 +101,13 @@ class CatCubit extends Cubit<CatState> {
     );
   }
 
-  Future<void> onGetCatByIdButtonTap(
-    String id, {
-    String? text,
-    String? textColor,
-    String? filter,
-  }) async {
+  Future<void> onGetCatByIdButtonTap(String id) async {
     emit(state.copyWith(status: CatStatus.loading));
     final params = GetCatByIdUsecaseParams(
       id: id,
-      text: text.toOption(),
-      textColor: textColor.toOption(),
-      filter: filter.toOption(),
+      text: _text.toOption(),
+      textColor: _textColor.toOption(),
+      filter: _filter.toOption(),
     );
     final result = await _getCatByIdUsecase(params);
     result.fold(
@@ -213,6 +210,12 @@ class CatCubit extends Cubit<CatState> {
   void onFilterTextFieldValueChanged(String? text) {
     _filter = text;
   }
+
+  bool isSearchingById() => state.isSearchingById;
+
+  void onTypeOfSearchChange() => state.copyWith(
+        isSearchingById: !state.isSearchingById,
+      );
 
   void onBeerIconTap() {
     _openUrlOnBrowserService(ApiEndpoints.buyMeABeer());

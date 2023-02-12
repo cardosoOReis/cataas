@@ -9,9 +9,15 @@ class MainPageTemplate extends StatelessWidget {
   final String title;
   final List<AppBarIcon> appBarIcons;
   final void Function() onGetRandomCatButtonTap;
+  final void Function(String id) onGetCatByIdButtonTap;
+  final void Function(String tag) onGetCatByTagButtonTap;
   final void Function(String) onTextTextFieldValueChanged;
+  final void Function(String) onTextColorTextFieldValueChanged;
+  final void Function(String) onFilterFieldValueChanged;
+  final void Function() onTypeOfSearchChange;
   final void Function(String url) onShareCatIconTap;
   final void Function(String url) onSaveCatIconTap;
+  final bool isSearchingById;
 
   const MainPageTemplate({
     super.key,
@@ -21,6 +27,12 @@ class MainPageTemplate extends StatelessWidget {
     required this.onTextTextFieldValueChanged,
     required this.onShareCatIconTap,
     required this.onSaveCatIconTap,
+    required this.onGetCatByIdButtonTap,
+    required this.onGetCatByTagButtonTap,
+    required this.onTextColorTextFieldValueChanged,
+    required this.onFilterFieldValueChanged,
+    required this.isSearchingById,
+    required this.onTypeOfSearchChange,
   });
 
   @override
@@ -45,7 +57,14 @@ class MainPageTemplate extends StatelessWidget {
               ),
               CatControlsOrganism(
                 onGetRandomCatButtonTap: onGetRandomCatButtonTap,
+                onGetCatByIdButtonTap: onGetCatByIdButtonTap,
+                onGetCatByTagButtonTap: onGetCatByTagButtonTap,
                 onTextTextFieldChanged: onTextTextFieldValueChanged,
+                onTextColorTextFieldValueChanged:
+                    onTextColorTextFieldValueChanged,
+                onFilterFieldValueChanged: onFilterFieldValueChanged,
+                onTypeOfSearchChange: onTypeOfSearchChange,
+                isSearchingById: isSearchingById,
               ),
             ],
           ),

@@ -35,9 +35,15 @@ class CatPage extends StatelessWidget {
       title: AppStrings.title,
       appBarIcons: appBarIcons,
       onGetRandomCatButtonTap: cubit.onGetRandomCatButtonTap,
+      onGetCatByIdButtonTap: cubit.onGetCatByIdButtonTap,
+      onGetCatByTagButtonTap: cubit.onGetCatByTagButtonTap,
       onTextTextFieldValueChanged: cubit.onTextTextFieldValueChanged,
+      onTextColorTextFieldValueChanged: cubit.onTextColorTextFieldValueChanged,
+      onFilterFieldValueChanged: cubit.onFilterTextFieldValueChanged,
+      onTypeOfSearchChange: cubit.onTypeOfSearchChange,
       onSaveCatIconTap: cubit.onSaveCatIconTap,
       onShareCatIconTap: cubit.onShareCatIconTap,
+      isSearchingById: cubit.isSearchingById(),
     );
   }
 }
