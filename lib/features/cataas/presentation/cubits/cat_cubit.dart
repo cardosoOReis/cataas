@@ -34,10 +34,10 @@ class CatCubit extends Cubit<CatState> {
   String? _filter;
 
   Future<void> onInit() async {
-    await _getWelcomeCat();
+    await getWelcomeCat();
   }
 
-  Future<void> _getWelcomeCat() async {
+  Future<void> getWelcomeCat() async {
     emit(state.copyWith(status: CatStatus.loading));
     final params = GetRandomCatUsecaseParams(
       text: Some(AppStrings.initialCatText),
@@ -152,11 +152,11 @@ class CatCubit extends Cubit<CatState> {
   }
 
   Future<void> onSaveCatIconTap(String url) async {
+    emit(state.copyWith(savingCatStatus: CatStatus.loading));
     final result =
         await saveCatLocallyUsecase(SaveCatLocallyUsecaseParams(url: url));
     result.fold(
-      (failure) {
-        if (failure is SaveCatLocallyFailure) {}
+      (_) {
         emit(
           state.copyWith(
             savingCatStatus: CatStatus.failure,
