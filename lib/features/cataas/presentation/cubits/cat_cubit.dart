@@ -37,8 +37,6 @@ class CatCubit extends Cubit<CatState> {
         _getCatByIdUsecase = getCatByIdUsecase,
         _getRandomCatUsecase = getRandomCatUsecase,
         super(const CatState());
-  String? _id;
-  String? _tag;
   String? _text;
   String? _textColor;
   String? _filter;

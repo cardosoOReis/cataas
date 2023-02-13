@@ -25,7 +25,6 @@ class _DefaultCatTextFieldState extends State<DefaultCatTextField> {
       decoration: InputDecoration(
         labelText: widget.labelText,
         hintText: widget.hintText,
-        // TODO -> Give border color to the text field
         border: const OutlineInputBorder(),
       ),
       onChanged: widget.onValueChanged,
