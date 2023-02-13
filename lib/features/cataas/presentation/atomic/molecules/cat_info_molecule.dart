@@ -1,4 +1,7 @@
+import 'package:cataas/features/cataas/presentation/atomic/atoms/saved_cat_toast.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../utils/app_colors.dart';
@@ -33,8 +36,43 @@ class CatInfoMolecule extends StatelessWidget {
       child: Row(
         children: [
           Expanded(
-            child: Text(
-              'Cat ID: $catId',
+            child: Row(
+              children: [
+                Text(
+                  'Cat ID: $catId',
+                ),
+                const SizedBox(
+                  width: 10,
+                ),
+                InkWell(
+                  onTap: () async {
+                    FToast()
+                      ..init(context)
+                      ..showToast(
+                        child: CatToast(
+                          text:
+                              'Copied the Cat Id successfuly to the Clipboard!',
+                          icon: const Icon(Icons.copy),
+                          color: Colors.grey.shade300,
+                        ),
+                      );
+                    await Clipboard.setData(ClipboardData(text: catId));
+                  },
+                  child: SizedBox.square(
+                    dimension: 35,
+                    child: DecoratedBox(
+                      decoration: BoxDecoration(
+                        color: Colors.grey.shade300,
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(5)),
+                      ),
+                      child: const Center(
+                        child: FaIcon(Icons.copy),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
           InkWell(
@@ -58,9 +96,7 @@ class CatInfoMolecule extends StatelessWidget {
             width: 10,
           ),
           InkWell(
-            onTap: () {
-              onSaveCatIconTap(url);
-            },
+            onTap: () => onSaveCatIconTap(url),
             child: const SizedBox.square(
               dimension: 35,
               child: DecoratedBox(

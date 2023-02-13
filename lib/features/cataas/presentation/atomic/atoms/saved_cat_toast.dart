@@ -30,7 +30,10 @@ class CatToast extends StatelessWidget {
             width: 12.0,
           ),
           Flexible(
-            child: Text(text),
+            child: Text(
+              text,
+              textAlign: TextAlign.center,
+            ),
           ),
         ],
       ),

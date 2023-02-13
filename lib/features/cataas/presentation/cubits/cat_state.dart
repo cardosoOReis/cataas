@@ -4,14 +4,14 @@ class CatState extends Equatable {
   final CatStatus status;
   final CatStatus savingCatStatus;
   final CatStatus shareCatStatus;
-  final bool isSearchingById;
+  final SearchType searchType;
   final CatEntity? catEntity;
   final Failure? failure;
   const CatState({
     this.status = CatStatus.initial,
     this.savingCatStatus = CatStatus.initial,
     this.shareCatStatus = CatStatus.initial,
-    this.isSearchingById = true,
+    this.searchType = SearchType.id,
     this.catEntity,
     this.failure,
   });
@@ -21,7 +21,7 @@ class CatState extends Equatable {
   @override
   List<Object?> get props => [
         status,
-        isSearchingById,
+        searchType,
         catEntity,
         failure,
         savingCatStatus,
@@ -32,7 +32,7 @@ class CatState extends Equatable {
     CatStatus? status,
     CatStatus? savingCatStatus,
     CatStatus? shareCatStatus,
-    bool? isSearchingById,
+    SearchType? searchType,
     CatEntity? catEntity,
     Failure? failure,
   }) {
@@ -40,12 +40,14 @@ class CatState extends Equatable {
       status: status ?? this.status,
       savingCatStatus: savingCatStatus ?? this.savingCatStatus,
       shareCatStatus: shareCatStatus ?? this.shareCatStatus,
-      isSearchingById: isSearchingById ?? this.isSearchingById,
+      searchType: searchType ?? this.searchType,
       catEntity: catEntity ?? this.catEntity,
       failure: failure ?? this.failure,
     );
   }
 }
+
+enum CatStatus { initial, loading, success, failure }
 
 extension CatStatusX on CatStatus {
   bool get isInitial => this == CatStatus.initial;
@@ -54,4 +56,9 @@ extension CatStatusX on CatStatus {
   bool get isFailure => this == CatStatus.failure;
 }
 
-enum CatStatus { initial, loading, success, failure }
+enum SearchType { id, tag }
+
+extension SearchTypeX on SearchType {
+  bool get isId => this == SearchType.id;
+  bool get isTag => this == SearchType.tag;
+}

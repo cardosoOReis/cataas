@@ -1,6 +1,7 @@
 import 'package:cataas/features/cataas/presentation/atomic/molecules/get_specific_cat_molecule.dart';
 import 'package:flutter/material.dart';
 
+import '../../cubits/cat_cubit.dart';
 import '../../utils/app_colors.dart';
 import '../../utils/app_strings.dart';
 import '../atoms/default_cat_text_field.dart';
@@ -13,8 +14,7 @@ class CatControlsOrganism extends StatelessWidget {
   final void Function(String text) onTextTextFieldChanged;
   final void Function(String) onTextColorTextFieldValueChanged;
   final void Function(String) onFilterFieldValueChanged;
-  final void Function() onTypeOfSearchChange;
-  final bool isSearchingById;
+  final void Function(SearchType) onTypeOfSearchChange;
   const CatControlsOrganism({
     Key? key,
     required this.onGetRandomCatButtonTap,
@@ -24,7 +24,6 @@ class CatControlsOrganism extends StatelessWidget {
     required this.onTextColorTextFieldValueChanged,
     required this.onFilterFieldValueChanged,
     required this.onTypeOfSearchChange,
-    required this.isSearchingById,
   }) : super(key: key);
 
   @override
@@ -50,7 +49,6 @@ class CatControlsOrganism extends StatelessWidget {
           onTextColorTextFieldValueChanged: onTextColorTextFieldValueChanged,
           onFilterFieldValueChanged: onFilterFieldValueChanged,
           onTypeOfSearchChange: onTypeOfSearchChange,
-          isSearchingById: isSearchingById,
         ),
       ],
     );

@@ -7,7 +7,7 @@ class ApiEndpoints {
 
   static String getCatById(String id) => '$baseUrl$catsEndpoint/$id';
 
-  static String getCatByTag(String tag) => '$baseUrl$catsEndpoint/tag/$tag';
+  static String getCatByTag(String tag) => '$baseUrl$catsEndpoint/$tag';
 
   static String buyMeABeer() => 'https://www.buymeacoffee.com/kevinbalicot';
 

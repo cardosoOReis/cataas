@@ -97,6 +97,7 @@ class CatRemoteDatasourceImpl implements ICatRemoteDatasource {
         throw ParseDataException(body: response.data);
       }
     } on DioError catch (e, stackTrace) {
+      debugPrint(url);
       debugPrint(e.toString());
       debugPrintStack(stackTrace: stackTrace);
       final statusCode = e.response?.statusCode ?? 0;

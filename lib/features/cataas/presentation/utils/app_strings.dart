@@ -15,6 +15,8 @@ class AppStrings {
 
   static String get getCatByTagLabel => "Tag";
 
+  static String get getCatByTagHintText => "Get a cat based on tag.";
+
   static String get initialCatText => 'Welcome Back!';
 
   static String get saveCatLocallySuccess => 'Saved your cat successfully';

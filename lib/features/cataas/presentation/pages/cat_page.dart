@@ -43,7 +43,6 @@ class CatPage extends StatelessWidget {
       onTypeOfSearchChange: cubit.onTypeOfSearchChange,
       onSaveCatIconTap: cubit.onSaveCatIconTap,
       onShareCatIconTap: cubit.onShareCatIconTap,
-      isSearchingById: cubit.isSearchingById(),
     );
   }
 }

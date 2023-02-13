@@ -42,16 +42,15 @@ class DefaultCatAppBarMolecule extends StatelessWidget
                   fontWeight: FontWeight.w600,
                 ),
               ),
-              Row(
-                children: icons
-                    .map(
-                      (icon) => Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 10),
-                        child: icon,
-                      ),
-                    )
-                    .toList(),
-              ),
+              const Spacer(),
+              ...icons
+                  .map(
+                    (icon) => Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                      child: icon,
+                    ),
+                  )
+                  .toList(),
             ],
           ),
         ),

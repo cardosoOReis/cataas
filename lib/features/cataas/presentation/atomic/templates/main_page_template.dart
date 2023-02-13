@@ -1,3 +1,4 @@
+import 'package:cataas/features/cataas/presentation/cubits/cat_cubit.dart';
 import 'package:flutter/material.dart';
 
 import '../atoms/app_bar_icon.dart';
@@ -14,10 +15,9 @@ class MainPageTemplate extends StatelessWidget {
   final void Function(String) onTextTextFieldValueChanged;
   final void Function(String) onTextColorTextFieldValueChanged;
   final void Function(String) onFilterFieldValueChanged;
-  final void Function() onTypeOfSearchChange;
+  final void Function(SearchType) onTypeOfSearchChange;
   final void Function(String url) onShareCatIconTap;
   final void Function(String url) onSaveCatIconTap;
-  final bool isSearchingById;
 
   const MainPageTemplate({
     super.key,
@@ -31,7 +31,6 @@ class MainPageTemplate extends StatelessWidget {
     required this.onGetCatByTagButtonTap,
     required this.onTextColorTextFieldValueChanged,
     required this.onFilterFieldValueChanged,
-    required this.isSearchingById,
     required this.onTypeOfSearchChange,
   });
 
@@ -64,7 +63,6 @@ class MainPageTemplate extends StatelessWidget {
                     onTextColorTextFieldValueChanged,
                 onFilterFieldValueChanged: onFilterFieldValueChanged,
                 onTypeOfSearchChange: onTypeOfSearchChange,
-                isSearchingById: isSearchingById,
               ),
             ],
           ),

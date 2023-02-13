@@ -126,18 +126,13 @@ class CatCubit extends Cubit<CatState> {
     );
   }
 
-  Future<void> onGetCatByTagButtonTap(
-    String tag, {
-    String? text,
-    String? textColor,
-    String? filter,
-  }) async {
+  Future<void> onGetCatByTagButtonTap(String tag) async {
     emit(state.copyWith(status: CatStatus.loading));
     final params = GetCatByTagUsecaseParams(
       tag: tag,
-      text: text.toOption(),
-      textColor: textColor.toOption(),
-      filter: filter.toOption(),
+      text: _text.toOption(),
+      textColor: _textColor.toOption(),
+      filter: _filter.toOption(),
     );
     final result = await _getCatByTagUsecase(params);
     result.fold(
@@ -211,11 +206,13 @@ class CatCubit extends Cubit<CatState> {
     _filter = text;
   }
 
-  bool isSearchingById() => state.isSearchingById;
-
-  void onTypeOfSearchChange() => state.copyWith(
-        isSearchingById: !state.isSearchingById,
-      );
+  void onTypeOfSearchChange(SearchType searchType) {
+    emit(
+      state.copyWith(
+        searchType: searchType,
+      ),
+    );
+  }
 
   void onBeerIconTap() {
     _openUrlOnBrowserService(ApiEndpoints.buyMeABeer());
