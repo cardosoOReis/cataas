@@ -5,17 +5,7 @@ class AppStrings {
 
   static String get getRandomCat => 'Get a Random Cat';
 
-  static String get getCatById => "Get a Cat by it's Id";
-
-  static String get getCatByIdLabel => 'ID';
-
-  static String get getCatByIdHintText => "Get a cat based on it's id.";
-
-  static String get getCatByTag => "Get a Cat by it's Tag";
-
-  static String get getCatByTagLabel => "Tag";
-
-  static String get getCatByTagHintText => "Get a cat based on tag.";
+  static String get initialStateText => 'Get a Cat 😺!';
 
   static String get initialCatText => 'Welcome Back!';
 

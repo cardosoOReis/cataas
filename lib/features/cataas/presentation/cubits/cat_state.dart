@@ -62,3 +62,32 @@ extension SearchTypeX on SearchType {
   bool get isId => this == SearchType.id;
   bool get isTag => this == SearchType.tag;
 }
+
+extension SearchTypeStrings on SearchType {
+  String get label {
+    switch (this) {
+      case SearchType.id:
+        return 'ID';
+      case SearchType.tag:
+        return 'Tag';
+    }
+  }
+
+  String get hintText {
+    switch (this) {
+      case SearchType.id:
+        return "Get a cat based on it's id.";
+      case SearchType.tag:
+        return "Get a cat based on a tag.";
+    }
+  }
+
+  String get buttonTitle {
+    switch (this) {
+      case SearchType.id:
+        return "Get a Cat by it's Id";
+      case SearchType.tag:
+        return "Get a Cat by it's Tag";
+    }
+  }
+}

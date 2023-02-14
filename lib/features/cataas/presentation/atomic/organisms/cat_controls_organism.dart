@@ -12,8 +12,8 @@ class CatControlsOrganism extends StatelessWidget {
   final void Function(String id) onGetCatByIdButtonTap;
   final void Function(String tag) onGetCatByTagButtonTap;
   final void Function(String text) onTextTextFieldChanged;
-  final void Function(String) onTextColorTextFieldValueChanged;
-  final void Function(String) onFilterFieldValueChanged;
+  final void Function(String?) onTextColorTextFieldValueChanged;
+  final void Function(String?) onFilterFieldValueChanged;
   final void Function(SearchType) onTypeOfSearchChange;
   const CatControlsOrganism({
     Key? key,

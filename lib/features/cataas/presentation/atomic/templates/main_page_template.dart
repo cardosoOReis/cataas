@@ -12,9 +12,9 @@ class MainPageTemplate extends StatelessWidget {
   final void Function() onGetRandomCatButtonTap;
   final void Function(String id) onGetCatByIdButtonTap;
   final void Function(String tag) onGetCatByTagButtonTap;
-  final void Function(String) onTextTextFieldValueChanged;
-  final void Function(String) onTextColorTextFieldValueChanged;
-  final void Function(String) onFilterFieldValueChanged;
+  final void Function(String?) onTextTextFieldValueChanged;
+  final void Function(String?) onTextColorTextFieldValueChanged;
+  final void Function(String?) onFilterFieldValueChanged;
   final void Function(SearchType) onTypeOfSearchChange;
   final void Function(String url) onShareCatIconTap;
   final void Function(String url) onSaveCatIconTap;

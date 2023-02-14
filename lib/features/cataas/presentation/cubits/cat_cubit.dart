@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter/material.dart';
 
 import '../../../../api_endpoints.dart';
 import '../../../../core/error/failures.dart';
@@ -53,24 +54,7 @@ class CatCubit extends Cubit<CatState> {
       filter: const None(),
     );
     final result = await _getRandomCatUsecase(params);
-    result.fold(
-      (failure) {
-        emit(
-          state.copyWith(
-            status: CatStatus.failure,
-            failure: failure,
-          ),
-        );
-      },
-      (catEntity) {
-        emit(
-          state.copyWith(
-            status: CatStatus.success,
-            catEntity: catEntity,
-          ),
-        );
-      },
-    );
+    _foldCatOrFailure(result);
   }
 
   Future<void> onGetRandomCatButtonTap() async {
@@ -81,25 +65,11 @@ class CatCubit extends Cubit<CatState> {
       filter: _filter.toOption(),
     );
     final result = await _getRandomCatUsecase(params);
-    result.fold(
-      (failure) {
-        emit(state.copyWith(
-          status: CatStatus.failure,
-          failure: failure,
-        ));
-      },
-      (catEntity) {
-        emit(
-          state.copyWith(
-            status: CatStatus.success,
-            catEntity: catEntity,
-          ),
-        );
-      },
-    );
+    _foldCatOrFailure(result);
   }
 
   Future<void> onGetCatByIdButtonTap(String id) async {
+    debugPrint('ON_GET_CAT_BY_ID_BUTTON_TAP / ID: $id');
     emit(state.copyWith(status: CatStatus.loading));
     final params = GetCatByIdUsecaseParams(
       id: id,
@@ -108,23 +78,11 @@ class CatCubit extends Cubit<CatState> {
       filter: _filter.toOption(),
     );
     final result = await _getCatByIdUsecase(params);
-    result.fold(
-      (failure) {
-        emit(state.copyWith(
-          status: CatStatus.failure,
-          failure: failure,
-        ));
-      },
-      (catEntity) {
-        emit(state.copyWith(
-          status: CatStatus.success,
-          catEntity: catEntity,
-        ));
-      },
-    );
+    _foldCatOrFailure(result);
   }
 
   Future<void> onGetCatByTagButtonTap(String tag) async {
+    debugPrint('ON_GET_CAT_BY_TAG_BUTTON_TAP / TAG: $tag');
     emit(state.copyWith(status: CatStatus.loading));
     final params = GetCatByTagUsecaseParams(
       tag: tag,
@@ -133,20 +91,7 @@ class CatCubit extends Cubit<CatState> {
       filter: _filter.toOption(),
     );
     final result = await _getCatByTagUsecase(params);
-    result.fold(
-      (failure) {
-        emit(state.copyWith(
-          status: CatStatus.failure,
-          failure: failure,
-        ));
-      },
-      (catEntity) {
-        emit(state.copyWith(
-          status: CatStatus.success,
-          catEntity: catEntity,
-        ));
-      },
-    );
+    _foldCatOrFailure(result);
   }
 
   Future<void> onSaveCatIconTap(String url) async {
@@ -218,5 +163,22 @@ class CatCubit extends Cubit<CatState> {
 
   void onTwitterIconTap() {
     _openUrlOnBrowserService(ApiEndpoints.twitter());
+  }
+
+  void _foldCatOrFailure(Either<Failure, CatEntity> result) {
+    result.fold(
+      (failure) {
+        emit(state.copyWith(
+          status: CatStatus.failure,
+          failure: failure,
+        ));
+      },
+      (catEntity) {
+        emit(state.copyWith(
+          status: CatStatus.success,
+          catEntity: catEntity,
+        ));
+      },
+    );
   }
 }

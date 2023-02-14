@@ -102,7 +102,7 @@ class CatRemoteDatasourceImpl implements ICatRemoteDatasource {
       debugPrintStack(stackTrace: stackTrace);
       final statusCode = e.response?.statusCode ?? 0;
       if (statusCode == 404) {
-        throw CatNotFoundException(message: e.message, statusCode: 404);
+        throw const CatNotFoundException(statusCode: 404);
       }
       if (statusCode >= 500) {
         throw ServerException(message: e.message, statusCode: statusCode);

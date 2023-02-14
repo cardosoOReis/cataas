@@ -9,9 +9,11 @@ class ApiException implements Exception {
 
 class CatNotFoundException extends ApiException {
   const CatNotFoundException({
-    required super.message,
     required super.statusCode,
-  });
+  }) : super(
+          message:
+              "Sorry, it appears we couldn't find your cat 😿. Could you please try again?",
+        );
 }
 
 class ParseDataException implements Exception {

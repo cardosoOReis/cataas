@@ -1,3 +1,4 @@
+import 'package:cataas/core/error/failures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -71,12 +72,26 @@ class ResultDisplayOrganism extends StatelessWidget {
               previous.shareCatStatus != current.shareCatStatus,
           builder: (context, state) {
             if (state.status.isInitial) {
-              return const Center(
-                child: MessageDisplayAtom(message: 'Get a Cat 😺'),
+              return Center(
+                child: MessageDisplayAtom(
+                  message: AppStrings.initialStateText,
+                ),
               );
             }
             if (state.status.isLoading) {
               return const LoadingWidgetAtom();
+            }
+            if (state.status.isFailure) {
+              final failure = state.failure!;
+              if (failure is ApiFailure) {
+                return MessageDisplayAtom(
+                  message: failure.exception.message,
+                );
+              }
+
+              return MessageDisplayAtom(
+                message: state.failure!.message,
+              );
             }
             if (state.status.isSuccess) {
               return Column(
@@ -94,11 +109,6 @@ class ResultDisplayOrganism extends StatelessWidget {
                     url: state.catEntity!.url,
                   ),
                 ],
-              );
-            }
-            if (state.status.isFailure) {
-              return MessageDisplayAtom(
-                message: state.failure!.message,
               );
             }
 
