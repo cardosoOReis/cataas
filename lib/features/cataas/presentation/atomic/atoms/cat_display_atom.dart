@@ -16,11 +16,14 @@ class CatDisplayAtom extends StatelessWidget {
           return child;
         }
 
-        return LoadingWidgetAtom(
-          value: loadingProgress.expectedTotalBytes != null
-              ? loadingProgress.cumulativeBytesLoaded /
-                  loadingProgress.expectedTotalBytes!
-              : null,
+        return Padding(
+          padding: const EdgeInsets.only(top: 10),
+          child: LoadingWidgetAtom(
+            value: loadingProgress.expectedTotalBytes != null
+                ? loadingProgress.cumulativeBytesLoaded /
+                    loadingProgress.expectedTotalBytes!
+                : null,
+          ),
         );
       },
     );

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class AppBarIcon extends StatelessWidget {
-  final Function onIconTap;
+  final void Function() onIconTap;
   final Widget icon;
   const AppBarIcon({
     Key? key,
@@ -12,7 +12,7 @@ class AppBarIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => onIconTap(),
+      onTap: onIconTap,
       child: icon,
     );
   }

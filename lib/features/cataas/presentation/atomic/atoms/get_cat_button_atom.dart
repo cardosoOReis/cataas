@@ -17,7 +17,7 @@ class GetCatButtonAtom extends StatelessWidget {
       width: 200,
       height: 40,
       child: ElevatedButton(
-        onPressed: () => onTap(),
+        onPressed: onTap,
         style: ButtonStyle(
           backgroundColor: MaterialStatePropertyAll<Color>(backgroundColor),
         ),

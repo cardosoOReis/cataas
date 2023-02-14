@@ -1,15 +1,16 @@
-import 'package:cataas/core/error/failures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
+import '../../../../../core/error/failures.dart';
 import '../../cubits/cat_cubit.dart';
 import '../../utils/app_strings.dart';
 import '../atoms/cat_display_atom.dart';
 import '../atoms/loading_widget_atom.dart';
 import '../atoms/main_cat_frame_atom.dart';
 import '../atoms/message_display_atom.dart';
-import '../atoms/saved_cat_toast.dart';
+import '../atoms/cat_toast.dart';
 import '../molecules/cat_info_molecule.dart';
 
 class ResultDisplayOrganism extends StatelessWidget {
@@ -107,6 +108,9 @@ class ResultDisplayOrganism extends StatelessWidget {
                     onShareCatIconTap: onShareCatIconTap,
                     onSaveCatIconTap: onSaveCatIconTap,
                     url: state.catEntity!.url,
+                    onCopyCatIconTap: () {
+                      _onCopyIconTap(context, state.catEntity!.id);
+                    },
                   ),
                 ],
               );
@@ -117,5 +121,18 @@ class ResultDisplayOrganism extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Future<void> _onCopyIconTap(BuildContext context, String catId) async {
+    FToast()
+      ..init(context)
+      ..showToast(
+        child: CatToast(
+          text: 'Copied the Cat Id successfuly to the Clipboard!',
+          icon: const Icon(Icons.copy),
+          color: Colors.grey.shade300,
+        ),
+      );
+    await Clipboard.setData(ClipboardData(text: catId));
   }
 }

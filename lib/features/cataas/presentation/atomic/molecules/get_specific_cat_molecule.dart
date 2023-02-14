@@ -1,12 +1,12 @@
-import 'package:cataas/core/extensions/string_extensions.dart';
-import 'package:cataas/features/cataas/presentation/atomic/atoms/default_cat_text_field.dart';
-import 'package:cataas/features/cataas/presentation/atomic/atoms/dropdown_filter_atom.dart';
-import 'package:cataas/features/cataas/presentation/atomic/atoms/dropdown_search_type_atom.dart';
-import 'package:cataas/features/cataas/presentation/atomic/atoms/get_cat_button_atom.dart';
-import 'package:cataas/features/cataas/presentation/cubits/cat_cubit.dart';
-import 'package:cataas/features/cataas/presentation/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../cubits/cat_cubit.dart';
+import '../../utils/app_colors.dart';
+import '../atoms/default_cat_text_field.dart';
+import '../atoms/dropdown_filter_atom.dart';
+import '../atoms/dropdown_search_type_atom.dart';
+import '../atoms/get_cat_button_atom.dart';
 
 class GetSpecificCatMolecule extends StatefulWidget {
   final void Function(String id) onGetCatByIdButtonTap;

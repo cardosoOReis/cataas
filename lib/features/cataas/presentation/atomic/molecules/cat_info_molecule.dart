@@ -1,7 +1,4 @@
-import 'package:cataas/features/cataas/presentation/atomic/atoms/saved_cat_toast.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../utils/app_colors.dart';
@@ -12,12 +9,14 @@ class CatInfoMolecule extends StatelessWidget {
   final String url;
   final void Function(String url) onShareCatIconTap;
   final void Function(String url) onSaveCatIconTap;
+  final void Function() onCopyCatIconTap;
   const CatInfoMolecule({
     Key? key,
     required this.catId,
     required this.onShareCatIconTap,
     required this.onSaveCatIconTap,
     required this.url,
+    required this.onCopyCatIconTap,
   }) : super(key: key);
 
   @override
@@ -46,9 +45,7 @@ class CatInfoMolecule extends StatelessWidget {
                   width: 10,
                 ),
                 CatInfoIconAtom(
-                  onTap: () async {
-                    await onCopyIconTap(context);
-                  },
+                  onTap: onCopyCatIconTap,
                   color: Colors.grey.shade300,
                   icon: const FaIcon(Icons.copy),
                 ),
@@ -71,18 +68,5 @@ class CatInfoMolecule extends StatelessWidget {
         ],
       ),
     );
-  }
-
-  Future<void> onCopyIconTap(BuildContext context) async {
-    FToast()
-      ..init(context)
-      ..showToast(
-        child: CatToast(
-          text: 'Copied the Cat Id successfuly to the Clipboard!',
-          icon: const Icon(Icons.copy),
-          color: Colors.grey.shade300,
-        ),
-      );
-    await Clipboard.setData(ClipboardData(text: catId));
   }
 }
