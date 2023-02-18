@@ -41,32 +41,26 @@ class MainPageTemplate extends StatelessWidget {
         title: title,
         icons: appBarIcons,
       ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(10.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: ResultDisplayOrganism(
-                  onSaveCatIconTap: onSaveCatIconTap,
-                  onShareCatIconTap: onShareCatIconTap,
-                ),
-              ),
-              CatControlsOrganism(
-                onGetRandomCatButtonTap: onGetRandomCatButtonTap,
-                onGetCatByIdButtonTap: onGetCatByIdButtonTap,
-                onGetCatByTagButtonTap: onGetCatByTagButtonTap,
-                onTextTextFieldChanged: onTextTextFieldValueChanged,
-                onTextColorTextFieldValueChanged:
-                    onTextColorTextFieldValueChanged,
-                onFilterFieldValueChanged: onFilterFieldValueChanged,
-                onTypeOfSearchChange: onTypeOfSearchChange,
-              ),
-            ],
+      body: ListView(
+        padding: const EdgeInsets.all(10),
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: ResultDisplayOrganism(
+              onSaveCatIconTap: onSaveCatIconTap,
+              onShareCatIconTap: onShareCatIconTap,
+            ),
           ),
-        ),
+          CatControlsOrganism(
+            onGetRandomCatButtonTap: onGetRandomCatButtonTap,
+            onGetCatByIdButtonTap: onGetCatByIdButtonTap,
+            onGetCatByTagButtonTap: onGetCatByTagButtonTap,
+            onTextTextFieldChanged: onTextTextFieldValueChanged,
+            onTextColorTextFieldValueChanged: onTextColorTextFieldValueChanged,
+            onFilterFieldValueChanged: onFilterFieldValueChanged,
+            onTypeOfSearchChange: onTypeOfSearchChange,
+          ),
+        ],
       ),
     );
   }
