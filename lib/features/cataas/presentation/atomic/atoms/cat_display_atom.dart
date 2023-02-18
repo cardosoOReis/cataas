@@ -1,3 +1,4 @@
+import 'package:cataas/features/cataas/presentation/utils/app_strings.dart';
 import 'package:flutter/material.dart';
 
 import '../../../domain/entities/cat_entity.dart';
@@ -23,6 +24,14 @@ class CatDisplayAtom extends StatelessWidget {
                 ? loadingProgress.cumulativeBytesLoaded /
                     loadingProgress.expectedTotalBytes!
                 : null,
+          ),
+        );
+      },
+      errorBuilder: (context, error, stackTrace) {
+        return Padding(
+          padding: const EdgeInsets.only(top: 10),
+          child: Text(
+            AppStrings.getCatFailure,
           ),
         );
       },
