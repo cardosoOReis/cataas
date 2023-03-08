@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:logging/logging.dart';
 
 import 'features/cataas/presentation/cubits/cat_cubit.dart';
 import 'features/cataas/presentation/pages/cat_page.dart';
@@ -8,7 +7,6 @@ import 'service_locator.dart';
 
 void main() {
   initServices();
-  _initLogger();
   runApp(const Main());
 }
 
@@ -34,11 +32,4 @@ class Main extends StatelessWidget {
 
     return cubit;
   }
-}
-
-void _initLogger() {
-  Logger.root.level = Level.ALL;
-  Logger.root.onRecord.listen((record) {
-    debugPrint('${record.level.name}: ${record.time}: ${record.message}');
-  });
 }
