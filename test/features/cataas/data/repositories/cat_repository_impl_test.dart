@@ -19,6 +19,7 @@ void main() {
     registerFallbackValue(mockGetCatByIdUsecaseParams);
     registerFallbackValue(mockGetCatByTagUsecaseParams);
     registerFallbackValue(mockGetRandomCatUsecaseParams);
+    registerFallbackValue(mockGetCatByIdOrTagUsecaseParams);
     registerFallbackValue(mockSaveCatLocallyUsecaseParams);
     registerFallbackValue(mockShareCatUsecaseParams);
     mockRemoteDatasource = MockRemoteDatasource();
@@ -347,6 +348,95 @@ void main() {
 
         // Assert
         expect(result, const Left(mockNoInternetConnectionFailure));
+      });
+    });
+  });
+  group('When [getCatByIdOrTag] is called,', () {
+    test('should check if the device is online', () async {
+      // Arrange
+      when(() => mockRemoteDatasource.getCatByIdOrTag(any()))
+          .thenAnswer((_) async => mockCatModel);
+      when(() => mockNetworkInfo.isConnected).thenAnswer((_) async => true);
+
+      // Act
+      repository.getCatByIdOrTag(mockGetCatByIdOrTagUsecaseParams);
+
+      //Assert
+      verify(() => mockNetworkInfo.isConnected).called(1);
+    });
+    group('and is connected to the internet,', () {
+      setUp(() {
+        when(
+          () => mockNetworkInfo.isConnected,
+        ).thenAnswer((_) async => true);
+      });
+      group('and the call is successful,', () {
+        test('should return a Right with a [CatModel]', () async {
+          // Arrange
+          when(
+            () => mockRemoteDatasource.getCatByIdOrTag(any()),
+          ).thenAnswer((_) async => mockCatModel);
+
+          // Act
+          final result = await repository
+              .getCatByIdOrTag(mockGetCatByIdOrTagUsecaseParams);
+
+          // Assert
+          expect(result, Right(mockCatModel));
+          verify(
+            () => mockRemoteDatasource.getCatByIdOrTag(any()),
+          );
+        });
+      });
+      group('and the call is unsuccessful,', () {
+        test(
+            'and the reason is [CatNotFoundException], should return a Left with a [ApiFailure]',
+            () async {
+          // Arrange
+          when(
+            () => mockRemoteDatasource.getCatByIdOrTag(any()),
+          ).thenThrow(mockCatNotFoundException);
+
+          // Act
+          final result = await repository
+              .getCatByIdOrTag(mockGetCatByIdOrTagUsecaseParams);
+
+          // Assert
+          expect(result,
+              const Left(ApiFailure(exception: mockCatNotFoundException)));
+        });
+        test(
+            'and the reason is [ParseDataException], should return a Left with a [ParseDataFailure]',
+            () async {
+          // Arrange
+          when(
+            () => mockRemoteDatasource.getCatByIdOrTag(any()),
+          ).thenThrow(mockParseDataException);
+
+          // Act
+          final result = await repository
+              .getCatByIdOrTag(mockGetCatByIdOrTagUsecaseParams);
+
+          // Assert
+          expect(result,
+              const Left(ParseDataFailure(exception: mockParseDataException)));
+        });
+        test(
+            'and the reason is [ServerException], should return a Left with a [ServerFailure]',
+            () async {
+          // Arrange
+          when(
+            () => mockRemoteDatasource.getCatByIdOrTag(any()),
+          ).thenThrow(mockServerException);
+
+          // Act
+          final result = await repository
+              .getCatByIdOrTag(mockGetCatByIdOrTagUsecaseParams);
+
+          // Assert
+          expect(result,
+              const Left(ServerFailure(exception: mockServerException)));
+        });
       });
     });
   });

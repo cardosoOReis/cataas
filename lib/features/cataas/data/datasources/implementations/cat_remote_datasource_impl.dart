@@ -6,6 +6,7 @@ import '../../../../../api_endpoints.dart';
 import '../../../../../core/error/exceptions.dart';
 import '../../../../../core/extensions/dartz_extensions.dart';
 import '../../../../../core/services/share_image/i_share_image_service.dart';
+import '../../../presentation/usecases/i_get_cat_by_id_or_tag_usecase.dart';
 import '../../../presentation/usecases/i_get_cat_by_id_usecase.dart';
 import '../../../presentation/usecases/i_get_cat_by_tag_usecase.dart';
 import '../../../presentation/usecases/i_get_random_cat_usecase.dart';
@@ -50,6 +51,18 @@ class CatRemoteDatasourceImpl implements ICatRemoteDatasource {
   Future<CatModel> getRandomCat(GetRandomCatUsecaseParams params) async {
     return await _getCat(
       ApiEndpoints.getRandomCat(),
+      params: _QueryParams(
+        text: params.text,
+        textColor: params.textColor,
+        filter: params.filter,
+      ),
+    );
+  }
+
+  @override
+  Future<CatModel> getCatByIdOrTag(GetCatByIdOrTagUsecaseParams params) async {
+    return await _getCat(
+      ApiEndpoints.getCatByIdOrTag(params.value),
       params: _QueryParams(
         text: params.text,
         textColor: params.textColor,

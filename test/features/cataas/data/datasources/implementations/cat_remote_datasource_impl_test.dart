@@ -208,7 +208,7 @@ void main() {
       verify(
         () => mockHttpClient.get(
           any(
-            that: contains('/tag/${mockGetCatByTagUsecaseParams.tag}'),
+            that: contains('/${mockGetCatByTagUsecaseParams.tag}'),
           ),
           queryParameters: any(
             named: 'queryParameters',
@@ -276,7 +276,7 @@ void main() {
           final filter = mockGetCatByTagUsecaseParams.filter
               .fold(() => null, (filter) => filter);
           mockHttpClient.get(
-              'https://cataas.com/cat/tag/${mockGetCatByTagUsecaseParams.tag}/says/$text',
+              'https://cataas.com/cat/${mockGetCatByTagUsecaseParams.tag}/says/$text',
               queryParameters: {
                 'json': 'true',
                 'textColor': textColor,
@@ -440,6 +440,127 @@ void main() {
 
         // Assert
         expect(() => call(mockGetRandomCatUsecaseParams),
+            throwsA(isA<ApiException>()));
+      });
+    });
+  });
+  group('When [getCatByIdOrTag] is called,', () {
+    test('should perform a GET request on a url', () async {
+      // Arrange
+      setUpMock200Response();
+
+      // Act
+      datasource.getCatByIdOrTag(mockGetCatByIdOrTagUsecaseParams);
+
+      // Assert
+      verify(
+        () => mockHttpClient.get(
+          any(),
+          queryParameters: any(
+            named: 'queryParameters',
+            that: containsPair('json', 'true'),
+          ),
+        ),
+      ).called(1);
+    });
+    group('and the call is successful,', () {
+      test('should return an [CatModel]', () async {
+        //Arrange
+        setUpMock200Response();
+
+        //Act
+        final result =
+            await datasource.getCatByIdOrTag(mockGetCatByIdOrTagUsecaseParams);
+
+        //Assert
+        expect(result, isA<CatModel>());
+      });
+      test(
+          'the returned model should have the tag, text, textColor and filter as it was passed by the params',
+          () async {
+        // Arrange
+        setUpMock200Response();
+
+        // Act
+        final result =
+            await datasource.getCatByIdOrTag(mockGetCatByIdOrTagUsecaseParams);
+
+        // Assert
+        expect(
+          result,
+          isA<CatModel>()
+              .having(
+                (p0) => p0.text,
+                'text',
+                mockGetCatByIdOrTagUsecaseParams.text,
+              )
+              .having(
+                (p0) => p0.textColor,
+                'textColor',
+                mockGetCatByIdOrTagUsecaseParams.textColor,
+              )
+              .having(
+                (p0) => p0.filter,
+                'filter',
+                mockGetCatByIdOrTagUsecaseParams.filter,
+              ),
+        );
+        verify(() {
+          final value = mockGetCatByIdOrTagUsecaseParams.value;
+          final text = mockGetCatByIdOrTagUsecaseParams.text
+              .fold(() => null, (text) => text);
+          final textColor = mockGetCatByIdOrTagUsecaseParams.textColor
+              .fold(() => null, (textColor) => textColor);
+          final filter = mockGetCatByIdOrTagUsecaseParams.filter
+              .fold(() => null, (filter) => filter);
+          mockHttpClient.get(
+            'https://cataas.com/cat/$value/says/$text',
+            queryParameters: {
+              'json': 'true',
+              'textColor': textColor,
+              'filter': filter,
+            },
+          );
+        }).called(1);
+      });
+    });
+
+    group('and the call is unsuccessful,', () {
+      test('and the statusCode is 404, should throw a [CatNotFoundException]',
+          () async {
+        //Arrange
+        setUpMock404Response();
+
+        //Act
+        final call = datasource.getCatByIdOrTag;
+
+        //Assert
+        expect(() => call(mockGetCatByIdOrTagUsecaseParams),
+            throwsA(isA<CatNotFoundException>()));
+      });
+      test('and the status code is >= 500, should throw a [ServerException]',
+          () {
+        //Arrange
+        setUpMock500Response();
+
+        // Act
+        final call = datasource.getCatByIdOrTag;
+
+        //Assert
+        expect(() => call(mockGetCatByIdOrTagUsecaseParams),
+            throwsA(isA<ServerException>()));
+      });
+      test(
+          'and the status code is not >= 500 or == 400, should throw an [ApiException]',
+          () {
+        // Arrange
+        setUpMockDefaultErrorResponse();
+
+        // Act
+        final call = datasource.getCatByIdOrTag;
+
+        // Assert
+        expect(() => call(mockGetCatByIdOrTagUsecaseParams),
             throwsA(isA<ApiException>()));
       });
     });

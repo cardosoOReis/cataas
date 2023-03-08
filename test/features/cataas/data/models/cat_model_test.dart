@@ -33,13 +33,14 @@ void main() {
 
         // Act & Assert
         expect(
-            () => CatModel.fromJson(
-                  json: jsonMap,
-                  filter: const None(),
-                  text: const None(),
-                  textColor: const None(),
-                ),
-            returnsNormally);
+          () => CatModel.fromJson(
+            json: jsonMap,
+            filter: const None(),
+            text: const None(),
+            textColor: const None(),
+          ),
+          returnsNormally,
+        );
       });
     });
   });

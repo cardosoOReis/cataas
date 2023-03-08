@@ -13,6 +13,7 @@ import 'package:cataas/features/cataas/domain/usecases/get_cat_by_id_usecase_imp
 import 'package:cataas/features/cataas/domain/usecases/get_cat_by_tag_usecase_impl.dart';
 import 'package:cataas/features/cataas/domain/usecases/get_random_cat_usecase_impl.dart';
 import 'package:cataas/features/cataas/domain/usecases/save_cat_locally_usecase_impl.dart';
+import 'package:cataas/features/cataas/presentation/usecases/i_get_cat_by_id_or_tag_usecase.dart';
 import 'package:cataas/features/cataas/presentation/usecases/i_get_cat_by_id_usecase.dart';
 import 'package:cataas/features/cataas/presentation/usecases/i_get_cat_by_tag_usecase.dart';
 import 'package:cataas/features/cataas/presentation/usecases/i_get_random_cat_usecase.dart';
@@ -113,6 +114,12 @@ const mockGetCatByTagUsecaseParams = GetCatByTagUsecaseParams(
   text: Some('hello'),
   textColor: Some('red'),
   filter: Some('sepia'),
+);
+const mockGetCatByIdOrTagUsecaseParams = GetCatByIdOrTagUsecaseParams(
+  value: 'value',
+  text: Some('text'),
+  textColor: Some('textColor'),
+  filter: Some('filter'),
 );
 
 const mockSaveCatLocallyUsecaseParams = SaveCatLocallyUsecaseParams(url: '');

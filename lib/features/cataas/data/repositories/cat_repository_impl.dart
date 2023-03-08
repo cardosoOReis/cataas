@@ -5,6 +5,7 @@ import '../../../../core/error/failures.dart';
 import '../../../../core/network/i_network_info.dart';
 import '../../domain/entities/cat_entity.dart';
 import '../../domain/repositories/i_cat_repository.dart';
+import '../../presentation/usecases/i_get_cat_by_id_or_tag_usecase.dart';
 import '../../presentation/usecases/i_get_cat_by_id_usecase.dart';
 import '../../presentation/usecases/i_get_cat_by_tag_usecase.dart';
 import '../../presentation/usecases/i_get_random_cat_usecase.dart';
@@ -45,6 +46,13 @@ class CatRepositoryImpl implements ICatRepository {
     GetRandomCatUsecaseParams params,
   ) async {
     return await _getCat(() => _remoteDatasource.getRandomCat(params));
+  }
+
+  @override
+  Future<Either<Failure, CatEntity>> getCatByIdOrTag(
+    GetCatByIdOrTagUsecaseParams params,
+  ) async {
+    return await _getCat(() => _remoteDatasource.getCatByIdOrTag(params));
   }
 
   @override
