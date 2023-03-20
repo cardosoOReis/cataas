@@ -1,3 +1,5 @@
+import 'package:cataas/features/cataas/domain/usecases/get_cat_by_id_or_tag_usecase_impl.dart';
+import 'package:cataas/features/cataas/presentation/usecases/i_get_cat_by_id_or_tag_usecase.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
@@ -56,6 +58,7 @@ void initServices() {
       getRandomCatUsecase: sl<IGetRandomCatUsecase>(),
       getCatByIdUsecase: sl<IGetCatByIdUsecase>(),
       getCatByTagUsecase: sl<IGetCatByTagUsecase>(),
+      getCatByIdOrTagUsecase: sl<IGetCatByIdOrTagUsecase>(),
       saveCatLocallyUsecase: sl<ISaveCatLocallyUsecase>(),
       shareCatUsecase: sl<IShareCatUsecase>(),
       openUrlOnBrowserService: sl<IOpenUrlOnBrowserService>(),
@@ -93,6 +96,9 @@ void initServices() {
   );
   sl.registerLazySingleton<IGetCatByTagUsecase>(
     () => GetCatByTagUsecaseImpl(sl<ICatRepository>()),
+  );
+  sl.registerLazySingleton<IGetCatByIdOrTagUsecase>(
+    () => GetCatByIdOrTagUsecaseImpl(sl<ICatRepository>()),
   );
   sl.registerLazySingleton<ISaveCatLocallyUsecase>(
     () => SaveCatLocallyUsecaseImpl(sl<ICatRepository>()),

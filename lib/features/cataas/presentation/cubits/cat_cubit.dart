@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:cataas/features/cataas/presentation/usecases/i_get_cat_by_id_or_tag_usecase.dart';
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
@@ -21,6 +22,7 @@ class CatCubit extends Cubit<CatState> {
   final IGetRandomCatUsecase _getRandomCatUsecase;
   final IGetCatByIdUsecase _getCatByIdUsecase;
   final IGetCatByTagUsecase _getCatByTagUsecase;
+  final IGetCatByIdOrTagUsecase _getCatByIdOrTagUsecase;
   final ISaveCatLocallyUsecase _saveCatLocallyUsecase;
   final IShareCatUsecase _shareCatUsecase;
   final IOpenUrlOnBrowserService _openUrlOnBrowserService;
@@ -28,12 +30,14 @@ class CatCubit extends Cubit<CatState> {
     required IGetRandomCatUsecase getRandomCatUsecase,
     required IGetCatByIdUsecase getCatByIdUsecase,
     required IGetCatByTagUsecase getCatByTagUsecase,
+    required IGetCatByIdOrTagUsecase getCatByIdOrTagUsecase,
     required ISaveCatLocallyUsecase saveCatLocallyUsecase,
     required IShareCatUsecase shareCatUsecase,
     required IOpenUrlOnBrowserService openUrlOnBrowserService,
   })  : _openUrlOnBrowserService = openUrlOnBrowserService,
         _shareCatUsecase = shareCatUsecase,
         _saveCatLocallyUsecase = saveCatLocallyUsecase,
+        _getCatByIdOrTagUsecase = getCatByIdOrTagUsecase,
         _getCatByTagUsecase = getCatByTagUsecase,
         _getCatByIdUsecase = getCatByIdUsecase,
         _getRandomCatUsecase = getRandomCatUsecase,
@@ -91,6 +95,19 @@ class CatCubit extends Cubit<CatState> {
       filter: _filter.toOption(),
     );
     final result = await _getCatByTagUsecase(params);
+    _foldCatOrFailure(result);
+  }
+
+  Future<void> onGetCatByIdOrTagButtonTap(String value) async {
+    debugPrint('ON_GET_CAT_BY_ID_OR_TAG_BUTTON_TAP / VALUE: $value');
+    emit(state.copyWith(status: CatStatus.loading));
+    final params = GetCatByIdOrTagUsecaseParams(
+      value: value,
+      text: _text.toOption(),
+      textColor: _textColor.toOption(),
+      filter: _filter.toOption(),
+    );
+    final result = await _getCatByIdOrTagUsecase(params);
     _foldCatOrFailure(result);
   }
 

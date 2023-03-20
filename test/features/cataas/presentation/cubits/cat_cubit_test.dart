@@ -11,6 +11,7 @@ void main() {
   late MockGetCatByIdUsecase mockGetCatByIdUsecase;
   late MockGetCatByTagUsecase mockGetCatByTagUsecase;
   late MockGetRandomCatUsecase mockGetRandomCatUsecase;
+  late MockGetCatByIdOrTagUsecase mockGetCatByIdOrTagUsecase;
   late MockSaveCatLocallyUsecase mockSaveCatLocallyUsecase;
   late MockShareCatUsecase mockShareCatUsecase;
   late MockOpenUrlOnBrowser mockOpenUrlOnBrowserService;
@@ -19,11 +20,13 @@ void main() {
     registerFallbackValue(mockGetRandomCatUsecaseParams);
     registerFallbackValue(mockGetCatByIdUsecaseParams);
     registerFallbackValue(mockGetCatByTagUsecaseParams);
+    registerFallbackValue(mockGetCatByIdOrTagUsecaseParams);
     registerFallbackValue(mockSaveCatLocallyUsecaseParams);
     registerFallbackValue(mockShareCatUsecaseParams);
     mockGetCatByIdUsecase = MockGetCatByIdUsecase();
     mockGetCatByTagUsecase = MockGetCatByTagUsecase();
     mockGetRandomCatUsecase = MockGetRandomCatUsecase();
+    mockGetCatByIdOrTagUsecase = MockGetCatByIdOrTagUsecase();
     mockOpenUrlOnBrowserService = MockOpenUrlOnBrowser();
     mockSaveCatLocallyUsecase = MockSaveCatLocallyUsecase();
     mockShareCatUsecase = MockShareCatUsecase();
@@ -31,6 +34,7 @@ void main() {
       getRandomCatUsecase: mockGetRandomCatUsecase,
       getCatByIdUsecase: mockGetCatByIdUsecase,
       getCatByTagUsecase: mockGetCatByTagUsecase,
+      getCatByIdOrTagUsecase: mockGetCatByIdOrTagUsecase,
       openUrlOnBrowserService: mockOpenUrlOnBrowserService,
       shareCatUsecase: mockShareCatUsecase,
       saveCatLocallyUsecase: mockSaveCatLocallyUsecase,
@@ -242,6 +246,77 @@ void main() {
         verify: (bloc) {
           verify(
             () => mockGetCatByTagUsecase(any()),
+          ).called(1);
+        },
+      );
+    });
+  });
+  group('When [getCatByIdOrTag] is called,', () {
+    group('and the call is successful,', () {
+      blocTest<CatCubit, CatState>(
+        'emits [loading, sucess] when [getCatByIdOrTagUsecase] returns a CatEntity',
+        setUp: () {
+          when(
+            () => mockGetCatByIdOrTagUsecase(any()),
+          ).thenAnswer((_) async => Right(mockCatEntity));
+        },
+        build: () => cubit,
+        act: (_) => cubit.onGetCatByIdOrTagButtonTap(''),
+        expect: () => <dynamic>[
+          const CatState(status: CatStatus.loading),
+          isA<CatState>()
+              .having(
+                (state) => state.status,
+                'status',
+                CatStatus.success,
+              )
+              .having(
+                (state) => state.catEntity,
+                'catEntity',
+                mockCatEntity,
+              )
+              .having(
+                (state) => state.isSaveCatButtonEnabled,
+                'isSaveCatButtonEnabled',
+                isTrue,
+              )
+        ],
+        verify: (_) {
+          verify(
+            () => mockGetCatByIdOrTagUsecase(any()),
+          ).called(1);
+        },
+      );
+      blocTest<CatCubit, CatState>(
+        'emits [loading, failure] when getCatByIdOrTagUsecase returns a [Failure].',
+        setUp: () {
+          when(() => mockGetCatByIdOrTagUsecase(any()))
+              .thenAnswer((_) async => Left(mockFailure));
+        },
+        build: () => cubit,
+        act: (bloc) => bloc.onGetCatByIdOrTagButtonTap(''),
+        expect: () => <dynamic>[
+          const CatState(status: CatStatus.loading),
+          isA<CatState>()
+              .having(
+                (state) => state.status,
+                'status',
+                CatStatus.failure,
+              )
+              .having(
+                (state) => state.failure,
+                'failure',
+                mockFailure,
+              )
+              .having(
+                (state) => state.isSaveCatButtonEnabled,
+                'isSaveCatButtonEnabled',
+                false,
+              ),
+        ],
+        verify: (bloc) {
+          verify(
+            () => mockGetCatByIdOrTagUsecase(any()),
           ).called(1);
         },
       );

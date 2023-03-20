@@ -29,6 +29,9 @@ class MockGetCatByIdUsecase extends Mock implements GetCatByIdUsecaseImpl {}
 
 class MockGetCatByTagUsecase extends Mock implements GetCatByTagUsecaseImpl {}
 
+class MockGetCatByIdOrTagUsecase extends Mock
+    implements IGetCatByIdOrTagUsecase {}
+
 class MockSaveCatLocallyUsecase extends Mock
     implements SaveCatLocallyUsecaseImpl {}
 
