@@ -131,14 +131,24 @@ void main() {
 
         // Assert
         expect(
-            result,
-            isA<CatModel>()
-                .having(
-                    (p0) => p0.text, 'text', mockGetCatByIdUsecaseParams.text)
-                .having((p0) => p0.textColor, 'textColor',
-                    mockGetCatByIdUsecaseParams.textColor)
-                .having((p0) => p0.filter, 'filter',
-                    mockGetCatByIdUsecaseParams.filter));
+          result,
+          isA<CatModel>()
+              .having(
+                (catModel) => catModel.text,
+                'text',
+                mockGetCatByIdUsecaseParams.text.toNullable(),
+              )
+              .having(
+                (p0) => p0.textColor,
+                'textColor',
+                mockGetCatByIdUsecaseParams.textColor.toNullable(),
+              )
+              .having(
+                (p0) => p0.filter,
+                'filter',
+                mockGetCatByIdUsecaseParams.filter.toNullable(),
+              ),
+        );
         verify(() {
           final text =
               mockGetCatByIdUsecaseParams.text.fold(() => null, (text) => text);
@@ -244,28 +254,24 @@ void main() {
           result,
           isA<CatModel>()
               .having(
-                (p0) => p0.text,
+                (catModel) => catModel.text,
                 'text',
-                mockGetCatByTagUsecaseParams.text,
+                mockGetCatByTagUsecaseParams.text.toNullable(),
               )
               .having(
-                (p0) => p0.textColor,
+                (catModel) => catModel.textColor,
                 'textColor',
-                mockGetCatByTagUsecaseParams.textColor,
+                mockGetCatByTagUsecaseParams.textColor.toNullable(),
               )
               .having(
-                (p0) => p0.filter,
+                (catModel) => catModel.filter,
                 'filter',
-                mockGetCatByTagUsecaseParams.filter,
+                mockGetCatByTagUsecaseParams.filter.toNullable(),
               )
               .having(
-                (p0) => p0.tags,
+                (catModel) => catModel.tags,
                 'tags',
-                isA<Some<List<String>>>().having(
-                  (p0) => p0.value,
-                  'tags',
-                  contains(mockGetCatByTagUsecaseParams.tag),
-                ),
+                contains(mockGetCatByTagUsecaseParams.tag),
               ),
         );
         verify(() {
@@ -371,28 +377,26 @@ void main() {
           result,
           isA<CatModel>()
               .having(
-                (p0) => p0.text,
+                (catModel) => catModel.text,
                 'text',
-                mockGetRandomCatUsecaseParams.text,
+                mockGetRandomCatUsecaseParams.text.toNullable(),
               )
               .having(
-                (p0) => p0.textColor,
+                (catModel) => catModel.textColor,
                 'textColor',
-                mockGetRandomCatUsecaseParams.textColor,
+                mockGetRandomCatUsecaseParams.textColor.toNullable(),
               )
               .having(
-                (p0) => p0.filter,
+                (catModel) => catModel.filter,
                 'filter',
-                mockGetRandomCatUsecaseParams.filter,
+                mockGetRandomCatUsecaseParams.filter.toNullable(),
               ),
         );
         verify(() {
-          final text = mockGetRandomCatUsecaseParams.text
-              .fold(() => null, (text) => text);
-          final textColor = mockGetRandomCatUsecaseParams.textColor
-              .fold(() => null, (textColor) => textColor);
-          final filter = mockGetRandomCatUsecaseParams.filter
-              .fold(() => null, (filter) => filter);
+          final text = mockGetRandomCatUsecaseParams.text.toNullable();
+          final textColor =
+              mockGetRandomCatUsecaseParams.textColor.toNullable();
+          final filter = mockGetRandomCatUsecaseParams.filter.toNullable();
           mockHttpClient.get(
             'https://cataas.com/cat/says/$text',
             queryParameters: {
@@ -490,29 +494,26 @@ void main() {
           result,
           isA<CatModel>()
               .having(
-                (p0) => p0.text,
+                (catModel) => catModel.text,
                 'text',
-                mockGetCatByIdOrTagUsecaseParams.text,
+                mockGetCatByIdOrTagUsecaseParams.text.toNullable(),
               )
               .having(
-                (p0) => p0.textColor,
+                (catModel) => catModel.textColor,
                 'textColor',
-                mockGetCatByIdOrTagUsecaseParams.textColor,
+                mockGetCatByIdOrTagUsecaseParams.textColor.toNullable(),
               )
               .having(
-                (p0) => p0.filter,
+                (catModel) => catModel.filter,
                 'filter',
-                mockGetCatByIdOrTagUsecaseParams.filter,
+                mockGetCatByIdOrTagUsecaseParams.filter.toNullable(),
               ),
         );
         verify(() {
           final value = mockGetCatByIdOrTagUsecaseParams.value;
-          final text = mockGetCatByIdOrTagUsecaseParams.text
-              .fold(() => null, (text) => text);
-          final textColor = mockGetCatByIdOrTagUsecaseParams.textColor
-              .fold(() => null, (textColor) => textColor);
-          final filter = mockGetCatByIdOrTagUsecaseParams.filter
-              .fold(() => null, (filter) => filter);
+          final text = mockGetCatByIdOrTagUsecaseParams.text.toNullable();
+          final textColor = mockGetCatByIdOrTagUsecaseParams.textColor.toNullable();
+          final filter = mockGetCatByIdOrTagUsecaseParams.filter.toNullable();
           mockHttpClient.get(
             'https://cataas.com/cat/$value/says/$text',
             queryParameters: {

@@ -1,10 +1,10 @@
 import 'package:dartz/dartz.dart';
 
 import '../../../../core/usecases/usecase.dart';
-import '../../domain/entities/cat_entity.dart';
+import '../../domain/entities/cat.dart';
 
 abstract class IGetCatByTagUsecase
-    extends Usecase<CatEntity, GetCatByTagUsecaseParams> {}
+    extends Usecase<Cat, GetCatByTagUsecaseParams> {}
 
 class GetCatByTagUsecaseParams {
   final String tag;

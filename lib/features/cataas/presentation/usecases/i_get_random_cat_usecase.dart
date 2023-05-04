@@ -1,10 +1,10 @@
 import 'package:dartz/dartz.dart';
 
 import '../../../../core/usecases/usecase.dart';
-import '../../domain/entities/cat_entity.dart';
+import '../../domain/entities/cat.dart';
 
 abstract class IGetRandomCatUsecase
-    extends Usecase<CatEntity, GetRandomCatUsecaseParams> {}
+    extends Usecase<Cat, GetRandomCatUsecaseParams> {}
 
 class GetRandomCatUsecaseParams {
   final Option<String> text;

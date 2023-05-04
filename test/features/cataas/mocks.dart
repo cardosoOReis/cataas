@@ -7,7 +7,7 @@ import 'package:cataas/core/services/share_image/i_share_image_service.dart';
 import 'package:cataas/features/cataas/data/datasources/i_cat_local_datasource.dart';
 import 'package:cataas/features/cataas/data/datasources/i_cat_remote_datasource.dart';
 import 'package:cataas/features/cataas/data/models/cat_model.dart';
-import 'package:cataas/features/cataas/domain/entities/cat_entity.dart';
+import 'package:cataas/features/cataas/domain/entities/cat.dart';
 import 'package:cataas/features/cataas/domain/repositories/i_cat_repository.dart';
 import 'package:cataas/features/cataas/domain/usecases/get_cat_by_id_usecase_impl.dart';
 import 'package:cataas/features/cataas/domain/usecases/get_cat_by_tag_usecase_impl.dart';
@@ -58,15 +58,12 @@ class MockShareImageService extends Mock implements IShareImageService {}
 
 class MockHttpClient extends Mock implements Dio {}
 
-final mockCatEntity = CatEntity(
+final mockCatEntity = Cat(
   id: 'exvMtoKhGj3R7FGL',
   fileType: FileType.image,
   requestedAt: DateTime(2023),
   url: '/cat/exvMtoKhGj3R7FGL',
-  text: const None(),
-  textColor: const None(),
-  filter: const None(),
-  tags: const None(),
+  tags: const [],
 );
 
 final mockCatModel = CatModel(
@@ -74,10 +71,7 @@ final mockCatModel = CatModel(
   fileType: FileType.image,
   requestedAt: DateTime(2023),
   url: '/cat/exvMtoKhGj3R7FGL',
-  text: const None(),
-  textColor: const None(),
-  filter: const None(),
-  tags: const None(),
+  tags: const [],
 );
 
 final mockCatModelFromResponse = CatModel(
@@ -85,10 +79,7 @@ final mockCatModelFromResponse = CatModel(
   fileType: FileType.image,
   requestedAt: DateTime(2023),
   url: '/cat/exvMtoKhGj3R7FGL',
-  text: const None(),
-  textColor: const None(),
-  filter: const None(),
-  tags: const Some(['cute', 'sunshi']),
+  tags: const ['cute', 'sunshi'],
 );
 
 final mockFailure = MockFailure();

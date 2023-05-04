@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:cataas/features/cataas/data/models/cat_model.dart';
-import 'package:cataas/features/cataas/domain/entities/cat_entity.dart';
+import 'package:cataas/features/cataas/domain/entities/cat.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import '../../../../fixtures/fixture_reader.dart';
@@ -14,16 +14,13 @@ void main() {
       fileType: FileType.image,
       requestedAt: DateTime(2023),
       url: '',
-      text: const None(),
-      textColor: const None(),
-      filter: const None(),
-      tags: const None(),
+      tags: const [],
     );
   });
 
   test('CatModel should be a subclass of CatEntity', () {
     // Assert
-    expect(model, isA<CatEntity>());
+    expect(model, isA<Cat>());
   });
   group('When [fromJson] is called,', () {
     group('and the json is valid,', () {

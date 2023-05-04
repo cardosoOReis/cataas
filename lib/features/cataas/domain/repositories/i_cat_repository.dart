@@ -7,19 +7,19 @@ import '../../presentation/usecases/i_get_cat_by_tag_usecase.dart';
 import '../../presentation/usecases/i_get_random_cat_usecase.dart';
 import '../../presentation/usecases/i_save_cat_locally_usecase.dart';
 import '../../presentation/usecases/i_share_cat_usecase.dart';
-import '../entities/cat_entity.dart';
+import '../entities/cat.dart';
 
 abstract class ICatRepository {
-  Future<Either<Failure, CatEntity>> getRandomCat(
+  Future<Either<Failure, Cat>> getRandomCat(
     GetRandomCatUsecaseParams params,
   );
-  Future<Either<Failure, CatEntity>> getCatById(
+  Future<Either<Failure, Cat>> getCatById(
     GetCatByIdUsecaseParams params,
   );
-  Future<Either<Failure, CatEntity>> getCatByTag(
+  Future<Either<Failure, Cat>> getCatByTag(
     GetCatByTagUsecaseParams params,
   );
-  Future<Either<Failure, CatEntity>> getCatByIdOrTag(
+  Future<Either<Failure, Cat>> getCatByIdOrTag(
     GetCatByIdOrTagUsecaseParams params,
   );
   Future<Either<Failure, void>> saveCatLocally(

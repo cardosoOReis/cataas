@@ -5,7 +5,7 @@ class CatState extends Equatable {
   final CatStatus savingCatStatus;
   final CatStatus shareCatStatus;
   final SearchType searchType;
-  final CatEntity? catEntity;
+  final Cat? catEntity;
   final Failure? failure;
   const CatState({
     this.status = CatStatus.initial,
@@ -33,7 +33,7 @@ class CatState extends Equatable {
     CatStatus? savingCatStatus,
     CatStatus? shareCatStatus,
     SearchType? searchType,
-    CatEntity? catEntity,
+    Cat? catEntity,
     Failure? failure,
   }) {
     return CatState(

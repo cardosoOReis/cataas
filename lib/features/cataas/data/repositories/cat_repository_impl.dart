@@ -3,7 +3,7 @@ import 'package:dartz/dartz.dart';
 import '../../../../core/error/exceptions.dart';
 import '../../../../core/error/failures.dart';
 import '../../../../core/network/i_network_info.dart';
-import '../../domain/entities/cat_entity.dart';
+import '../../domain/entities/cat.dart';
 import '../../domain/repositories/i_cat_repository.dart';
 import '../../presentation/usecases/i_get_cat_by_id_or_tag_usecase.dart';
 import '../../presentation/usecases/i_get_cat_by_id_usecase.dart';
@@ -19,7 +19,7 @@ class CatRepositoryImpl implements ICatRepository {
   final ICatRemoteDatasource _remoteDatasource;
   final ICatLocalDatasource _localDatasource;
   final INetworkInfo _networkInfo;
-  CatRepositoryImpl({
+  const CatRepositoryImpl({
     required ICatRemoteDatasource remoteDatasource,
     required ICatLocalDatasource localDatasource,
     required INetworkInfo networkInfo,
@@ -28,28 +28,28 @@ class CatRepositoryImpl implements ICatRepository {
         _remoteDatasource = remoteDatasource;
 
   @override
-  Future<Either<Failure, CatEntity>> getCatById(
+  Future<Either<Failure, Cat>> getCatById(
     GetCatByIdUsecaseParams params,
   ) async {
     return await _getCat(() => _remoteDatasource.getCatById(params));
   }
 
   @override
-  Future<Either<Failure, CatEntity>> getCatByTag(
+  Future<Either<Failure, Cat>> getCatByTag(
     GetCatByTagUsecaseParams params,
   ) async {
     return await _getCat(() => _remoteDatasource.getCatByTag(params));
   }
 
   @override
-  Future<Either<Failure, CatEntity>> getRandomCat(
+  Future<Either<Failure, Cat>> getRandomCat(
     GetRandomCatUsecaseParams params,
   ) async {
     return await _getCat(() => _remoteDatasource.getRandomCat(params));
   }
 
   @override
-  Future<Either<Failure, CatEntity>> getCatByIdOrTag(
+  Future<Either<Failure, Cat>> getCatByIdOrTag(
     GetCatByIdOrTagUsecaseParams params,
   ) async {
     return await _getCat(() => _remoteDatasource.getCatByIdOrTag(params));
@@ -68,25 +68,25 @@ class CatRepositoryImpl implements ICatRepository {
     }
   }
 
-  Future<Either<Failure, CatEntity>> _getCat<Params>(
+  Future<Either<Failure, Cat>> _getCat<Params>(
     Future<CatModel> Function() getCat,
   ) async {
-    if (await _networkInfo.isConnected) {
-      try {
-        final result = await getCat();
-
-        return Right(result);
-      } on CatNotFoundException catch (e) {
-        return Left(ApiFailure(exception: e));
-      } on ParseDataException catch (e) {
-        return Left(ParseDataFailure(exception: e));
-      } on ServerException catch (e) {
-        return Left(ServerFailure(exception: e));
-      } catch (_) {
-        rethrow;
-      }
-    } else {
+    if (!await _networkInfo.isConnected) {
       return const Left(NoInternetConnectionFailure());
+    }
+
+    try {
+      final result = await getCat();
+
+      return Right(result);
+    } on CatNotFoundException catch (e) {
+      return Left(ApiFailure(exception: e));
+    } on ParseDataException catch (e) {
+      return Left(ParseDataFailure(exception: e));
+    } on ServerException catch (e) {
+      return Left(ServerFailure(exception: e));
+    } catch (_) {
+      rethrow;
     }
   }
 

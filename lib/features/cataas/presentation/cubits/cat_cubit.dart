@@ -8,7 +8,7 @@ import '../../../../api_endpoints.dart';
 import '../../../../core/error/failures.dart';
 import '../../../../core/extensions/dartz_extensions.dart';
 import '../../../../core/services/open_url_on_browser/i_open_url_on_browser_service.dart';
-import '../../domain/entities/cat_entity.dart';
+import '../../domain/entities/cat.dart';
 import '../usecases/i_get_cat_by_id_usecase.dart';
 import '../usecases/i_get_cat_by_tag_usecase.dart';
 import '../usecases/i_get_random_cat_usecase.dart';
@@ -182,7 +182,7 @@ class CatCubit extends Cubit<CatState> {
     _openUrlOnBrowserService(ApiEndpoints.twitter());
   }
 
-  void _foldCatOrFailure(Either<Failure, CatEntity> result) {
+  void _foldCatOrFailure(Either<Failure, Cat> result) {
     result.fold(
       (failure) {
         emit(state.copyWith(
