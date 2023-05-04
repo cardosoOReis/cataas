@@ -4,7 +4,6 @@ import 'package:cataas/core/error/exceptions.dart';
 import 'package:cataas/core/services/share_image/i_share_image_service.dart';
 import 'package:cataas/features/cataas/data/datasources/implementations/cat_remote_datasource_impl.dart';
 import 'package:cataas/features/cataas/data/models/cat_model.dart';
-import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
