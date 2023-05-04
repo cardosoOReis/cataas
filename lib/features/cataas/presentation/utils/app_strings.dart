@@ -19,4 +19,8 @@ class AppStrings {
 
   static String get getCatFailure =>
       'Oh oh, it appears something went wrong when fetching your cat 😿. Could you please try again?';
+
+  static String get twitterUrl => 'https://twitter.com/apicataas';
+
+  static String get buyMeABeerUrl => 'https://www.buymeacoffee.com/kevinbalicot';
 }

@@ -2,7 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 
-import '../../../../../api_endpoints.dart';
+import '../../api_endpoints.dart';
 import '../../../../../core/error/exceptions.dart';
 import '../../../../../core/extensions/dartz_extensions.dart';
 import '../../../../../core/services/share_image/i_share_image_service.dart';

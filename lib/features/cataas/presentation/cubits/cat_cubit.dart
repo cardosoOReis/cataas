@@ -4,7 +4,6 @@ import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../api_endpoints.dart';
 import '../../../../core/error/failures.dart';
 import '../../../../core/extensions/dartz_extensions.dart';
 import '../../../../core/services/open_url_on_browser/i_open_url_on_browser_service.dart';
@@ -175,11 +174,11 @@ class CatCubit extends Cubit<CatState> {
   }
 
   void onBeerIconTap() {
-    _openUrlOnBrowserService(ApiEndpoints.buyMeABeer());
+    _openUrlOnBrowserService(AppStrings.buyMeABeerUrl);
   }
 
   void onTwitterIconTap() {
-    _openUrlOnBrowserService(ApiEndpoints.twitter());
+    _openUrlOnBrowserService(AppStrings.twitterUrl);
   }
 
   void _foldCatOrFailure(Either<Failure, Cat> result) {
