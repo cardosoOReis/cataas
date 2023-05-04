@@ -118,10 +118,10 @@ class CatRemoteDatasourceImpl implements ICatRemoteDatasource {
         throw const CatNotFoundException(statusCode: 404);
       }
       if (statusCode >= 500) {
-        throw ServerException(message: e.message, statusCode: statusCode);
+        throw ServerException(message: e.message ?? '', statusCode: statusCode);
       }
       throw ApiException(
-        message: e.message,
+        message: e.message ?? '',
         statusCode: statusCode,
       );
     } catch (e, stackTrace) {
