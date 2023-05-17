@@ -30,9 +30,10 @@ void main() {
           () => mockSaveImageLocallyService.saveImage(url: any(named: 'url')),
         ).called(1);
         expect(
-            () async => await datasource
-                .saveCatLocally(mockSaveCatLocallyUsecaseParams),
-            isA<void>());
+          () async =>
+              await datasource.saveCatLocally(mockSaveCatLocallyUsecaseParams),
+          isA<void>(),
+        );
       });
     });
     group('and is unsuccessful,', () {

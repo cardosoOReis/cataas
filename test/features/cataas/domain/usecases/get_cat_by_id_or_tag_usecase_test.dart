@@ -19,8 +19,9 @@ void main() {
     group('and the call is successful,', () {
       test('should return a Right with a [CatEntity]', () async {
         // Arrange
-        when(() => mockRepository.getCatByIdOrTag(any()))
-            .thenAnswer((_) async => Right(mockCatEntity));
+        when(
+          () => mockRepository.getCatByIdOrTag(any()),
+        ).thenAnswer((_) async => Right(mockCatEntity));
         // Act
         final result = await usecase(mockGetCatByIdOrTagUsecaseParams);
 

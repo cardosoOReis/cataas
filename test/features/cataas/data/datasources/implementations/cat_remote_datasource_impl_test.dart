@@ -33,11 +33,13 @@ void main() {
           named: 'queryParameters',
         ),
       ),
-    ).thenAnswer((_) async => Response(
-          requestOptions: RequestOptions(path: ''),
-          data: jsonDecode(fixture('cat.json')),
-          statusCode: 200,
-        ));
+    ).thenAnswer(
+      (_) async => Response(
+        requestOptions: RequestOptions(path: ''),
+        data: jsonDecode(fixture('cat.json')),
+        statusCode: 200,
+      ),
+    );
   }
 
   void setUpMock404Response() {
@@ -149,12 +151,9 @@ void main() {
               ),
         );
         verify(() {
-          final text =
-              mockGetCatByIdUsecaseParams.text.fold(() => null, (text) => text);
-          final textColor = mockGetCatByIdUsecaseParams.textColor
-              .fold(() => null, (textColor) => textColor);
-          final filter = mockGetCatByIdUsecaseParams.filter
-              .fold(() => null, (filter) => filter);
+          final text = mockGetCatByIdUsecaseParams.text.toNullable();
+          final textColor = mockGetCatByIdUsecaseParams.textColor.toNullable();
+          final filter = mockGetCatByIdUsecaseParams.filter.toNullable();
           mockHttpClient.get(
               'https://cataas.com/cat/${mockGetCatByIdUsecaseParams.id}/says/$text',
               queryParameters: {
@@ -175,8 +174,10 @@ void main() {
         final call = datasource.getCatById;
 
         //Assert
-        expect(() => call(mockGetCatByIdUsecaseParams),
-            throwsA(isA<CatNotFoundException>()));
+        expect(
+          () => call(mockGetCatByIdUsecaseParams),
+          throwsA(isA<CatNotFoundException>()),
+        );
       });
       test('and the status code is >= 500, should throw a [ServerException]',
           () {
@@ -187,8 +188,10 @@ void main() {
         final call = datasource.getCatById;
 
         //Assert
-        expect(() => call(mockGetCatByIdUsecaseParams),
-            throwsA(isA<ServerException>()));
+        expect(
+          () => call(mockGetCatByIdUsecaseParams),
+          throwsA(isA<ServerException>()),
+        );
       });
       test(
           'and the status code is not >= 500 or == 404, should throw an [ApiException]',
@@ -200,8 +203,10 @@ void main() {
         final call = datasource.getCatById;
 
         // Assert
-        expect(() => call(mockGetCatByIdUsecaseParams),
-            throwsA(isA<ApiException>()));
+        expect(
+          () => call(mockGetCatByIdUsecaseParams),
+          throwsA(isA<ApiException>()),
+        );
       });
     });
   });
@@ -274,12 +279,9 @@ void main() {
               ),
         );
         verify(() {
-          final text = mockGetCatByTagUsecaseParams.text
-              .fold(() => null, (text) => text);
-          final textColor = mockGetCatByTagUsecaseParams.textColor
-              .fold(() => null, (textColor) => textColor);
-          final filter = mockGetCatByTagUsecaseParams.filter
-              .fold(() => null, (filter) => filter);
+          final text = mockGetCatByTagUsecaseParams.text.toNullable();
+          final textColor = mockGetCatByTagUsecaseParams.textColor.toNullable();
+          final filter = mockGetCatByTagUsecaseParams.filter.toNullable();
           mockHttpClient.get(
               'https://cataas.com/cat/${mockGetCatByTagUsecaseParams.tag}/says/$text',
               queryParameters: {
@@ -300,8 +302,10 @@ void main() {
         final call = datasource.getCatByTag;
 
         //Assert
-        expect(() => call(mockGetCatByTagUsecaseParams),
-            throwsA(isA<CatNotFoundException>()));
+        expect(
+          () => call(mockGetCatByTagUsecaseParams),
+          throwsA(isA<CatNotFoundException>()),
+        );
       });
       test('and the status code is >= 500, should throw a [ServerException]',
           () {
@@ -312,8 +316,10 @@ void main() {
         final call = datasource.getCatByTag;
 
         //Assert
-        expect(() => call(mockGetCatByTagUsecaseParams),
-            throwsA(isA<ServerException>()));
+        expect(
+          () => call(mockGetCatByTagUsecaseParams),
+          throwsA(isA<ServerException>()),
+        );
       });
       test(
           'and the status code is not >= 500 or == 404, should throw an [ApiException]',
@@ -325,8 +331,10 @@ void main() {
         final call = datasource.getCatByTag;
 
         // Assert
-        expect(() => call(mockGetCatByTagUsecaseParams),
-            throwsA(isA<ApiException>()));
+        expect(
+          () => call(mockGetCatByTagUsecaseParams),
+          throwsA(isA<ApiException>()),
+        );
       });
     });
   });
@@ -417,8 +425,10 @@ void main() {
         final call = datasource.getRandomCat;
 
         //Assert
-        expect(() => call(mockGetRandomCatUsecaseParams),
-            throwsA(isA<CatNotFoundException>()));
+        expect(
+          () => call(mockGetRandomCatUsecaseParams),
+          throwsA(isA<CatNotFoundException>()),
+        );
       });
       test('and the status code is >= 500, should throw a [ServerException]',
           () {
@@ -429,8 +439,10 @@ void main() {
         final call = datasource.getRandomCat;
 
         //Assert
-        expect(() => call(mockGetRandomCatUsecaseParams),
-            throwsA(isA<ServerException>()));
+        expect(
+          () => call(mockGetRandomCatUsecaseParams),
+          throwsA(isA<ServerException>()),
+        );
       });
       test(
           'and the status code is not >= 500 or == 400, should throw an [ApiException]',
@@ -442,8 +454,10 @@ void main() {
         final call = datasource.getRandomCat;
 
         // Assert
-        expect(() => call(mockGetRandomCatUsecaseParams),
-            throwsA(isA<ApiException>()));
+        expect(
+          () => call(mockGetRandomCatUsecaseParams),
+          throwsA(isA<ApiException>()),
+        );
       });
     });
   });
@@ -511,7 +525,8 @@ void main() {
         verify(() {
           final value = mockGetCatByIdOrTagUsecaseParams.value;
           final text = mockGetCatByIdOrTagUsecaseParams.text.toNullable();
-          final textColor = mockGetCatByIdOrTagUsecaseParams.textColor.toNullable();
+          final textColor =
+              mockGetCatByIdOrTagUsecaseParams.textColor.toNullable();
           final filter = mockGetCatByIdOrTagUsecaseParams.filter.toNullable();
           mockHttpClient.get(
             'https://cataas.com/cat/$value/says/$text',
@@ -535,8 +550,10 @@ void main() {
         final call = datasource.getCatByIdOrTag;
 
         //Assert
-        expect(() => call(mockGetCatByIdOrTagUsecaseParams),
-            throwsA(isA<CatNotFoundException>()));
+        expect(
+          () => call(mockGetCatByIdOrTagUsecaseParams),
+          throwsA(isA<CatNotFoundException>()),
+        );
       });
       test('and the status code is >= 500, should throw a [ServerException]',
           () {
@@ -547,8 +564,10 @@ void main() {
         final call = datasource.getCatByIdOrTag;
 
         //Assert
-        expect(() => call(mockGetCatByIdOrTagUsecaseParams),
-            throwsA(isA<ServerException>()));
+        expect(
+          () => call(mockGetCatByIdOrTagUsecaseParams),
+          throwsA(isA<ServerException>()),
+        );
       });
       test(
           'and the status code is not >= 500 or == 400, should throw an [ApiException]',
@@ -560,8 +579,10 @@ void main() {
         final call = datasource.getCatByIdOrTag;
 
         // Assert
-        expect(() => call(mockGetCatByIdOrTagUsecaseParams),
-            throwsA(isA<ApiException>()));
+        expect(
+          () => call(mockGetCatByIdOrTagUsecaseParams),
+          throwsA(isA<ApiException>()),
+        );
       });
     });
   });
@@ -569,9 +590,8 @@ void main() {
     group('and the call is sucessful,', () {
       test('should return a [null]', () async {
         //Arrange
-        when(
-          () => mockShareImageService(url: any(named: 'url')),
-        ).thenAnswer((_) async {});
+        when(() => mockShareImageService(url: any(named: 'url')))
+            .thenAnswer((_) async {});
 
         //Act
         await datasource.shareCat(mockShareCatUsecaseParams);

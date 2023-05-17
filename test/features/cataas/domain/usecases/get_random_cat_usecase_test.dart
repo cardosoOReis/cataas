@@ -20,8 +20,9 @@ void main() {
     group('and the call is successful,', () {
       test('should return a Right with a [CatEntity]', () async {
         // Arrange
-        when(() => mockRepository.getRandomCat(any()))
-            .thenAnswer((_) async => Right(mockCatEntity));
+        when(
+          () => mockRepository.getRandomCat(any()),
+        ).thenAnswer((_) async => Right(mockCatEntity));
         // Act
         final result = await usecase(mockGetRandomCatUsecaseParams);
 
@@ -33,8 +34,9 @@ void main() {
     group('and the call is unsuccessful,', () {
       test('should return an Left with a [Failure]', () async {
         // Arrange
-        when(() => mockRepository.getRandomCat(any()))
-            .thenAnswer((_) async => Left(mockFailure));
+        when(
+          () => mockRepository.getRandomCat(any()),
+        ).thenAnswer((_) async => Left(mockFailure));
 
         // Act
         final result = await usecase(mockGetRandomCatUsecaseParams);

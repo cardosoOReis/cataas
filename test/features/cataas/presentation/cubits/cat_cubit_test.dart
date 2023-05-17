@@ -46,8 +46,9 @@ void main() {
       blocTest<CatCubit, CatState>(
         'emits [loading, success] when getRandomCatUsecase returns a [CatEntity].',
         setUp: () {
-          when(() => mockGetRandomCatUsecase(any()))
-              .thenAnswer((_) async => Right(mockCatEntity));
+          when(
+            () => mockGetRandomCatUsecase(any()),
+          ).thenAnswer((_) async => Right(mockCatEntity));
         },
         build: () => cubit,
         act: (bloc) => bloc.onGetRandomCatButtonTap(),
@@ -79,8 +80,9 @@ void main() {
       blocTest<CatCubit, CatState>(
         'emits [loading, failure] when getRandomCatUsecase returns a [Failure].',
         setUp: () {
-          when(() => mockGetRandomCatUsecase(any()))
-              .thenAnswer((_) async => Left(mockFailure));
+          when(
+            () => mockGetRandomCatUsecase(any()),
+          ).thenAnswer((_) async => Left(mockFailure));
         },
         build: () => cubit,
         act: (bloc) => bloc.onGetRandomCatButtonTap(),
@@ -116,8 +118,9 @@ void main() {
       blocTest<CatCubit, CatState>(
         'emits [loading, success] when getCatByIdUsecase returns a [CatEntity].',
         setUp: () {
-          when(() => mockGetCatByIdUsecase(any()))
-              .thenAnswer((_) async => Right(mockCatEntity));
+          when(
+            () => mockGetCatByIdUsecase(any()),
+          ).thenAnswer((_) async => Right(mockCatEntity));
         },
         build: () => cubit,
         act: (bloc) => bloc.onGetCatByIdButtonTap(''),
@@ -149,8 +152,9 @@ void main() {
       blocTest<CatCubit, CatState>(
         'emits [loading, failure] when getCatByIdUsecase returns a [Failure].',
         setUp: () {
-          when(() => mockGetCatByIdUsecase(any()))
-              .thenAnswer((_) async => Left(mockFailure));
+          when(
+            () => mockGetCatByIdUsecase(any()),
+          ).thenAnswer((_) async => Left(mockFailure));
         },
         build: () => cubit,
         act: (bloc) => bloc.onGetCatByIdButtonTap(''),
@@ -186,8 +190,9 @@ void main() {
       blocTest<CatCubit, CatState>(
         'emits [loading, success] when getCatByTagUsecase returns a [CatEntity].',
         setUp: () {
-          when(() => mockGetCatByTagUsecase(any()))
-              .thenAnswer((_) async => Right(mockCatEntity));
+          when(
+            () => mockGetCatByTagUsecase(any()),
+          ).thenAnswer((_) async => Right(mockCatEntity));
         },
         build: () => cubit,
         act: (bloc) => bloc.onGetCatByTagButtonTap(''),
@@ -219,8 +224,9 @@ void main() {
       blocTest<CatCubit, CatState>(
         'emits [loading, failure] when getCatByTagUsecase returns a [Failure].',
         setUp: () {
-          when(() => mockGetCatByTagUsecase(any()))
-              .thenAnswer((_) async => Left(mockFailure));
+          when(
+            () => mockGetCatByTagUsecase(any()),
+          ).thenAnswer((_) async => Left(mockFailure));
         },
         build: () => cubit,
         act: (bloc) => bloc.onGetCatByTagButtonTap(''),
@@ -290,8 +296,9 @@ void main() {
       blocTest<CatCubit, CatState>(
         'emits [loading, failure] when getCatByIdOrTagUsecase returns a [Failure].',
         setUp: () {
-          when(() => mockGetCatByIdOrTagUsecase(any()))
-              .thenAnswer((_) async => Left(mockFailure));
+          when(
+            () => mockGetCatByIdOrTagUsecase(any()),
+          ).thenAnswer((_) async => Left(mockFailure));
         },
         build: () => cubit,
         act: (bloc) => bloc.onGetCatByIdOrTagButtonTap(''),
@@ -327,8 +334,9 @@ void main() {
       blocTest<CatCubit, CatState>(
         'emits [loading, success] when getRandomCatUsecase returns a [CatEntity].',
         setUp: () {
-          when(() => mockGetRandomCatUsecase(any()))
-              .thenAnswer((_) async => Right(mockCatEntity));
+          when(
+            () => mockGetRandomCatUsecase(any()),
+          ).thenAnswer((_) async => Right(mockCatEntity));
         },
         build: () => cubit,
         act: (bloc) => bloc.getWelcomeCat(),
@@ -360,8 +368,9 @@ void main() {
       blocTest<CatCubit, CatState>(
         'emits [loading, failure] when getRandomCatUsecase returns a [Failure].',
         setUp: () {
-          when(() => mockGetRandomCatUsecase(any()))
-              .thenAnswer((_) async => Left(mockFailure));
+          when(
+            () => mockGetRandomCatUsecase(any()),
+          ).thenAnswer((_) async => Left(mockFailure));
         },
         build: () => cubit,
         act: (bloc) => bloc.getWelcomeCat(),

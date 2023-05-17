@@ -21,8 +21,9 @@ void main() {
     group('and the call is successful,', () {
       test('should return a Right with a [null]', () async {
         // Arrange
-        when(() => mockRepository.saveCatLocally(any()))
-            .thenAnswer((_) async => const Right(null));
+        when(
+          () => mockRepository.saveCatLocally(any()),
+        ).thenAnswer((_) async => const Right(null));
 
         // Act
         final result = await usecase(mockSaveCatLocallyUsecaseParams);
@@ -47,9 +48,10 @@ void main() {
 
         // Assert
         expect(
-            result,
-            const Left(
-                SaveCatLocallyFailure(exception: mockSaveCatLocallyException)));
+          result,
+          const Left(
+              SaveCatLocallyFailure(exception: mockSaveCatLocallyException)),
+        );
       });
     });
   });

@@ -67,9 +67,7 @@ void main() {
 
           // Assert
           expect(result, Right(mockCatModel));
-          verify(
-            () => mockRemoteDatasource.getRandomCat(any()),
-          );
+          verify(() => mockRemoteDatasource.getRandomCat(any()));
         });
       });
       group('and the call is unsuccessful,', () {
@@ -86,8 +84,10 @@ void main() {
               await repository.getRandomCat(mockGetRandomCatUsecaseParams);
 
           // Assert
-          expect(result,
-              const Left(ApiFailure(exception: mockCatNotFoundException)));
+          expect(
+            result,
+            const Left(ApiFailure(exception: mockCatNotFoundException)),
+          );
         });
         test(
             'and the reason is [ParseDataException], should return a Left with a [ParseDataFailure]',
@@ -102,8 +102,10 @@ void main() {
               await repository.getRandomCat(mockGetRandomCatUsecaseParams);
 
           // Assert
-          expect(result,
-              const Left(ParseDataFailure(exception: mockParseDataException)));
+          expect(
+            result,
+            const Left(ParseDataFailure(exception: mockParseDataException)),
+          );
         });
         test(
             'and the reason is [ServerException], should return a Left with a [ServerFailure]',
@@ -118,8 +120,10 @@ void main() {
               await repository.getRandomCat(mockGetRandomCatUsecaseParams);
 
           // Assert
-          expect(result,
-              const Left(ServerFailure(exception: mockServerException)));
+          expect(
+            result,
+            const Left(ServerFailure(exception: mockServerException)),
+          );
         });
       });
     });
@@ -178,7 +182,7 @@ void main() {
           expect(result, Right(mockCatModel));
           verify(
             () => mockRemoteDatasource.getCatById(any()),
-          );
+          ).called(1);
         });
       });
       group('and the call is unsuccessful,', () {
@@ -195,8 +199,10 @@ void main() {
               await repository.getCatById(mockGetCatByIdUsecaseParams);
 
           // Assert
-          expect(result,
-              const Left(ApiFailure(exception: mockCatNotFoundException)));
+          expect(
+            result,
+            const Left(ApiFailure(exception: mockCatNotFoundException)),
+          );
         });
         test(
             'and the reason is [ParseDataException], should return a Left with a [ParseDataFailure]',
@@ -211,8 +217,10 @@ void main() {
               await repository.getCatById(mockGetCatByIdUsecaseParams);
 
           // Assert
-          expect(result,
-              const Left(ParseDataFailure(exception: mockParseDataException)));
+          expect(
+            result,
+            const Left(ParseDataFailure(exception: mockParseDataException)),
+          );
         });
         test(
             'and the reason is [ServerException], should return a Left with a [ServerFailure]',
@@ -227,8 +235,10 @@ void main() {
               await repository.getCatById(mockGetCatByIdUsecaseParams);
 
           // Assert
-          expect(result,
-              const Left(ServerFailure(exception: mockServerException)));
+          expect(
+            result,
+            const Left(ServerFailure(exception: mockServerException)),
+          );
         });
       });
     });
@@ -250,8 +260,9 @@ void main() {
   group('When [getCatByTag] is called,', () {
     test('should check if the device is online', () {
       // Arrange
-      when(() => mockRemoteDatasource.getCatByTag(any()))
-          .thenAnswer((_) async => mockCatModel);
+      when(
+        () => mockRemoteDatasource.getCatByTag(any()),
+      ).thenAnswer((_) async => mockCatModel);
       when(() => mockNetworkInfo.isConnected).thenAnswer((_) async => true);
 
       // Act
@@ -281,7 +292,7 @@ void main() {
           expect(result, Right(mockCatModel));
           verify(
             () => mockRemoteDatasource.getCatByTag(any()),
-          );
+          ).called(1);
         });
       });
       group('and the call is unsuccessful,', () {
@@ -298,8 +309,10 @@ void main() {
               await repository.getCatByTag(mockGetCatByTagUsecaseParams);
 
           // Assert
-          expect(result,
-              const Left(ApiFailure(exception: mockCatNotFoundException)));
+          expect(
+            result,
+            const Left(ApiFailure(exception: mockCatNotFoundException)),
+          );
         });
         test(
             'and the reason is [ParseDataException], should return a Left with a [ParseDataFailure]',
@@ -314,8 +327,10 @@ void main() {
               await repository.getCatByTag(mockGetCatByTagUsecaseParams);
 
           // Assert
-          expect(result,
-              const Left(ParseDataFailure(exception: mockParseDataException)));
+          expect(
+            result,
+            const Left(ParseDataFailure(exception: mockParseDataException)),
+          );
         });
         test(
             'and the reason is [ServerException], should return a Left with a [ServerFailure]',
@@ -330,8 +345,10 @@ void main() {
               await repository.getCatByTag(mockGetCatByTagUsecaseParams);
 
           // Assert
-          expect(result,
-              const Left(ServerFailure(exception: mockServerException)));
+          expect(
+            result,
+            const Left(ServerFailure(exception: mockServerException)),
+          );
         });
       });
     });
@@ -354,8 +371,9 @@ void main() {
   group('When [getCatByIdOrTag] is called,', () {
     test('should check if the device is online', () async {
       // Arrange
-      when(() => mockRemoteDatasource.getCatByIdOrTag(any()))
-          .thenAnswer((_) async => mockCatModel);
+      when(
+        () => mockRemoteDatasource.getCatByIdOrTag(any()),
+      ).thenAnswer((_) async => mockCatModel);
       when(() => mockNetworkInfo.isConnected).thenAnswer((_) async => true);
 
       // Act
@@ -385,7 +403,7 @@ void main() {
           expect(result, Right(mockCatModel));
           verify(
             () => mockRemoteDatasource.getCatByIdOrTag(any()),
-          );
+          ).called(1);
         });
       });
       group('and the call is unsuccessful,', () {
@@ -402,8 +420,10 @@ void main() {
               .getCatByIdOrTag(mockGetCatByIdOrTagUsecaseParams);
 
           // Assert
-          expect(result,
-              const Left(ApiFailure(exception: mockCatNotFoundException)));
+          expect(
+            result,
+            const Left(ApiFailure(exception: mockCatNotFoundException)),
+          );
         });
         test(
             'and the reason is [ParseDataException], should return a Left with a [ParseDataFailure]',
@@ -418,8 +438,10 @@ void main() {
               .getCatByIdOrTag(mockGetCatByIdOrTagUsecaseParams);
 
           // Assert
-          expect(result,
-              const Left(ParseDataFailure(exception: mockParseDataException)));
+          expect(
+            result,
+            const Left(ParseDataFailure(exception: mockParseDataException)),
+          );
         });
         test(
             'and the reason is [ServerException], should return a Left with a [ServerFailure]',
@@ -434,8 +456,10 @@ void main() {
               .getCatByIdOrTag(mockGetCatByIdOrTagUsecaseParams);
 
           // Assert
-          expect(result,
-              const Left(ServerFailure(exception: mockServerException)));
+          expect(
+            result,
+            const Left(ServerFailure(exception: mockServerException)),
+          );
         });
       });
     });
@@ -444,8 +468,9 @@ void main() {
     group('and the call is successful,', () {
       test('should return a Right with a [null]', () async {
         // Arrange
-        when(() => mockLocalDatasource.saveCatLocally(any()))
-            .thenAnswer((_) async {});
+        when(
+          () => mockLocalDatasource.saveCatLocally(any()),
+        ).thenAnswer((_) async {});
 
         // Act
         final result =
@@ -458,8 +483,9 @@ void main() {
     group('and the call is unsuccessful,', () {
       test('should return a Left with a [SaveCatLocallyFailure]', () async {
         // Arrange
-        when(() => mockLocalDatasource.saveCatLocally(any()))
-            .thenThrow(mockSaveCatLocallyException);
+        when(
+          () => mockLocalDatasource.saveCatLocally(any()),
+        ).thenThrow(mockSaveCatLocallyException);
 
         // Act
         final result =
@@ -467,9 +493,13 @@ void main() {
 
         // Assert
         expect(
-            result,
-            const Left(
-                SaveCatLocallyFailure(exception: mockSaveCatLocallyException)));
+          result,
+          const Left(
+            SaveCatLocallyFailure(
+              exception: mockSaveCatLocallyException,
+            ),
+          ),
+        );
       });
     });
   });
