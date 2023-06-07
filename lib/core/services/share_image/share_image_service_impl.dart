@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:share_plus/share_plus.dart';
 
 import '../../error/exceptions.dart';
@@ -9,8 +9,9 @@ class ShareImageServiceImpl implements IShareImageService {
   Future<void> call({required String url}) async {
     try {
       await Share.share(url);
-    } on Exception catch (e) {
-      debugPrint(e.toString());
+    } on PlatformException {
+      throw const ShareCatException();
+    } on FormatException {
       throw const ShareCatException();
     }
   }

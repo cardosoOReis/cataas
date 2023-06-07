@@ -49,7 +49,7 @@ void main() {
         queryParameters: any(named: 'queryParameters'),
       ),
     ).thenThrow(
-      DioError(
+      DioException(
         requestOptions: RequestOptions(path: ''),
         error: 'Not Found',
         response: Response(
@@ -67,7 +67,7 @@ void main() {
         queryParameters: any(named: 'queryParameters'),
       ),
     ).thenThrow(
-      DioError(
+      DioException(
         requestOptions: RequestOptions(path: ''),
         error: 'Server Failure',
         response: Response(
@@ -85,7 +85,7 @@ void main() {
         queryParameters: any(named: 'queryParameters'),
       ),
     ).thenThrow(
-      DioError(requestOptions: RequestOptions(path: '')),
+      DioException(requestOptions: RequestOptions(path: '')),
     );
   }
 

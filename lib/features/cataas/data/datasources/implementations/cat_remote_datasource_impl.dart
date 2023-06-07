@@ -1,6 +1,5 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
-import 'package:flutter/foundation.dart';
 
 import '../../api_endpoints.dart';
 import '../../../../../core/error/exceptions.dart';
@@ -104,15 +103,10 @@ class CatRemoteDatasourceImpl implements ICatRemoteDatasource {
         );
 
         return model;
-      } catch (e, stackTrace) {
-        debugPrint(e.toString());
-        debugPrintStack(stackTrace: stackTrace);
+      } catch (_) {
         throw ParseDataException(body: response.data);
       }
-    } on DioError catch (e, stackTrace) {
-      debugPrint(url);
-      debugPrint(e.toString());
-      debugPrintStack(stackTrace: stackTrace);
+    } on DioException catch (e) {
       final statusCode = e.response?.statusCode ?? 0;
       if (statusCode == 404) {
         throw const CatNotFoundException(statusCode: 404);
@@ -124,9 +118,7 @@ class CatRemoteDatasourceImpl implements ICatRemoteDatasource {
         message: e.message ?? '',
         statusCode: statusCode,
       );
-    } catch (e, stackTrace) {
-      debugPrint(e.toString());
-      debugPrintStack(stackTrace: stackTrace);
+    } catch (_) {
       rethrow;
     }
   }

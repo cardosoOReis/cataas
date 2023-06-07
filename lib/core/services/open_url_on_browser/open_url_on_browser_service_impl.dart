@@ -1,5 +1,5 @@
 import 'package:dartz/dartz.dart';
-import 'package:flutter/foundation.dart';
+import 'package:flutter/services.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../error/failures.dart';
@@ -19,8 +19,7 @@ class OpenUrlOnBrowserServiceImpl implements IOpenUrlOnBrowserService {
       }
 
       return const Right(null);
-    } on Exception catch (e) {
-      debugPrint(e.toString());
+    } on PlatformException {
       return const Left(CouldntOpenUrlOnBrowserFailure());
     }
   }

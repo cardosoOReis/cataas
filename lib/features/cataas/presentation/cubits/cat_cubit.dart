@@ -2,7 +2,6 @@ import 'package:bloc/bloc.dart';
 import 'package:cataas/features/cataas/presentation/usecases/i_get_cat_by_id_or_tag_usecase.dart';
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutter/material.dart';
 
 import '../../../../core/error/failures.dart';
 import '../../../../core/extensions/dartz_extensions.dart';
@@ -72,7 +71,6 @@ class CatCubit extends Cubit<CatState> {
   }
 
   Future<void> onGetCatByIdButtonTap(String id) async {
-    debugPrint('ON_GET_CAT_BY_ID_BUTTON_TAP / ID: $id');
     emit(state.copyWith(status: CatStatus.loading));
     final params = GetCatByIdUsecaseParams(
       id: id,
@@ -85,7 +83,6 @@ class CatCubit extends Cubit<CatState> {
   }
 
   Future<void> onGetCatByTagButtonTap(String tag) async {
-    debugPrint('ON_GET_CAT_BY_TAG_BUTTON_TAP / TAG: $tag');
     emit(state.copyWith(status: CatStatus.loading));
     final params = GetCatByTagUsecaseParams(
       tag: tag,
@@ -98,7 +95,6 @@ class CatCubit extends Cubit<CatState> {
   }
 
   Future<void> onGetCatByIdOrTagButtonTap(String value) async {
-    debugPrint('ON_GET_CAT_BY_ID_OR_TAG_BUTTON_TAP / VALUE: $value');
     emit(state.copyWith(status: CatStatus.loading));
     final params = GetCatByIdOrTagUsecaseParams(
       value: value,
