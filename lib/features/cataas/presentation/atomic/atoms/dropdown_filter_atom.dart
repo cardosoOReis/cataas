@@ -14,29 +14,37 @@ class DropdownFilterAtom extends StatefulWidget {
 }
 
 class _DropdownFilterAtomState extends State<DropdownFilterAtom> {
+  final _dropdownBorderRadius = 3.0;
+  // final 
   String? _currentValue;
 
   @override
   Widget build(BuildContext context) {
-    return DropdownButton(
-      value: _currentValue,
-      hint: const Text('Filters'),
-      items: FilterValues.values
-          .map(
-            (filter) => DropdownMenuItem(
-              value: filter.name,
-              child: Text(
-                filter.name.capitalize(),
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        border: Border.all(color: Colors.grey),
+        borderRadius: BorderRadius.circular(_dropdownBorderRadius)
+      ),
+      child: DropdownButton(
+        value: _currentValue,
+        hint: const Text('Filters'),
+        items: FilterValues.values
+            .map(
+              (filter) => DropdownMenuItem(
+                value: filter.name,
+                child: Text(
+                  filter.name.capitalize(),
+                ),
               ),
-            ),
-          )
-          .toList(),
-      onChanged: (filter) {
-        setState(() {
-          _currentValue = filter;
-        });
-        widget.onFilterFieldValueChanged(filter);
-      },
+            )
+            .toList(),
+        onChanged: (filter) {
+          setState(() => _currentValue = filter);
+          widget.onFilterFieldValueChanged(filter);
+        },
+        alignment: Alignment.center,
+        underline: const SizedBox.shrink(),
+      ),
     );
   }
 }

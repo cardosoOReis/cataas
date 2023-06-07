@@ -153,20 +153,8 @@ class CatCubit extends Cubit<CatState> {
     _text = text;
   }
 
-  void onTextColorTextFieldValueChanged(String? text) {
-    _textColor = text;
-  }
-
   void onFilterTextFieldValueChanged(String? text) {
     _filter = text;
-  }
-
-  void onTypeOfSearchChange(SearchType searchType) {
-    emit(
-      state.copyWith(
-        searchType: searchType,
-      ),
-    );
   }
 
   void onBeerIconTap() {

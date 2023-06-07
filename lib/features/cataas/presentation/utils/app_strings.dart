@@ -5,6 +5,8 @@ class AppStrings {
 
   static String get getRandomCat => 'Get a Random Cat';
 
+  static String get getCatByIdOrTag => 'Get a Cat by Id or Tag';
+
   static String get initialStateText => 'Get a Cat 😺!';
 
   static String get initialCatText => 'Welcome Back!';

@@ -1,3 +1,4 @@
+import 'package:cataas/features/cataas/presentation/utils/app_strings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -44,22 +45,32 @@ class _GetSpecificCatMoleculeState extends State<GetSpecificCatMolecule> {
                     Align(
                       alignment: Alignment.center,
                       child: GetCatButtonAtom(
-                        title: state.searchType.buttonTitle,
+                        title: AppStrings.getCatByIdOrTag,
                         backgroundColor: AppColors.terciary,
-                        onTap: () => widget.onGetCatByIdOrTagButtonTap(_controller.text),
+                        onTap: () =>
+                            widget.onGetCatByIdOrTagButtonTap(_controller.text),
                       ),
                     ),
                   ],
                 ),
               ),
             ),
-            DefaultCatTextField(
-              labelText: state.searchType.label,
-              hintText: state.searchType.hintText,
-              controller: _controller,
-            ),
-            DropdownFilterAtom(
-              onFilterFieldValueChanged: widget.onFilterFieldValueChanged,
+            Row(
+              children: [
+                Expanded(
+                  child: DefaultCatTextField(
+                    labelText: 'Id or Tag',
+                    hintText: "Get a cat based on it's id or tag",
+                    controller: _controller,
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 8.0),
+                  child: DropdownFilterAtom(
+                    onFilterFieldValueChanged: widget.onFilterFieldValueChanged,
+                  ),
+                ),
+              ],
             ),
           ],
         );
