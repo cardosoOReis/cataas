@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 class DefaultCatTextField extends StatefulWidget {
   final String labelText;
   final String hintText;
-  final void Function(String) onValueChanged;
+  final void Function(String)? onValueChanged;
   final TextEditingController? controller;
   const DefaultCatTextField({
     Key? key,
     required this.labelText,
     required this.hintText,
-    required this.onValueChanged,
+    this.onValueChanged,
     this.controller,
   }) : super(key: key);
 

@@ -5,22 +5,15 @@ import '../../cubits/cat_cubit.dart';
 import '../../utils/app_colors.dart';
 import '../atoms/default_cat_text_field.dart';
 import '../atoms/dropdown_filter_atom.dart';
-import '../atoms/dropdown_search_type_atom.dart';
 import '../atoms/get_cat_button_atom.dart';
 
 class GetSpecificCatMolecule extends StatefulWidget {
-  final void Function(String id) onGetCatByIdButtonTap;
-  final void Function(String tag) onGetCatByTagButtonTap;
-  final void Function(String?) onTextColorTextFieldValueChanged;
+  final void Function(String value) onGetCatByIdOrTagButtonTap;
   final void Function(String?) onFilterFieldValueChanged;
-  final void Function(SearchType) onTypeOfSearchChange;
   const GetSpecificCatMolecule({
     Key? key,
-    required this.onGetCatByIdButtonTap,
-    required this.onGetCatByTagButtonTap,
-    required this.onTextColorTextFieldValueChanged,
+    required this.onGetCatByIdOrTagButtonTap,
     required this.onFilterFieldValueChanged,
-    required this.onTypeOfSearchChange,
   }) : super(key: key);
 
   @override
@@ -53,26 +46,7 @@ class _GetSpecificCatMoleculeState extends State<GetSpecificCatMolecule> {
                       child: GetCatButtonAtom(
                         title: state.searchType.buttonTitle,
                         backgroundColor: AppColors.terciary,
-                        onTap: () {
-                          switch (state.searchType) {
-                            case SearchType.id:
-                              return widget
-                                  .onGetCatByIdButtonTap(_controller.text);
-                            case SearchType.tag:
-                              return widget
-                                  .onGetCatByTagButtonTap(_controller.text);
-                          }
-                        },
-                      ),
-                    ),
-                    Align(
-                      alignment: Alignment.centerRight,
-                      child: Padding(
-                        padding: const EdgeInsets.only(right: 10),
-                        child: DropdownSearchTypeAtom(
-                          currentSearchType: state.searchType,
-                          onChanged: _onChanged,
-                        ),
+                        onTap: () => widget.onGetCatByIdOrTagButtonTap(_controller.text),
                       ),
                     ),
                   ],
@@ -82,7 +56,6 @@ class _GetSpecificCatMoleculeState extends State<GetSpecificCatMolecule> {
             DefaultCatTextField(
               labelText: state.searchType.label,
               hintText: state.searchType.hintText,
-              onValueChanged: (_) {},
               controller: _controller,
             ),
             DropdownFilterAtom(
@@ -92,10 +65,5 @@ class _GetSpecificCatMoleculeState extends State<GetSpecificCatMolecule> {
         );
       },
     );
-  }
-
-  void _onChanged(SearchType? value) {
-    _controller.clear();
-    widget.onTypeOfSearchChange(value!);
   }
 }

@@ -9,7 +9,7 @@ class AppStrings {
 
   static String get initialCatText => 'Welcome Back!';
 
-  static String get saveCatLocallySuccess => 'Saved your cat successfully';
+  static String get saveCatLocallySuccess => 'Saved! 😸';
 
   static String get saveCatLocallyFailure =>
       'Sorry, it looks like something went wrong when saving your cat 😿.';
