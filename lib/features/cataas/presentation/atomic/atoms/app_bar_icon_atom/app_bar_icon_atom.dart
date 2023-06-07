@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-class AppBarIcon extends StatelessWidget {
+class AppBarIconAtom extends StatelessWidget {
   final void Function() onIconTap;
   final Widget icon;
-  const AppBarIcon({
+  const AppBarIconAtom({
     Key? key,
     required this.onIconTap,
     required this.icon,

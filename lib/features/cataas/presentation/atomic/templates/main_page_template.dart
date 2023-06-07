@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-import '../atoms/app_bar_icon/app_bar_icon.dart';
+import '../atoms/app_bar_icon_atom/app_bar_icon_atom.dart';
 import '../molecules/default_cat_app_bar_molecule.dart';
 import '../organisms/cat_controls_organism.dart';
 import '../organisms/result_display_organism.dart';
 
 class MainPageTemplate extends StatelessWidget {
   final String title;
-  final List<AppBarIcon> appBarIcons;
+  final List<AppBarIconAtom> appBarIcons;
   final void Function() onGetRandomCatButtonTap;
   final void Function(String value) onGetCatByIdOrTagButtonTap;
   final void Function(String?) onTextTextFieldValueChanged;

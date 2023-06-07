@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
 import '../../utils/app_colors.dart';
-import '../atoms/app_bar_icon/app_bar_icon.dart';
+import '../atoms/app_bar_icon_atom/app_bar_icon_atom.dart';
 
 class DefaultCatAppBarMolecule extends StatelessWidget
     implements PreferredSizeWidget {
   final String title;
-  final List<AppBarIcon> icons;
+  final List<AppBarIconAtom> icons;
 
   const DefaultCatAppBarMolecule({
     Key? key,
