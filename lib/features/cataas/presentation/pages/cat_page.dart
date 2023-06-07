@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import '../atomic/atoms/app_bar_icon.dart';
+import '../../../../core/services/open_url_on_browser/i_open_url_on_browser_service.dart';
+import '../../../../service_locator.dart';
+import '../atomic/atoms/app_bar_icon/app_bar_beer_icon.dart';
+import '../atomic/atoms/app_bar_icon/app_bar_icon.dart';
+import '../atomic/atoms/app_bar_icon/app_bar_tweeter_icon.dart';
 import '../atomic/templates/main_page_template.dart';
 import '../cubits/cat_cubit.dart';
-import '../utils/app_colors.dart';
 import '../utils/app_strings.dart';
 
 class CatPage extends StatelessWidget {
@@ -15,20 +17,8 @@ class CatPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final cubit = BlocProvider.of<CatCubit>(context);
     final appBarIcons = <AppBarIcon>[
-      AppBarIcon(
-        onIconTap: cubit.onBeerIconTap,
-        icon: const FaIcon(
-          FontAwesomeIcons.beerMugEmpty,
-          color: AppColors.white,
-        ),
-      ),
-      AppBarIcon(
-        onIconTap: cubit.onTwitterIconTap,
-        icon: const FaIcon(
-          FontAwesomeIcons.twitter,
-          color: AppColors.white,
-        ),
-      ),
+      AppBarBeerIcon(service: sl<IOpenUrlOnBrowserService>()),
+      AppBarTweeterIcon(service: sl<IOpenUrlOnBrowserService>()),
     ];
 
     return MainPageTemplate(

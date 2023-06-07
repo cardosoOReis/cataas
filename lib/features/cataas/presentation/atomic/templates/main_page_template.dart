@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../atoms/app_bar_icon.dart';
+import '../atoms/app_bar_icon/app_bar_icon.dart';
 import '../molecules/default_cat_app_bar_molecule.dart';
 import '../organisms/cat_controls_organism.dart';
 import '../organisms/result_display_organism.dart';
