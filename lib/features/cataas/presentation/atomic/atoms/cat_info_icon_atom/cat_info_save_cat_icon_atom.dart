@@ -1,30 +1,35 @@
-import 'package:cataas/features/cataas/presentation/atomic/atoms/cat_toast_atom/cat_toast_failure_atom.dart';
-import 'package:cataas/features/cataas/presentation/atomic/atoms/cat_toast_atom/cat_toast_sucess_atom.dart';
-import 'package:cataas/features/cataas/presentation/utils/app_strings.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import '../../../../../../service_locator.dart';
 import '../../../usecases/i_save_cat_locally_usecase.dart';
 import '../../../utils/app_colors.dart';
+import '../../../utils/app_strings.dart';
+import '../cat_toast_atom/cat_toast_failure_atom.dart';
+import '../cat_toast_atom/cat_toast_sucess_atom.dart';
+import '../show_toast_atom/i_show_toast_atom.dart';
 import 'cat_info_icon_atom.dart';
 
 class CatInfoSaveCatIconAtom extends CatInfoIconAtom {
   CatInfoSaveCatIconAtom({
     super.key,
-    required BuildContext context,
+    required ISaveCatLocallyUsecase usecase,
+    required IShowToastAtom showToastAtom,
     required String url,
+    required BuildContext context,
   }) : super(
           color: AppColors.secondary,
           icon: const FaIcon(Icons.download),
           onTap: () async {
-            await _saveCatLocally(url, context);
+            await _saveCatLocally(usecase, showToastAtom, url, context);
           },
         );
 
-  static Future<void> _saveCatLocally(String url, BuildContext context) async {
-    final usecase = sl<ISaveCatLocallyUsecase>();
+  static Future<void> _saveCatLocally(
+    ISaveCatLocallyUsecase usecase,
+    IShowToastAtom showToastAtom,
+    String url,
+    BuildContext context,
+  ) async {
     final result = await usecase.call(SaveCatLocallyUsecaseParams(url: url));
     final toast = result.fold(
       (failure) => CatToastFailureAtom(
@@ -35,7 +40,7 @@ class CatInfoSaveCatIconAtom extends CatInfoIconAtom {
       ),
     );
     if (context.mounted) {
-      FToast().init(context).showToast(child: toast);
+      showToastAtom(context: context, toast: toast);
     }
   }
 }

@@ -1,5 +1,6 @@
-import 'package:cataas/features/cataas/presentation/atomic/atoms/cat_toast_atom/cat_toast_atom.dart';
 import 'package:flutter/material.dart';
+
+import 'cat_toast_atom.dart';
 
 class CatToastSucessAtom extends CatToastAtom {
   const CatToastSucessAtom({

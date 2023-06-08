@@ -22,6 +22,8 @@ import 'features/cataas/domain/usecases/get_cat_by_tag_usecase_impl.dart';
 import 'features/cataas/domain/usecases/get_random_cat_usecase_impl.dart';
 import 'features/cataas/domain/usecases/save_cat_locally_usecase_impl.dart';
 import 'features/cataas/domain/usecases/share_cat_usecase_impl.dart';
+import 'features/cataas/presentation/atomic/atoms/show_toast_atom/i_show_toast_atom.dart';
+import 'features/cataas/presentation/atomic/atoms/show_toast_atom/show_toast_atom_impl.dart';
 import 'features/cataas/presentation/cubits/cat_cubit.dart';
 import 'features/cataas/presentation/usecases/i_get_cat_by_id_or_tag_usecase.dart';
 import 'features/cataas/presentation/usecases/i_get_cat_by_id_usecase.dart';
@@ -100,5 +102,10 @@ void initServices() {
   );
   sl.registerLazySingleton<IShareCatUsecase>(
     () => ShareCatUsecaseImpl(sl<ICatRepository>()),
+  );
+
+  // Atoms
+  sl.registerLazySingleton<IShowToastAtom>(
+    () => ShowToastAtomImpl(),
   );
 }
