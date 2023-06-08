@@ -1,9 +1,10 @@
-import 'package:cataas/features/cataas/presentation/atomic/molecules/get_specific_cat_molecule.dart';
 import 'package:flutter/material.dart';
+
 import '../../utils/app_colors.dart';
 import '../../utils/app_strings.dart';
 import '../atoms/default_cat_text_field.dart';
 import '../atoms/get_cat_button_atom.dart';
+import '../molecules/get_specific_cat_molecule.dart';
 
 class CatControlsOrganism extends StatelessWidget {
   final void Function() onGetRandomCatButtonTap;

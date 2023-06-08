@@ -1,14 +1,14 @@
-import 'package:cataas/features/cataas/presentation/atomic/atoms/cat_info_icon_atom/cat_info_icon_atom.dart';
-import 'package:cataas/features/cataas/presentation/utils/app_strings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import '../../../utils/app_strings.dart';
 import '../cat_toast.dart';
+import 'cat_info_icon_atom.dart';
 
-class CatInfoCopyIdIconAtom extends CatInfoIconAtom {
-  CatInfoCopyIdIconAtom({
+class CatInfoCopyCatIdIconAtom extends CatInfoIconAtom {
+  CatInfoCopyCatIdIconAtom({
     super.key,
     required BuildContext context,
     required String catId,

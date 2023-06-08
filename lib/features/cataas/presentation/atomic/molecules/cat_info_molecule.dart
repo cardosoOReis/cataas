@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import '../../utils/app_colors.dart';
-import '../atoms/cat_info_icon_atom/cat_info_copy_id_icon_atom.dart';
-import '../atoms/cat_info_icon_atom/cat_info_icon_atom.dart';
+import '../atoms/cat_info_icon_atom/cat_info_copy_cat_id_icon_atom.dart';
+import '../atoms/cat_info_icon_atom/cat_info_save_cat_icon_atom.dart';
+import '../atoms/cat_info_icon_atom/cat_info_share_cat_icon_atom.dart';
 
 class CatInfoMolecule extends StatelessWidget {
   final String catId;
@@ -37,32 +36,18 @@ class CatInfoMolecule extends StatelessWidget {
           Expanded(
             child: Row(
               children: [
-                Text(
-                  'Cat ID: $catId',
-                ),
-                const SizedBox(
-                  width: 10,
-                ),
-                CatInfoCopyIdIconAtom(
+                Text('Cat ID: $catId'),
+                const SizedBox(width: 10),
+                CatInfoCopyCatIdIconAtom(
                   context: context,
                   catId: catId,
                 ),
               ],
             ),
           ),
-          CatInfoIconAtom(
-            onTap: () => onShareCatIconTap(url),
-            color: AppColors.secondary,
-            icon: const FaIcon(Icons.share),
-          ),
-          const SizedBox(
-            width: 10,
-          ),
-          CatInfoIconAtom(
-            onTap: () => onSaveCatIconTap(url),
-            color: AppColors.secondary,
-            icon: const FaIcon(Icons.download),
-          ),
+          CatInfoShareCatIconAtom(url: url),
+          const SizedBox(width: 10),
+          CatInfoSaveCatIconAtom(url: url),
         ],
       ),
     );

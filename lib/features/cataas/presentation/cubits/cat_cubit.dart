@@ -1,5 +1,4 @@
 import 'package:bloc/bloc.dart';
-import 'package:cataas/features/cataas/presentation/usecases/i_get_cat_by_id_or_tag_usecase.dart';
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 
@@ -7,6 +6,7 @@ import '../../../../core/error/failures.dart';
 import '../../../../core/extensions/dartz_extensions.dart';
 import '../../../../core/services/open_url_on_browser/i_open_url_on_browser_service.dart';
 import '../../domain/entities/cat.dart';
+import '../usecases/i_get_cat_by_id_or_tag_usecase.dart';
 import '../usecases/i_get_cat_by_id_usecase.dart';
 import '../usecases/i_get_cat_by_tag_usecase.dart';
 import '../usecases/i_get_random_cat_usecase.dart';

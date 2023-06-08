@@ -1,5 +1,3 @@
-import 'package:cataas/features/cataas/domain/usecases/get_cat_by_id_or_tag_usecase_impl.dart';
-import 'package:cataas/features/cataas/presentation/usecases/i_get_cat_by_id_or_tag_usecase.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
@@ -18,12 +16,14 @@ import 'features/cataas/data/datasources/implementations/cat_local_datasource_im
 import 'features/cataas/data/datasources/implementations/cat_remote_datasource_impl.dart';
 import 'features/cataas/data/repositories/cat_repository_impl.dart';
 import 'features/cataas/domain/repositories/i_cat_repository.dart';
+import 'features/cataas/domain/usecases/get_cat_by_id_or_tag_usecase_impl.dart';
 import 'features/cataas/domain/usecases/get_cat_by_id_usecase_impl.dart';
 import 'features/cataas/domain/usecases/get_cat_by_tag_usecase_impl.dart';
 import 'features/cataas/domain/usecases/get_random_cat_usecase_impl.dart';
 import 'features/cataas/domain/usecases/save_cat_locally_usecase_impl.dart';
 import 'features/cataas/domain/usecases/share_cat_usecase_impl.dart';
 import 'features/cataas/presentation/cubits/cat_cubit.dart';
+import 'features/cataas/presentation/usecases/i_get_cat_by_id_or_tag_usecase.dart';
 import 'features/cataas/presentation/usecases/i_get_cat_by_id_usecase.dart';
 import 'features/cataas/presentation/usecases/i_get_cat_by_tag_usecase.dart';
 import 'features/cataas/presentation/usecases/i_get_random_cat_usecase.dart';

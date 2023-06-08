@@ -1,4 +1,4 @@
-import 'package:cataas/core/extensions/string_extensions.dart';
+import '../../../../../core/extensions/string_extensions.dart';
 import 'package:flutter/material.dart';
 
 class DropdownFilterAtom extends StatefulWidget {

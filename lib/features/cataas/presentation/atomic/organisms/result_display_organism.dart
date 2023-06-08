@@ -6,10 +6,10 @@ import '../../../../../core/error/failures.dart';
 import '../../cubits/cat_cubit.dart';
 import '../../utils/app_strings.dart';
 import '../atoms/cat_display_atom.dart';
+import '../atoms/cat_toast.dart';
 import '../atoms/loading_widget_atom.dart';
 import '../atoms/main_cat_frame_atom.dart';
 import '../atoms/message_display_atom.dart';
-import '../atoms/cat_toast.dart';
 import '../molecules/cat_info_molecule.dart';
 
 class ResultDisplayOrganism extends StatelessWidget {
