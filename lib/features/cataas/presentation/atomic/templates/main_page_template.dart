@@ -12,9 +12,6 @@ class MainPageTemplate extends StatelessWidget {
   final void Function(String value) onGetCatByIdOrTagButtonTap;
   final void Function(String?) onTextTextFieldValueChanged;
   final void Function(String?) onFilterFieldValueChanged;
-  final void Function(String url) onShareCatIconTap;
-  final void Function(String url) onSaveCatIconTap;
-
   const MainPageTemplate({
     super.key,
     required this.appBarIcons,
@@ -22,8 +19,6 @@ class MainPageTemplate extends StatelessWidget {
     required this.onGetRandomCatButtonTap,
     required this.onGetCatByIdOrTagButtonTap,
     required this.onTextTextFieldValueChanged,
-    required this.onShareCatIconTap,
-    required this.onSaveCatIconTap,
     required this.onFilterFieldValueChanged,
   });
 
@@ -37,12 +32,9 @@ class MainPageTemplate extends StatelessWidget {
       body: ListView(
         padding: const EdgeInsets.all(10),
         children: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: ResultDisplayOrganism(
-              onSaveCatIconTap: onSaveCatIconTap,
-              onShareCatIconTap: onShareCatIconTap,
-            ),
+          const Padding(
+            padding: EdgeInsets.all(8.0),
+            child: ResultDisplayOrganism(),
           ),
           CatControlsOrganism(
             onGetRandomCatButtonTap: onGetRandomCatButtonTap,

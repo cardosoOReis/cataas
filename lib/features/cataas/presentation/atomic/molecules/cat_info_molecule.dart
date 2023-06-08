@@ -7,13 +7,9 @@ import '../atoms/cat_info_icon_atom/cat_info_share_cat_icon_atom.dart';
 class CatInfoMolecule extends StatelessWidget {
   final String catId;
   final String url;
-  final void Function(String url) onShareCatIconTap;
-  final void Function(String url) onSaveCatIconTap;
   const CatInfoMolecule({
     Key? key,
     required this.catId,
-    required this.onShareCatIconTap,
-    required this.onSaveCatIconTap,
     required this.url,
   }) : super(key: key);
 
@@ -45,9 +41,9 @@ class CatInfoMolecule extends StatelessWidget {
               ],
             ),
           ),
-          CatInfoShareCatIconAtom(url: url),
+          CatInfoShareCatIconAtom(url: url, context: context),
           const SizedBox(width: 10),
-          CatInfoSaveCatIconAtom(url: url),
+          CatInfoSaveCatIconAtom(url: url, context: context),
         ],
       ),
     );

@@ -26,8 +26,6 @@ class CatPage extends StatelessWidget {
       onGetCatByIdOrTagButtonTap: cubit.onGetCatByIdOrTagButtonTap,
       onTextTextFieldValueChanged: cubit.onTextTextFieldValueChanged,
       onFilterFieldValueChanged: cubit.onFilterTextFieldValueChanged,
-      onSaveCatIconTap: cubit.onSaveCatIconTap,
-      onShareCatIconTap: cubit.onShareCatIconTap,
     );
   }
 }

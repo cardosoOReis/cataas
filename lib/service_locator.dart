@@ -56,12 +56,7 @@ void initServices() {
   sl.registerFactory<CatCubit>(
     () => CatCubit(
       getRandomCatUsecase: sl<IGetRandomCatUsecase>(),
-      getCatByIdUsecase: sl<IGetCatByIdUsecase>(),
-      getCatByTagUsecase: sl<IGetCatByTagUsecase>(),
       getCatByIdOrTagUsecase: sl<IGetCatByIdOrTagUsecase>(),
-      saveCatLocallyUsecase: sl<ISaveCatLocallyUsecase>(),
-      shareCatUsecase: sl<IShareCatUsecase>(),
-      openUrlOnBrowserService: sl<IOpenUrlOnBrowserService>(),
     ),
   );
 

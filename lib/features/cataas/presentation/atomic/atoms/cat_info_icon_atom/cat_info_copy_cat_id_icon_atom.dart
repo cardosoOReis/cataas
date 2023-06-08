@@ -4,7 +4,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../../utils/app_strings.dart';
-import '../cat_toast.dart';
+import '../cat_toast_atom/cat_toast_atom.dart';
 import 'cat_info_icon_atom.dart';
 
 class CatInfoCopyCatIdIconAtom extends CatInfoIconAtom {
@@ -17,7 +17,7 @@ class CatInfoCopyCatIdIconAtom extends CatInfoIconAtom {
           icon: const FaIcon(Icons.copy),
           onTap: () async {
             FToast().init(context).showToast(
-                  child: CatToast(
+                  child: CatToastAtom(
                     text: AppStrings.copyCatIdSucess,
                     icon: const Icon(Icons.copy),
                     color: Colors.grey.shade300,

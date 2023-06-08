@@ -2,14 +2,10 @@ part of 'cat_cubit.dart';
 
 class CatState extends Equatable {
   final CatStatus status;
-  final CatStatus savingCatStatus;
-  final CatStatus shareCatStatus;
   final Cat? catEntity;
   final Failure? failure;
   const CatState({
     this.status = CatStatus.initial,
-    this.savingCatStatus = CatStatus.initial,
-    this.shareCatStatus = CatStatus.initial,
     this.catEntity,
     this.failure,
   });
@@ -21,21 +17,15 @@ class CatState extends Equatable {
         status,
         catEntity,
         failure,
-        savingCatStatus,
-        shareCatStatus,
       ];
 
   CatState copyWith({
     CatStatus? status,
-    CatStatus? savingCatStatus,
-    CatStatus? shareCatStatus,
     Cat? catEntity,
     Failure? failure,
   }) {
     return CatState(
       status: status ?? this.status,
-      savingCatStatus: savingCatStatus ?? this.savingCatStatus,
-      shareCatStatus: shareCatStatus ?? this.shareCatStatus,
       catEntity: catEntity ?? this.catEntity,
       failure: failure ?? this.failure,
     );
