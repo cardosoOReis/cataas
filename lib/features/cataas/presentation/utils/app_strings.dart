@@ -13,6 +13,8 @@ class AppStrings {
 
   static String get saveCatLocallySuccess => 'Saved! 😸';
 
+  static String get copyCatIdSucess => 'Copied! 😸';
+
   static String get saveCatLocallyFailure =>
       'Sorry, it looks like something went wrong when saving your cat 😿.';
 

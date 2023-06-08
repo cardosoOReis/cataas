@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
@@ -108,9 +107,6 @@ class ResultDisplayOrganism extends StatelessWidget {
                     onShareCatIconTap: onShareCatIconTap,
                     onSaveCatIconTap: onSaveCatIconTap,
                     url: state.catEntity!.url,
-                    onCopyCatIconTap: () {
-                      _onCopyIconTap(context, state.catEntity!.id);
-                    },
                   ),
                 ],
               );
@@ -121,18 +117,5 @@ class ResultDisplayOrganism extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  Future<void> _onCopyIconTap(BuildContext context, String catId) async {
-    FToast()
-      ..init(context)
-      ..showToast(
-        child: CatToast(
-          text: 'Copied the Cat Id successfuly to the Clipboard!',
-          icon: const Icon(Icons.copy),
-          color: Colors.grey.shade300,
-        ),
-      );
-    await Clipboard.setData(ClipboardData(text: catId));
   }
 }

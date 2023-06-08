@@ -2,21 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../utils/app_colors.dart';
-import '../atoms/cat_info_icon_atom.dart';
+import '../atoms/cat_info_icon_atom/cat_info_copy_id_icon_atom.dart';
+import '../atoms/cat_info_icon_atom/cat_info_icon_atom.dart';
 
 class CatInfoMolecule extends StatelessWidget {
   final String catId;
   final String url;
   final void Function(String url) onShareCatIconTap;
   final void Function(String url) onSaveCatIconTap;
-  final void Function() onCopyCatIconTap;
   const CatInfoMolecule({
     Key? key,
     required this.catId,
     required this.onShareCatIconTap,
     required this.onSaveCatIconTap,
     required this.url,
-    required this.onCopyCatIconTap,
   }) : super(key: key);
 
   @override
@@ -44,10 +43,9 @@ class CatInfoMolecule extends StatelessWidget {
                 const SizedBox(
                   width: 10,
                 ),
-                CatInfoIconAtom(
-                  onTap: onCopyCatIconTap,
-                  color: Colors.grey.shade300,
-                  icon: const FaIcon(Icons.copy),
+                CatInfoCopyIdIconAtom(
+                  context: context,
+                  catId: catId,
                 ),
               ],
             ),
