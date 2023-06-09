@@ -1,5 +1,5 @@
-import 'package:fpdart/fpdart.dart';
 import 'package:dio/dio.dart';
+import 'package:fpdart/fpdart.dart';
 
 import '../../../../../core/error/exceptions.dart';
 import '../../../../../core/extensions/fpdart_extensions.dart';

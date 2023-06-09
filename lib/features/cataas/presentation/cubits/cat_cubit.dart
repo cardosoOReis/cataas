@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
-import 'package:fpdart/fpdart.dart';
 import 'package:equatable/equatable.dart';
+import 'package:fpdart/fpdart.dart';
 
 import '../../../../core/error/failures.dart';
 import '../../domain/entities/cat.dart';
