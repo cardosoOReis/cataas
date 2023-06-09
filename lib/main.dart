@@ -3,6 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'features/cataas/presentation/cubits/cat_cubit.dart';
 import 'features/cataas/presentation/pages/cat_page.dart';
+import 'features/cataas/presentation/utils/app_colors.dart';
+import 'features/cataas/presentation/utils/app_strings.dart';
 import 'service_locator.dart';
 
 void main() {
@@ -21,8 +23,8 @@ class Main extends StatelessWidget {
         create: (context) => _initCubit(),
         child: const CatPage(),
       ),
-      title: 'Cat as a Service',
-      theme: ThemeData(primaryColor: const Color.fromRGBO(233, 84, 32, 1)),
+      title: AppStrings.title,
+      theme: ThemeData(primaryColor: AppColors.primary),
     );
   }
 
