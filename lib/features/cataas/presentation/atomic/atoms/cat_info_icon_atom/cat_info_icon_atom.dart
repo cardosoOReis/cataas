@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class CatInfoIconAtom extends StatelessWidget {
-  final void Function() onTap;
+  final Future<void> Function() onTap;
   final Color color;
   final Widget icon;
   const CatInfoIconAtom({

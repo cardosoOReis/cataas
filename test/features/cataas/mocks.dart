@@ -13,6 +13,8 @@ import 'package:cataas/features/cataas/domain/usecases/get_cat_by_id_usecase_imp
 import 'package:cataas/features/cataas/domain/usecases/get_cat_by_tag_usecase_impl.dart';
 import 'package:cataas/features/cataas/domain/usecases/get_random_cat_usecase_impl.dart';
 import 'package:cataas/features/cataas/domain/usecases/save_cat_locally_usecase_impl.dart';
+import 'package:cataas/features/cataas/presentation/atomic/atoms/cat_toast_atom/cat_toast_atom.dart';
+import 'package:cataas/features/cataas/presentation/atomic/atoms/show_toast_atom/i_show_toast_atom.dart';
 import 'package:cataas/features/cataas/presentation/usecases/i_get_cat_by_id_or_tag_usecase.dart';
 import 'package:cataas/features/cataas/presentation/usecases/i_get_cat_by_id_usecase.dart';
 import 'package:cataas/features/cataas/presentation/usecases/i_get_cat_by_tag_usecase.dart';
@@ -21,6 +23,7 @@ import 'package:cataas/features/cataas/presentation/usecases/i_save_cat_locally_
 import 'package:cataas/features/cataas/presentation/usecases/i_share_cat_usecase.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter/widgets.dart';
 import 'package:mocktail/mocktail.dart';
 
 class MockGetRandomCatUsecase extends Mock implements GetRandomCatUsecaseImpl {}
@@ -57,6 +60,10 @@ class MockSaveImageLocallyService extends Mock
 class MockShareImageService extends Mock implements IShareImageService {}
 
 class MockHttpClient extends Mock implements Dio {}
+
+class MockBuildContext extends Mock implements BuildContext {}
+
+class MockShowToastAtom extends Mock implements IShowToastAtom {}
 
 final mockCatEntity = Cat(
   id: 'exvMtoKhGj3R7FGL',
@@ -119,3 +126,11 @@ const mockGetCatByIdOrTagUsecaseParams = GetCatByIdOrTagUsecaseParams(
 const mockSaveCatLocallyUsecaseParams = SaveCatLocallyUsecaseParams(url: '');
 
 const mockShareCatUsecaseParams = ShareCatUsecaseParams(url: 'url');
+
+const mockCatToast = CatToastAtom(
+  text: '',
+  icon: Icon(null),
+  color: Color(0x00000000),
+);
+
+final mockBuildContext = MockBuildContext();

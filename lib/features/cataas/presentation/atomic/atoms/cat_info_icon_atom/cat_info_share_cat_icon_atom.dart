@@ -19,18 +19,27 @@ class CatInfoShareCatIconAtom extends CatInfoIconAtom {
             color: AppColors.secondary,
             icon: const FaIcon(Icons.share),
             onTap: () async {
-              final result = await usecase(ShareCatUsecaseParams(url: url));
-              result.fold(
-                (failure) {
-                  if (!context.mounted) return;
-                  final toast = CatToastFailureAtom(
-                    text: AppStrings.shareCatFailure,
-                  );
-                  showToastAtom(context: context, toast: toast);
-                },
-                (sucess) {
-                  // Do nothing ¯\_(ツ)_/¯
-                },
-              );
+              await _shareCat(usecase, url, context, showToastAtom);
             });
+
+  static Future<void> _shareCat(
+    IShareCatUsecase usecase,
+    String url,
+    BuildContext context,
+    IShowToastAtom showToastAtom,
+  ) async {
+    final result = await usecase(ShareCatUsecaseParams(url: url));
+    result.fold(
+      (failure) {
+        if (!context.mounted) return;
+        final toast = CatToastFailureAtom(
+          text: AppStrings.shareCatFailure,
+        );
+        showToastAtom(context: context, toast: toast);
+      },
+      (sucess) {
+        // Do nothing ¯\_(ツ)_/¯
+      },
+    );
+  }
 }
