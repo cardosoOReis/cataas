@@ -20,12 +20,9 @@ class CatCubit extends Cubit<CatState> {
         _getRandomCatUsecase = getRandomCatUsecase,
         super(const CatState());
   String? _text;
-  String? _textColor;
   String? _filter;
 
-  Future<void> onInit() async {
-    await getWelcomeCat();
-  }
+  Future<void> onInit() async => await getWelcomeCat();
 
   Future<void> getWelcomeCat() async {
     emit(state.copyWith(status: CatStatus.loading));
@@ -42,7 +39,7 @@ class CatCubit extends Cubit<CatState> {
     emit(state.copyWith(status: CatStatus.loading));
     final params = GetRandomCatUsecaseParams(
       text: _text.toOption(),
-      textColor: _textColor.toOption(),
+      textColor: const Option.none(),
       filter: _filter.toOption(),
     );
     final result = await _getRandomCatUsecase(params);
@@ -54,7 +51,7 @@ class CatCubit extends Cubit<CatState> {
     final params = GetCatByIdOrTagUsecaseParams(
       value: value,
       text: _text.toOption(),
-      textColor: _textColor.toOption(),
+      textColor: const Option.none(),
       filter: _filter.toOption(),
     );
     final result = await _getCatByIdOrTagUsecase(params);
