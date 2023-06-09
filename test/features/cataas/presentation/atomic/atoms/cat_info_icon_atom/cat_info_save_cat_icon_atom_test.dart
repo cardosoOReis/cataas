@@ -3,7 +3,7 @@ import 'package:cataas/features/cataas/presentation/atomic/atoms/cat_toast_atom/
 import 'package:cataas/features/cataas/presentation/atomic/atoms/cat_toast_atom/cat_toast_sucess_atom.dart';
 import 'package:cataas/features/cataas/presentation/atomic/atoms/show_toast_atom/i_show_toast_atom.dart';
 import 'package:cataas/features/cataas/presentation/usecases/i_save_cat_locally_usecase.dart';
-import 'package:dartz/dartz.dart';
+import 'package:fpdart/fpdart.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 

@@ -1,9 +1,8 @@
 import 'package:bloc/bloc.dart';
-import 'package:dartz/dartz.dart';
+import 'package:fpdart/fpdart.dart';
 import 'package:equatable/equatable.dart';
 
 import '../../../../core/error/failures.dart';
-import '../../../../core/extensions/dartz_extensions.dart';
 import '../../domain/entities/cat.dart';
 import '../usecases/i_get_cat_by_id_or_tag_usecase.dart';
 import '../usecases/i_get_random_cat_usecase.dart';

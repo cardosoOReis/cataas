@@ -1,8 +1,8 @@
-import 'package:dartz/dartz.dart';
+import 'package:fpdart/fpdart.dart';
 import 'package:dio/dio.dart';
 
 import '../../../../../core/error/exceptions.dart';
-import '../../../../../core/extensions/dartz_extensions.dart';
+import '../../../../../core/extensions/fpdart_extensions.dart';
 import '../../../../../core/services/share_image/i_share_image_service.dart';
 import '../../../presentation/usecases/i_get_cat_by_id_or_tag_usecase.dart';
 import '../../../presentation/usecases/i_get_cat_by_id_usecase.dart';

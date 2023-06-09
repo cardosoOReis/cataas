@@ -1,4 +1,4 @@
-import 'package:dartz/dartz.dart';
+import 'package:fpdart/fpdart.dart';
 
 import '../../domain/entities/cat.dart';
 import '../api_endpoints.dart';

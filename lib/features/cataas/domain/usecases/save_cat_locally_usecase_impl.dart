@@ -1,4 +1,4 @@
-import 'package:dartz/dartz.dart';
+import 'package:fpdart/fpdart.dart';
 
 import '../../../../core/error/failures.dart';
 import '../../presentation/usecases/i_save_cat_locally_usecase.dart';

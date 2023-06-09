@@ -1,6 +1,6 @@
 import 'package:cataas/core/services/open_url_on_browser/i_open_url_on_browser_service.dart';
 import 'package:cataas/features/cataas/presentation/atomic/atoms/app_bar_icon_atom/app_bar_tweeter_icon_atom.dart';
-import 'package:dartz/dartz.dart';
+import 'package:fpdart/fpdart.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 

@@ -1,7 +1,7 @@
 import 'package:cataas/core/error/failures.dart';
 import 'package:cataas/features/cataas/domain/repositories/i_cat_repository.dart';
 import 'package:cataas/features/cataas/domain/usecases/save_cat_locally_usecase_impl.dart';
-import 'package:dartz/dartz.dart';
+import 'package:fpdart/fpdart.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 

@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:cataas/features/cataas/data/models/cat_model.dart';
 import 'package:cataas/features/cataas/domain/entities/cat.dart';
-import 'package:dartz/dartz.dart';
+import 'package:fpdart/fpdart.dart';
 import 'package:flutter_test/flutter_test.dart';
 import '../../../../fixtures/fixture_reader.dart';
 

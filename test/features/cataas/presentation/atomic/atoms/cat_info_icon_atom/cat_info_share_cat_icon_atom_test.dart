@@ -2,7 +2,7 @@ import 'package:cataas/features/cataas/presentation/atomic/atoms/cat_info_icon_a
 import 'package:cataas/features/cataas/presentation/atomic/atoms/cat_toast_atom/cat_toast_failure_atom.dart';
 import 'package:cataas/features/cataas/presentation/atomic/atoms/show_toast_atom/i_show_toast_atom.dart';
 import 'package:cataas/features/cataas/presentation/usecases/i_share_cat_usecase.dart';
-import 'package:dartz/dartz.dart';
+import 'package:fpdart/fpdart.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 

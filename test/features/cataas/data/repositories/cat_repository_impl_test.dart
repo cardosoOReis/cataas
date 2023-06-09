@@ -4,7 +4,7 @@ import 'package:cataas/features/cataas/data/datasources/i_cat_local_datasource.d
 import 'package:cataas/features/cataas/data/datasources/i_cat_remote_datasource.dart';
 import 'package:cataas/features/cataas/data/repositories/cat_repository_impl.dart';
 import 'package:cataas/features/cataas/domain/repositories/i_cat_repository.dart';
-import 'package:dartz/dartz.dart';
+import 'package:fpdart/fpdart.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
