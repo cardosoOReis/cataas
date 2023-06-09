@@ -4,7 +4,7 @@ import 'i_network_info.dart';
 
 class NetworkInfoImpl implements INetworkInfo {
   final InternetConnectionChecker connectionChecker;
-  NetworkInfoImpl({
+  const NetworkInfoImpl({
     required this.connectionChecker,
   });
 

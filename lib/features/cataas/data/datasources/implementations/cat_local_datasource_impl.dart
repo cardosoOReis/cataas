@@ -4,7 +4,7 @@ import '../i_cat_local_datasource.dart';
 
 class CatLocalDatasourceImpl implements ICatLocalDatasource {
   final ISaveImageLocallyService _service;
-  CatLocalDatasourceImpl({
+  const CatLocalDatasourceImpl({
     required ISaveImageLocallyService service,
   }) : _service = service;
   @override

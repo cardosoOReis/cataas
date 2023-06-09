@@ -16,7 +16,7 @@ import '../i_cat_remote_datasource.dart';
 class CatRemoteDatasourceImpl implements ICatRemoteDatasource {
   final Dio _client;
   final IShareImageService _shareImageService;
-  CatRemoteDatasourceImpl({
+  const CatRemoteDatasourceImpl({
     required Dio client,
     required IShareImageService shareImageService,
   })  : _shareImageService = shareImageService,

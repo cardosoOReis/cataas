@@ -6,6 +6,8 @@ import '../../error/failures.dart';
 import 'i_open_url_on_browser_service.dart';
 
 class OpenUrlOnBrowserServiceImpl implements IOpenUrlOnBrowserService {
+  const OpenUrlOnBrowserServiceImpl();
+
   @override
   Future<Either<Failure, void>> call(String url) async {
     try {
@@ -15,7 +17,7 @@ class OpenUrlOnBrowserServiceImpl implements IOpenUrlOnBrowserService {
       );
 
       if (!result) {
-        throw const Left(CouldntOpenUrlOnBrowserFailure());
+        return const Left(CouldntOpenUrlOnBrowserFailure());
       }
 
       return const Right(null);

@@ -5,6 +5,8 @@ import '../../error/exceptions.dart';
 import 'i_save_image_locally_service.dart';
 
 class SaveImageLocallyServiceImpl implements ISaveImageLocallyService {
+  const SaveImageLocallyServiceImpl();
+
   @override
   Future<void> saveImage({required String url}) async {
     try {
