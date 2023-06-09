@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../../core/extensions/string_extensions.dart';
+import '../../../configs/app_colors.dart';
 
 class DropdownFilterAtom extends StatefulWidget {
   final void Function(String?) onFilterFieldValueChanged;
@@ -15,16 +16,15 @@ class DropdownFilterAtom extends StatefulWidget {
 }
 
 class _DropdownFilterAtomState extends State<DropdownFilterAtom> {
-  final _dropdownBorderRadius = 3.0;
-  // final 
   String? _currentValue;
 
   @override
   Widget build(BuildContext context) {
+    const dropdownBorderRadius = 3.0;
     return DecoratedBox(
       decoration: BoxDecoration(
-        border: Border.all(color: Colors.grey),
-        borderRadius: BorderRadius.circular(_dropdownBorderRadius)
+        border: Border.all(color: AppColors.grey),
+        borderRadius: BorderRadius.circular(dropdownBorderRadius),
       ),
       child: DropdownButton(
         value: _currentValue,

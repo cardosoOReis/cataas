@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../../configs/app_colors.dart';
 import 'cat_toast_atom.dart';
 
 class CatToastFailureAtom extends CatToastAtom {
@@ -7,7 +8,7 @@ class CatToastFailureAtom extends CatToastAtom {
     super.key,
     required super.text,
   }) : super(
-          color: Colors.redAccent,
+          color: AppColors.red,
           icon: const Icon(Icons.error),
         );
 }

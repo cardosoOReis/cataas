@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../configs/app_colors.dart';
 import '../../../configs/service_locator.dart';
 import '../../../domain/entities/cat.dart';
 import '../atoms/cat_info_icon_atom/cat_info_copy_cat_id_icon_atom.dart';
@@ -21,7 +22,7 @@ class CatInfoMolecule extends StatelessWidget {
       decoration: const BoxDecoration(
         border: Border(
           top: BorderSide(
-            color: Colors.black,
+            color: AppColors.black,
             width: 2,
           ),
         ),

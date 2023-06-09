@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../../configs/app_colors.dart';
 import 'cat_toast_atom.dart';
 
 class CatToastSucessAtom extends CatToastAtom {
@@ -7,7 +8,7 @@ class CatToastSucessAtom extends CatToastAtom {
     super.key,
     required super.text,
   }) : super(
-          color: Colors.greenAccent,
+          color: AppColors.green,
           icon: const Icon(Icons.check),
         );
 }

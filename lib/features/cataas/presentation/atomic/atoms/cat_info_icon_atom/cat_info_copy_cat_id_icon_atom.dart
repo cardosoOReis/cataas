@@ -1,3 +1,4 @@
+import 'package:cataas/features/cataas/configs/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -14,7 +15,7 @@ class CatInfoCopyCatIdIconAtom extends CatInfoIconAtom {
     required String catId,
     required BuildContext context,
   }) : super(
-          color: Colors.grey.shade300,
+          color: AppColors.lightGrey,
           icon: const FaIcon(Icons.copy),
           onTap: () async {
             showToastAtom(
@@ -22,7 +23,7 @@ class CatInfoCopyCatIdIconAtom extends CatInfoIconAtom {
               toast: CatToastAtom(
                 text: AppStrings.copyCatIdSucess,
                 icon: const Icon(Icons.copy),
-                color: Colors.grey.shade300,
+                color: AppColors.lightGrey,
               ),
             );
             await Clipboard.setData(ClipboardData(text: catId));

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../configs/app_colors.dart';
+
 class MainCatFrameAtom extends StatelessWidget {
   final Widget child;
 
@@ -11,19 +13,19 @@ class MainCatFrameAtom extends StatelessWidget {
       decoration: const BoxDecoration(
         boxShadow: [
           BoxShadow(
-            color: Colors.black,
+            color: AppColors.black,
             spreadRadius: 6,
           ),
           BoxShadow(
-            color: Colors.white,
+            color: AppColors.white,
             spreadRadius: 4,
           ),
           BoxShadow(
-            color: Colors.black,
+            color: AppColors.black,
             spreadRadius: 2,
           ),
           BoxShadow(
-            color: Colors.white,
+            color: AppColors.white,
           ),
         ],
       ),
