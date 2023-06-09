@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../configs/app_colors.dart';
 import '../../../configs/app_strings.dart';
 import '../../cubits/cat_cubit.dart';
-import '../atoms/default_cat_text_field.dart';
+import '../atoms/cat_text_field/cat_id_or_tag_text_field.dart';
 import '../atoms/dropdown_filter_atom.dart';
 import '../atoms/get_cat_button_atom.dart';
 
@@ -37,19 +37,12 @@ class _GetSpecificCatMoleculeState extends State<GetSpecificCatMolecule> {
               child: GetCatButtonAtom(
                 title: AppStrings.getCatByIdOrTag,
                 backgroundColor: AppColors.terciary,
-                onTap: () =>
-                    cubit.onGetCatByIdOrTagButtonTap(_controller.text),
+                onTap: () => cubit.onGetCatByIdOrTagButtonTap(_controller.text),
               ),
             ),
             Row(
               children: [
-                Expanded(
-                  child: DefaultCatTextField(
-                    labelText: 'Id or Tag',
-                    hintText: "Get a cat based on it's id or tag",
-                    controller: _controller,
-                  ),
-                ),
+                Expanded(child: CatIdOrTagTextField(controller: _controller)),
                 Padding(
                   padding: const EdgeInsets.only(left: 8.0),
                   child: DropdownFilterAtom(

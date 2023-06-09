@@ -1,8 +1,8 @@
-import 'package:cataas/features/cataas/configs/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import '../../../../configs/app_colors.dart';
 import '../../../../configs/app_strings.dart';
 import '../cat_toast_atom/cat_toast_atom.dart';
 import '../show_toast_atom/i_show_toast_atom.dart';

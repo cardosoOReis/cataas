@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../configs/app_colors.dart';
 import '../../../configs/app_strings.dart';
 import '../../cubits/cat_cubit.dart';
-import '../atoms/default_cat_text_field.dart';
+import '../atoms/cat_text_field/cat_message_text_field.dart';
 import '../atoms/get_cat_button_atom.dart';
 
 class GetRandomCatMolecule extends StatelessWidget {
@@ -23,11 +23,7 @@ class GetRandomCatMolecule extends StatelessWidget {
             onTap: cubit.onGetRandomCatButtonTap,
           ),
         ),
-        DefaultCatTextField(
-          labelText: 'Text',
-          hintText: 'Add some text to your cat image.',
-          onValueChanged: cubit.onTextTextFieldValueChanged,
-        ),
+        CatMessageTextField(onValueChanged: cubit.onTextTextFieldValueChanged),
       ],
     );
   }

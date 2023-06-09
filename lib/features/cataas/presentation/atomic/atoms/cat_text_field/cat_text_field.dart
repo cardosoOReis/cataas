@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class DefaultCatTextField extends StatefulWidget {
+class CatTextField extends StatefulWidget {
   final String labelText;
   final String hintText;
   final void Function(String)? onValueChanged;
   final TextEditingController? controller;
-  const DefaultCatTextField({
+  const CatTextField({
     Key? key,
     required this.labelText,
     required this.hintText,
@@ -14,10 +14,10 @@ class DefaultCatTextField extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  State<DefaultCatTextField> createState() => _DefaultCatTextFieldState();
+  State<CatTextField> createState() => _CatTextFieldState();
 }
 
-class _DefaultCatTextFieldState extends State<DefaultCatTextField> {
+class _CatTextFieldState extends State<CatTextField> {
   @override
   Widget build(BuildContext context) {
     return TextField(
