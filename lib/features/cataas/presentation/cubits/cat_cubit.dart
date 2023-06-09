@@ -6,7 +6,7 @@ import '../../../../core/error/failures.dart';
 import '../../domain/entities/cat.dart';
 import '../usecases/i_get_cat_by_id_or_tag_usecase.dart';
 import '../usecases/i_get_random_cat_usecase.dart';
-import '../utils/app_strings.dart';
+import '../../configs/app_strings.dart';
 
 part 'cat_state.dart';
 

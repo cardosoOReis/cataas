@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../service_locator.dart';
+import '../../../configs/service_locator.dart';
 import '../atoms/cat_info_icon_atom/cat_info_copy_cat_id_icon_atom.dart';
 import '../atoms/cat_info_icon_atom/cat_info_save_cat_icon_atom.dart';
 import '../atoms/cat_info_icon_atom/cat_info_share_cat_icon_atom.dart';

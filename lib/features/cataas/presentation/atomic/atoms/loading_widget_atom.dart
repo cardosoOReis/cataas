@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../utils/app_colors.dart';
+import '../../../configs/app_colors.dart';
 
 class LoadingWidgetAtom extends StatelessWidget {
   final double? value;

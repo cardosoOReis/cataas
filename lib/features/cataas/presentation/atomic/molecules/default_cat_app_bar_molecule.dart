@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../utils/app_colors.dart';
+import '../../../configs/app_colors.dart';
 import '../atoms/app_bar_icon_atom/app_bar_icon_atom.dart';
 
 class DefaultCatAppBarMolecule extends StatelessWidget

@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../../usecases/i_save_cat_locally_usecase.dart';
-import '../../../utils/app_colors.dart';
-import '../../../utils/app_strings.dart';
+import '../../../../configs/app_colors.dart';
+import '../../../../configs/app_strings.dart';
 import '../cat_toast_atom/cat_toast_failure_atom.dart';
 import '../cat_toast_atom/cat_toast_sucess_atom.dart';
 import '../show_toast_atom/i_show_toast_atom.dart';

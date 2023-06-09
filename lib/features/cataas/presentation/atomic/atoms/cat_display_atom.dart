@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../domain/entities/cat.dart';
-import '../../utils/app_strings.dart';
+import '../../../configs/app_strings.dart';
 import 'loading_widget_atom.dart';
 
 class CatDisplayAtom extends StatelessWidget {
