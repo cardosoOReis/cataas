@@ -44,10 +44,10 @@ void initServices() {
   );
   // Services
   sl.registerLazySingleton<ISaveImageLocallyService>(
-    () => SaveImageLocallyServiceImpl(),
+    () => const SaveImageLocallyServiceImpl(),
   );
   sl.registerLazySingleton<IOpenUrlOnBrowserService>(
-    () => OpenUrlOnBrowserServiceImpl(),
+    () => const OpenUrlOnBrowserServiceImpl(),
   );
   sl.registerLazySingleton<IShareImageService>(
     () => ShareImageServiceImpl(),
