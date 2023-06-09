@@ -35,7 +35,7 @@ class CatCubit extends Cubit<CatState> {
       filter: const None(),
     );
     final result = await _getRandomCatUsecase(params);
-    _foldCatOrFailure(result);
+    emit(_foldCatOrFailure(result));
   }
 
   Future<void> onGetRandomCatButtonTap() async {
@@ -46,7 +46,7 @@ class CatCubit extends Cubit<CatState> {
       filter: _filter.toOption(),
     );
     final result = await _getRandomCatUsecase(params);
-    _foldCatOrFailure(result);
+    emit(_foldCatOrFailure(result));
   }
 
   Future<void> onGetCatByIdOrTagButtonTap(String value) async {
@@ -58,7 +58,7 @@ class CatCubit extends Cubit<CatState> {
       filter: _filter.toOption(),
     );
     final result = await _getCatByIdOrTagUsecase(params);
-    _foldCatOrFailure(result);
+    emit(_foldCatOrFailure(result));
   }
 
   void onTextTextFieldValueChanged(String? text) {
@@ -69,20 +69,16 @@ class CatCubit extends Cubit<CatState> {
     _filter = text;
   }
 
-  void _foldCatOrFailure(Either<Failure, Cat> result) {
-    result.fold(
-      (failure) {
-        emit(state.copyWith(
-          status: CatStatus.failure,
-          failure: failure,
-        ));
-      },
-      (catEntity) {
-        emit(state.copyWith(
-          status: CatStatus.success,
-          catEntity: catEntity,
-        ));
-      },
+  CatState _foldCatOrFailure(Either<Failure, Cat> result) {
+    return result.fold(
+      (failure) => state.copyWith(
+        status: CatStatus.failure,
+        failure: failure,
+      ),
+      (cat) => state.copyWith(
+        status: CatStatus.success,
+        catEntity: cat,
+      ),
     );
   }
 }
