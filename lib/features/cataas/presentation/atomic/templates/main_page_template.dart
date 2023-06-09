@@ -31,17 +31,12 @@ class MainPageTemplate extends StatelessWidget {
       ),
       body: ListView(
         padding: const EdgeInsets.all(10),
-        children: [
-          const Padding(
+        children: const [
+          Padding(
             padding: EdgeInsets.all(8.0),
             child: ResultDisplayOrganism(),
           ),
-          CatControlsOrganism(
-            onGetRandomCatButtonTap: onGetRandomCatButtonTap,
-            onGetCatByIdOrTagButtonTap: onGetCatByIdOrTagButtonTap,
-            onTextTextFieldChanged: onTextTextFieldValueChanged,
-            onFilterFieldValueChanged: onFilterFieldValueChanged,
-          ),
+          CatControlsOrganism(),
         ],
       ),
     );

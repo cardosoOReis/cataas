@@ -9,13 +9,7 @@ import '../atoms/dropdown_filter_atom.dart';
 import '../atoms/get_cat_button_atom.dart';
 
 class GetSpecificCatMolecule extends StatefulWidget {
-  final void Function(String value) onGetCatByIdOrTagButtonTap;
-  final void Function(String?) onFilterFieldValueChanged;
-  const GetSpecificCatMolecule({
-    Key? key,
-    required this.onGetCatByIdOrTagButtonTap,
-    required this.onFilterFieldValueChanged,
-  }) : super(key: key);
+  const GetSpecificCatMolecule({Key? key}) : super(key: key);
 
   @override
   State<GetSpecificCatMolecule> createState() => _GetSpecificCatMoleculeState();
@@ -32,27 +26,19 @@ class _GetSpecificCatMoleculeState extends State<GetSpecificCatMolecule> {
 
   @override
   Widget build(BuildContext context) {
+    final cubit = BlocProvider.of<CatCubit>(context);
+
     return BlocBuilder<CatCubit, CatState>(
       builder: (context, state) {
         return Column(
           children: [
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 20),
-              child: SizedBox(
-                width: double.maxFinite,
-                child: Stack(
-                  children: [
-                    Align(
-                      alignment: Alignment.center,
-                      child: GetCatButtonAtom(
-                        title: AppStrings.getCatByIdOrTag,
-                        backgroundColor: AppColors.terciary,
-                        onTap: () =>
-                            widget.onGetCatByIdOrTagButtonTap(_controller.text),
-                      ),
-                    ),
-                  ],
-                ),
+              child: GetCatButtonAtom(
+                title: AppStrings.getCatByIdOrTag,
+                backgroundColor: AppColors.terciary,
+                onTap: () =>
+                    cubit.onGetCatByIdOrTagButtonTap(_controller.text),
               ),
             ),
             Row(
@@ -67,7 +53,8 @@ class _GetSpecificCatMoleculeState extends State<GetSpecificCatMolecule> {
                 Padding(
                   padding: const EdgeInsets.only(left: 8.0),
                   child: DropdownFilterAtom(
-                    onFilterFieldValueChanged: widget.onFilterFieldValueChanged,
+                    onFilterFieldValueChanged:
+                        cubit.onFilterTextFieldValueChanged,
                   ),
                 ),
               ],
