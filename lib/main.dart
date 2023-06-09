@@ -1,12 +1,12 @@
-import 'package:cataas/features/cataas/configs/app_initializer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'features/cataas/presentation/cubits/cat_cubit.dart';
-import 'features/cataas/presentation/pages/cat_page.dart';
 import 'features/cataas/configs/app_colors.dart';
+import 'features/cataas/configs/app_initializer.dart';
 import 'features/cataas/configs/app_strings.dart';
 import 'features/cataas/configs/service_locator.dart';
+import 'features/cataas/presentation/cubits/cat_cubit.dart';
+import 'features/cataas/presentation/pages/cat_page.dart';
 
 void main() async {
   await AppInitializer.init();

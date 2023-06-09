@@ -8,18 +8,10 @@ import '../organisms/result_display_organism.dart';
 class MainPageTemplate extends StatelessWidget {
   final String title;
   final List<AppBarIconAtom> appBarIcons;
-  final void Function() onGetRandomCatButtonTap;
-  final void Function(String value) onGetCatByIdOrTagButtonTap;
-  final void Function(String?) onTextTextFieldValueChanged;
-  final void Function(String?) onFilterFieldValueChanged;
   const MainPageTemplate({
     super.key,
     required this.appBarIcons,
     required this.title,
-    required this.onGetRandomCatButtonTap,
-    required this.onGetCatByIdOrTagButtonTap,
-    required this.onTextTextFieldValueChanged,
-    required this.onFilterFieldValueChanged,
   });
 
   @override

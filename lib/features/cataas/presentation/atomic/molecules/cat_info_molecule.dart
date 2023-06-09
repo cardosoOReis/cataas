@@ -1,3 +1,4 @@
+import 'package:cataas/features/cataas/domain/entities/cat.dart';
 import 'package:flutter/material.dart';
 
 import '../../../configs/service_locator.dart';
@@ -7,13 +8,8 @@ import '../atoms/cat_info_icon_atom/cat_info_share_cat_icon_atom.dart';
 import '../atoms/show_toast_atom/i_show_toast_atom.dart';
 
 class CatInfoMolecule extends StatelessWidget {
-  final String catId;
-  final String url;
-  const CatInfoMolecule({
-    Key? key,
-    required this.catId,
-    required this.url,
-  }) : super(key: key);
+  final Cat cat;
+  const CatInfoMolecule({Key? key, required this.cat}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -35,12 +31,12 @@ class CatInfoMolecule extends StatelessWidget {
           Expanded(
             child: Row(
               children: [
-                Text('Cat ID: $catId'),
+                Text('Cat ID: ${cat.id}'),
                 const SizedBox(width: 10),
                 CatInfoCopyCatIdIconAtom(
                   showToastAtom: showToastAtom,
                   context: context,
-                  catId: catId,
+                  catId: cat.id,
                 ),
               ],
             ),
@@ -48,14 +44,14 @@ class CatInfoMolecule extends StatelessWidget {
           CatInfoShareCatIconAtom(
             usecase: sl(),
             showToastAtom: showToastAtom,
-            url: url,
+            url: cat.url,
             context: context,
           ),
           const SizedBox(width: 10),
           CatInfoSaveCatIconAtom(
             usecase: sl(),
             showToastAtom: showToastAtom,
-            url: url,
+            url: cat.url,
             context: context,
           ),
         ],

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import '../../../usecases/i_save_cat_locally_usecase.dart';
 import '../../../../configs/app_colors.dart';
 import '../../../../configs/app_strings.dart';
+import '../../../usecases/i_save_cat_locally_usecase.dart';
 import '../cat_toast_atom/cat_toast_failure_atom.dart';
 import '../cat_toast_atom/cat_toast_sucess_atom.dart';
 import '../show_toast_atom/i_show_toast_atom.dart';
@@ -32,10 +32,10 @@ class CatInfoSaveCatIconAtom extends CatInfoIconAtom {
   ) async {
     final result = await usecase.call(SaveCatLocallyUsecaseParams(url: url));
     final toast = result.fold(
-      (failure) => CatToastFailureAtom(
+      (failure) => const CatToastFailureAtom(
         text: AppStrings.saveCatLocallyFailure,
       ),
-      (sucess) => CatToastSucessAtom(
+      (sucess) => const CatToastSucessAtom(
         text: AppStrings.saveCatLocallySuccess,
       ),
     );

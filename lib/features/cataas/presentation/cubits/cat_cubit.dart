@@ -3,10 +3,10 @@ import 'package:equatable/equatable.dart';
 import 'package:fpdart/fpdart.dart';
 
 import '../../../../core/error/failures.dart';
+import '../../configs/app_strings.dart';
 import '../../domain/entities/cat.dart';
 import '../usecases/i_get_cat_by_id_or_tag_usecase.dart';
 import '../usecases/i_get_random_cat_usecase.dart';
-import '../../configs/app_strings.dart';
 
 part 'cat_state.dart';
 
@@ -29,10 +29,10 @@ class CatCubit extends Cubit<CatState> {
 
   Future<void> getWelcomeCat() async {
     emit(state.copyWith(status: CatStatus.loading));
-    final params = GetRandomCatUsecaseParams(
+    const params = GetRandomCatUsecaseParams(
       text: Some(AppStrings.initialCatText),
-      textColor: const None(),
-      filter: const None(),
+      textColor: None(),
+      filter: None(),
     );
     final result = await _getRandomCatUsecase(params);
     emit(_foldCatOrFailure(result));

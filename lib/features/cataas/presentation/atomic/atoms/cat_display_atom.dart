@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 
-import '../../../domain/entities/cat.dart';
 import '../../../configs/app_strings.dart';
+import '../../../domain/entities/cat.dart';
 import 'loading_widget_atom.dart';
 
 class CatDisplayAtom extends StatelessWidget {
-  final Cat catEntity;
-  const CatDisplayAtom({super.key, required this.catEntity});
+  final Cat cat;
+  const CatDisplayAtom({super.key, required this.cat});
 
   @override
   Widget build(BuildContext context) {
     return Image.network(
-      catEntity.url,
+      cat.url,
       loadingBuilder: (context, child, loadingProgress) {
         if (loadingProgress == null) {
           return child;
@@ -28,11 +28,9 @@ class CatDisplayAtom extends StatelessWidget {
         );
       },
       errorBuilder: (context, error, stackTrace) {
-        return Padding(
-          padding: const EdgeInsets.only(top: 10),
-          child: Text(
-            AppStrings.getCatFailure,
-          ),
+        return const Padding(
+          padding: EdgeInsets.only(top: 10),
+          child: Text(AppStrings.getCatFailure),
         );
       },
     );
