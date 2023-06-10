@@ -68,6 +68,17 @@ class CatRepositoryImpl implements ICatRepository {
     }
   }
 
+  @override
+  Future<Either<Failure, void>> shareCat(ShareCatUsecaseParams params) async {
+    try {
+      final result = await _remoteDatasource.shareCat(params);
+
+      return Right(result);
+    } on ShareCatException {
+      return const Left(ShareCatFailure());
+    }
+  }
+
   Future<Either<Failure, Cat>> _getCat<Params>(
     Future<CatModel> Function() getCat,
   ) async {
@@ -85,19 +96,8 @@ class CatRepositoryImpl implements ICatRepository {
       return Left(ParseDataFailure(exception: e));
     } on ServerException catch (e) {
       return Left(ServerFailure(exception: e));
-    } catch (_) {
-      rethrow;
-    }
-  }
-
-  @override
-  Future<Either<Failure, void>> shareCat(ShareCatUsecaseParams params) async {
-    try {
-      final result = await _remoteDatasource.shareCat(params);
-
-      return Right(result);
-    } on ShareCatException {
-      return const Left(ShareCatFailure());
+    } catch (e) {
+      return Left(GeneralFailure(exception: e));
     }
   }
 }

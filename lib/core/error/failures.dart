@@ -75,7 +75,7 @@ class ServerFailure extends Failure {
 }
 
 class GeneralFailure extends Failure {
-  final Exception exception;
+  final dynamic exception;
   const GeneralFailure({
     required this.exception,
   });
