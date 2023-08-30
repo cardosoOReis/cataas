@@ -11,7 +11,6 @@ class GetRandomCatUsecaseImpl implements IGetRandomCatUsecase {
   const GetRandomCatUsecaseImpl(this._repository);
 
   @override
-  Future<Either<Failure, Cat>> call(GetRandomCatUsecaseParams params) {
-    return _repository.getRandomCat(params);
-  }
+  Future<Either<Failure, Cat>> call(GetRandomCatUsecaseParams params) =>
+      _repository.getRandomCat(params);
 }

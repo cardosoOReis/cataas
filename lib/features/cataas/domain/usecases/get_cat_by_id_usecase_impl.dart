@@ -11,7 +11,6 @@ class GetCatByIdUsecaseImpl implements IGetCatByIdUsecase {
   const GetCatByIdUsecaseImpl(this._repository);
 
   @override
-  Future<Either<Failure, Cat>> call(GetCatByIdUsecaseParams params) {
-    return _repository.getCatById(params);
-  }
+  Future<Either<Failure, Cat>> call(GetCatByIdUsecaseParams params) =>
+      _repository.getCatById(params);
 }

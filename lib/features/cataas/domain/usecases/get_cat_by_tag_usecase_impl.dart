@@ -11,7 +11,5 @@ class GetCatByTagUsecaseImpl implements IGetCatByTagUsecase {
   const GetCatByTagUsecaseImpl(this._repository);
 
   @override
-  Future<Either<Failure, Cat>> call(params) {
-    return _repository.getCatByTag(params);
-  }
+  Future<Either<Failure, Cat>> call(params) => _repository.getCatByTag(params);
 }

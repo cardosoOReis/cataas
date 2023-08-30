@@ -5,16 +5,14 @@ import '../molecules/get_specific_cat_molecule.dart';
 
 class CatControlsOrganism extends StatelessWidget {
   const CatControlsOrganism({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
-  Widget build(BuildContext context) {
-    return const Column(
-      children: [
-        GetRandomCatMolecule(),
-        GetSpecificCatMolecule(),
-      ],
-    );
-  }
+  Widget build(BuildContext context) => const Column(
+        children: [
+          GetRandomCatMolecule(),
+          GetSpecificCatMolecule(),
+        ],
+      );
 }

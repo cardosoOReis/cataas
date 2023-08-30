@@ -22,7 +22,7 @@ class CatCubit extends Cubit<CatState> {
   String? _text;
   String? _filter;
 
-  Future<void> onInit() async => await getWelcomeCat();
+  Future<void> onInit() async => getWelcomeCat();
 
   Future<void> getWelcomeCat() async {
     emit(state.copyWith(status: CatStatus.loading));
@@ -66,16 +66,14 @@ class CatCubit extends Cubit<CatState> {
     _filter = text;
   }
 
-  CatState _foldCatOrFailure(Either<Failure, Cat> result) {
-    return result.fold(
-      (failure) => state.copyWith(
-        status: CatStatus.failure,
-        failure: failure,
-      ),
-      (cat) => state.copyWith(
-        status: CatStatus.success,
-        catEntity: cat,
-      ),
-    );
-  }
+  CatState _foldCatOrFailure(Either<Failure, Cat> result) => result.fold(
+        (failure) => state.copyWith(
+          status: CatStatus.failure,
+          failure: failure,
+        ),
+        (cat) => state.copyWith(
+          status: CatStatus.success,
+          catEntity: cat,
+        ),
+      );
 }

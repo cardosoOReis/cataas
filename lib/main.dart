@@ -18,21 +18,18 @@ class Main extends StatelessWidget {
   const Main({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: BlocProvider(
-        create: (context) => _initCubit(),
-        child: const CatPage(),
-      ),
-      title: AppStrings.title,
-      theme: ThemeData(primaryColor: AppColors.primary),
-    );
-  }
+  Widget build(BuildContext context) => MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: BlocProvider(
+          create: (context) => _initCubit(),
+          child: const CatPage(),
+        ),
+        title: AppStrings.title,
+        theme: ThemeData(primaryColor: AppColors.primary),
+      );
 
   CatCubit _initCubit() {
-    final cubit = sl<CatCubit>();
-    cubit.onInit();
+    final cubit = sl<CatCubit>()..onInit();
 
     return cubit;
   }

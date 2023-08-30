@@ -10,7 +10,6 @@ class SaveCatLocallyUsecaseImpl implements ISaveCatLocallyUsecase {
   const SaveCatLocallyUsecaseImpl(this._repository);
 
   @override
-  Future<Either<Failure, void>> call(SaveCatLocallyUsecaseParams params) {
-    return _repository.saveCatLocally(params);
-  }
+  Future<Either<Failure, void>> call(SaveCatLocallyUsecaseParams params) =>
+      _repository.saveCatLocally(params);
 }

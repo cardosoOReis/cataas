@@ -21,9 +21,9 @@ import 'package:cataas/features/cataas/presentation/usecases/i_get_cat_by_tag_us
 import 'package:cataas/features/cataas/presentation/usecases/i_get_random_cat_usecase.dart';
 import 'package:cataas/features/cataas/presentation/usecases/i_save_cat_locally_usecase.dart';
 import 'package:cataas/features/cataas/presentation/usecases/i_share_cat_usecase.dart';
-import 'package:fpdart/fpdart.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/widgets.dart';
+import 'package:fpdart/fpdart.dart';
 import 'package:mocktail/mocktail.dart';
 
 class MockGetRandomCatUsecase extends Mock implements GetRandomCatUsecaseImpl {}

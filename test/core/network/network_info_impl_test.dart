@@ -1,8 +1,8 @@
 import 'package:cataas/core/network/i_network_info.dart';
 import 'package:cataas/core/network/network_info_impl.dart';
+import 'package:flutter_test/flutter_test.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:flutter_test/flutter_test.dart';
 
 class MockInternetConnectionChecker extends Mock
     implements InternetConnectionChecker {}

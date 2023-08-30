@@ -7,8 +7,8 @@ import 'app_bar_icon_atom.dart';
 
 class AppBarBeerIconAtom extends AppBarIconAtom {
   AppBarBeerIconAtom({
-    super.key,
     required IOpenUrlOnBrowserService service,
+    super.key,
   }) : super(
           icon: const FaIcon(
             FontAwesomeIcons.beerMugEmpty,

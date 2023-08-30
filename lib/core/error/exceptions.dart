@@ -11,8 +11,8 @@ class CatNotFoundException extends ApiException {
   const CatNotFoundException({
     required super.statusCode,
   }) : super(
-          message:
-              "Sorry, it appears we couldn't find your cat 😿. Could you please try again?",
+          message: """
+Sorry, it appears we couldn't find your cat 😿. Could you please try again?""",
         );
 }
 

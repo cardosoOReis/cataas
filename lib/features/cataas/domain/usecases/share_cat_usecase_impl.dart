@@ -10,7 +10,6 @@ class ShareCatUsecaseImpl implements IShareCatUsecase {
   const ShareCatUsecaseImpl(this._repository);
 
   @override
-  Future<Either<Failure, void>> call(ShareCatUsecaseParams params) {
-    return _repository.shareCat(params);
-  }
+  Future<Either<Failure, void>> call(ShareCatUsecaseParams params) =>
+      _repository.shareCat(params);
 }

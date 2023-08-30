@@ -18,11 +18,11 @@ class AppStrings {
   static const saveCatLocallyFailure =
       'Sorry, it looks like something went wrong when saving your cat 😿.';
 
-  static const shareCatFailure =
-      'It appears that an error happened when we tried to share this cat. We are sorry 😿.';
+  static const shareCatFailure = '''
+It appears that an error happened when we tried to share this cat. We are sorry 😿.''';
 
-  static const getCatFailure =
-      'Oh oh, it appears something went wrong when fetching your cat 😿. Could you please try again?';
+  static const getCatFailure = '''
+Oh oh, it appears something went wrong when fetching your cat 😿. Could you please try again?''';
 
   static const twitterUrl = 'https://twitter.com/apicataas';
 

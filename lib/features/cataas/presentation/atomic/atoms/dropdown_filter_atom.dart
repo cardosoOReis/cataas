@@ -7,9 +7,9 @@ class DropdownFilterAtom extends StatefulWidget {
   final void Function(String?) onFilterFieldValueChanged;
 
   const DropdownFilterAtom({
-    Key? key,
     required this.onFilterFieldValueChanged,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   State<DropdownFilterAtom> createState() => _DropdownFilterAtomState();
@@ -21,6 +21,7 @@ class _DropdownFilterAtomState extends State<DropdownFilterAtom> {
   @override
   Widget build(BuildContext context) {
     const dropdownBorderRadius = 3.0;
+
     return DecoratedBox(
       decoration: BoxDecoration(
         border: Border.all(color: AppColors.grey),

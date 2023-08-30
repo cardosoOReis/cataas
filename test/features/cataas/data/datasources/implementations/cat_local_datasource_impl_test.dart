@@ -31,7 +31,7 @@ void main() {
         ).called(1);
         expect(
           () async =>
-              await datasource.saveCatLocally(mockSaveCatLocallyUsecaseParams),
+              datasource.saveCatLocally(mockSaveCatLocallyUsecaseParams),
           isA<void>(),
         );
       });

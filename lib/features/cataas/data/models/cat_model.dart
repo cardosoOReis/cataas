@@ -48,12 +48,11 @@ class _CatModelFromRequest {
     required this.url,
   });
 
-  factory _CatModelFromRequest.fromJson(Map<String, dynamic> json) {
-    return _CatModelFromRequest(
-      tags: json['tags'].cast<String>(),
-      file: json['file'],
-      id: json['_id'],
-      url: ApiEndpoints.baseUrl + json['url'],
-    );
-  }
+  factory _CatModelFromRequest.fromJson(Map<String, dynamic> json) =>
+      _CatModelFromRequest(
+        tags: json['tags'].cast<String>(),
+        file: json['file'],
+        id: json['_id'],
+        url: ApiEndpoints.baseUrl + json['url'],
+      );
 }

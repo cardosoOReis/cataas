@@ -7,18 +7,16 @@ import '../molecules/cat_info_molecule.dart';
 class CatSucessOrganism extends StatelessWidget {
   final Cat cat;
   const CatSucessOrganism({
-    super.key,
     required this.cat,
+    super.key,
   });
 
   @override
-  Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Center(child: CatDisplayAtom(cat: cat)),
-        CatInfoMolecule(cat: cat),
-      ],
-    );
-  }
+  Widget build(BuildContext context) => Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Center(child: CatDisplayAtom(cat: cat)),
+          CatInfoMolecule(cat: cat),
+        ],
+      );
 }

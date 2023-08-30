@@ -1,11 +1,13 @@
+// ignore_for_file: lines_longer_than_80_chars
+
 import 'package:cataas/core/error/failures.dart';
 import 'package:cataas/core/network/i_network_info.dart';
 import 'package:cataas/features/cataas/data/datasources/i_cat_local_datasource.dart';
 import 'package:cataas/features/cataas/data/datasources/i_cat_remote_datasource.dart';
 import 'package:cataas/features/cataas/data/repositories/cat_repository_impl.dart';
 import 'package:cataas/features/cataas/domain/repositories/i_cat_repository.dart';
-import 'package:fpdart/fpdart.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:fpdart/fpdart.dart';
 import 'package:mocktail/mocktail.dart';
 
 import '../../mocks.dart';
@@ -377,7 +379,7 @@ void main() {
       when(() => mockNetworkInfo.isConnected).thenAnswer((_) async => true);
 
       // Act
-      repository.getCatByIdOrTag(mockGetCatByIdOrTagUsecaseParams);
+      await repository.getCatByIdOrTag(mockGetCatByIdOrTagUsecaseParams);
 
       //Assert
       verify(() => mockNetworkInfo.isConnected).called(1);

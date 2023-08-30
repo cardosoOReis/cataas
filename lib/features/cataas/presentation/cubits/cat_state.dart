@@ -23,13 +23,12 @@ class CatState extends Equatable {
     CatStatus? status,
     Cat? catEntity,
     Failure? failure,
-  }) {
-    return CatState(
-      status: status ?? this.status,
-      catEntity: catEntity ?? this.catEntity,
-      failure: failure ?? this.failure,
-    );
-  }
+  }) =>
+      CatState(
+        status: status ?? this.status,
+        catEntity: catEntity ?? this.catEntity,
+        failure: failure ?? this.failure,
+      );
 }
 
 enum CatStatus { initial, loading, success, failure }

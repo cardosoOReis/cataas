@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../configs/app_colors.dart';
 import '../../../configs/service_locator.dart';
 import '../../../domain/entities/cat.dart';
 import '../atoms/cat_info_icon_atom/cat_info_copy_cat_id_icon_atom.dart';
@@ -10,11 +9,12 @@ import '../atoms/show_toast_atom/i_show_toast_atom.dart';
 
 class CatInfoMolecule extends StatelessWidget {
   final Cat cat;
-  const CatInfoMolecule({Key? key, required this.cat}) : super(key: key);
+  const CatInfoMolecule({required this.cat, super.key});
 
   @override
   Widget build(BuildContext context) {
     final showToastAtom = sl<IShowToastAtom>();
+
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10),
       width: double.maxFinite,
@@ -22,7 +22,6 @@ class CatInfoMolecule extends StatelessWidget {
       decoration: const BoxDecoration(
         border: Border(
           top: BorderSide(
-            color: AppColors.black,
             width: 2,
           ),
         ),

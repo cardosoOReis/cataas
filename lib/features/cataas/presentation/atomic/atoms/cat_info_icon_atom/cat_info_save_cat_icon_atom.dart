@@ -11,11 +11,11 @@ import 'cat_info_icon_atom.dart';
 
 class CatInfoSaveCatIconAtom extends CatInfoIconAtom {
   CatInfoSaveCatIconAtom({
-    super.key,
     required ISaveCatLocallyUsecase usecase,
     required IShowToastAtom showToastAtom,
     required String url,
     required BuildContext context,
+    super.key,
   }) : super(
           color: AppColors.secondary,
           icon: const FaIcon(Icons.download),

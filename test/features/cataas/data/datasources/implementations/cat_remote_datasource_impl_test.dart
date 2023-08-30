@@ -35,7 +35,7 @@ void main() {
       ),
     ).thenAnswer(
       (_) async => Response(
-        requestOptions: RequestOptions(path: ''),
+        requestOptions: RequestOptions(),
         data: jsonDecode(fixture('cat.json')),
         statusCode: 200,
       ),
@@ -50,10 +50,10 @@ void main() {
       ),
     ).thenThrow(
       DioException(
-        requestOptions: RequestOptions(path: ''),
+        requestOptions: RequestOptions(),
         error: 'Not Found',
         response: Response(
-          requestOptions: RequestOptions(path: ''),
+          requestOptions: RequestOptions(),
           statusCode: 404,
         ),
       ),
@@ -68,10 +68,10 @@ void main() {
       ),
     ).thenThrow(
       DioException(
-        requestOptions: RequestOptions(path: ''),
+        requestOptions: RequestOptions(),
         error: 'Server Failure',
         response: Response(
-          requestOptions: RequestOptions(path: ''),
+          requestOptions: RequestOptions(),
           statusCode: 502,
         ),
       ),
@@ -85,7 +85,7 @@ void main() {
         queryParameters: any(named: 'queryParameters'),
       ),
     ).thenThrow(
-      DioException(requestOptions: RequestOptions(path: '')),
+      DioException(requestOptions: RequestOptions()),
     );
   }
 
@@ -121,8 +121,8 @@ void main() {
         //Assert
         expect(result, isA<CatModel>());
       });
-      test(
-          'the returned model should have the text, textColor and filter as it was passed by the params',
+      test('''
+the returned model should have the text, textColor and filter as it was passed by the params''',
           () async {
         // Arrange
         setUpMock200Response();
@@ -155,12 +155,13 @@ void main() {
           final textColor = mockGetCatByIdUsecaseParams.textColor.toNullable();
           final filter = mockGetCatByIdUsecaseParams.filter.toNullable();
           mockHttpClient.get(
-              'https://cataas.com/cat/${mockGetCatByIdUsecaseParams.id}/says/$text',
-              queryParameters: {
-                'json': 'true',
-                'textColor': textColor,
-                'filter': filter,
-              });
+            'https://cataas.com/cat/${mockGetCatByIdUsecaseParams.id}/says/$text',
+            queryParameters: {
+              'json': 'true',
+              'textColor': textColor,
+              'filter': filter,
+            },
+          );
         }).called(1);
       });
     });
@@ -193,8 +194,8 @@ void main() {
           throwsA(isA<ServerException>()),
         );
       });
-      test(
-          'and the status code is not >= 500 or == 404, should throw an [ApiException]',
+      test('''
+and the status code is not >= 500 or == 404, should throw an [ApiException]''',
           () {
         // Arrange
         setUpMockDefaultErrorResponse();
@@ -243,9 +244,10 @@ void main() {
         //Assert
         expect(result, isA<CatModel>());
       });
-      test(
-          'the returned model should have the tag, text, textColor and filter as it was passed by the params',
-          () async {
+      test('''
+              the returned model should have the tag, text, textColor 
+              and filter as it was passed by the params
+              ''', () async {
         // Arrange
         setUpMock200Response();
 
@@ -283,12 +285,13 @@ void main() {
           final textColor = mockGetCatByTagUsecaseParams.textColor.toNullable();
           final filter = mockGetCatByTagUsecaseParams.filter.toNullable();
           mockHttpClient.get(
-              'https://cataas.com/cat/${mockGetCatByTagUsecaseParams.tag}/says/$text',
-              queryParameters: {
-                'json': 'true',
-                'textColor': textColor,
-                'filter': filter,
-              });
+            'https://cataas.com/cat/${mockGetCatByTagUsecaseParams.tag}/says/$text',
+            queryParameters: {
+              'json': 'true',
+              'textColor': textColor,
+              'filter': filter,
+            },
+          );
         }).called(1);
       });
     });
@@ -321,8 +324,8 @@ void main() {
           throwsA(isA<ServerException>()),
         );
       });
-      test(
-          'and the status code is not >= 500 or == 404, should throw an [ApiException]',
+      test('''
+and the status code is not >= 500 or == 404, should throw an [ApiException]''',
           () {
         // Arrange
         setUpMockDefaultErrorResponse();
@@ -369,8 +372,8 @@ void main() {
         //Assert
         expect(result, isA<CatModel>());
       });
-      test(
-          'the returned model should have the tag, text, textColor and filter as it was passed by the params',
+      test('''
+the returned model should have the tag, text, textColor and filter as it was passed by the params''',
           () async {
         // Arrange
         setUpMock200Response();
@@ -444,8 +447,8 @@ void main() {
           throwsA(isA<ServerException>()),
         );
       });
-      test(
-          'and the status code is not >= 500 or == 400, should throw an [ApiException]',
+      test('''
+and the status code is not >= 500 or == 400, should throw an [ApiException]''',
           () {
         // Arrange
         setUpMockDefaultErrorResponse();
@@ -467,7 +470,7 @@ void main() {
       setUpMock200Response();
 
       // Act
-      datasource.getCatByIdOrTag(mockGetCatByIdOrTagUsecaseParams);
+      await datasource.getCatByIdOrTag(mockGetCatByIdOrTagUsecaseParams);
 
       // Assert
       verify(
@@ -492,8 +495,8 @@ void main() {
         //Assert
         expect(result, isA<CatModel>());
       });
-      test(
-          'the returned model should have the tag, text, textColor and filter as it was passed by the params',
+      test('''
+the returned model should have the tag, text, textColor and filter as it was passed by the params''',
           () async {
         // Arrange
         setUpMock200Response();
@@ -569,8 +572,8 @@ void main() {
           throwsA(isA<ServerException>()),
         );
       });
-      test(
-          'and the status code is not >= 500 or == 400, should throw an [ApiException]',
+      test('''
+and the status code is not >= 500 or == 400, should throw an [ApiException]''',
           () {
         // Arrange
         setUpMockDefaultErrorResponse();

@@ -30,30 +30,26 @@ class CatRepositoryImpl implements ICatRepository {
   @override
   Future<Either<Failure, Cat>> getCatById(
     GetCatByIdUsecaseParams params,
-  ) async {
-    return await _getCat(() => _remoteDatasource.getCatById(params));
-  }
+  ) async =>
+      _getCat(() => _remoteDatasource.getCatById(params));
 
   @override
   Future<Either<Failure, Cat>> getCatByTag(
     GetCatByTagUsecaseParams params,
-  ) async {
-    return await _getCat(() => _remoteDatasource.getCatByTag(params));
-  }
+  ) async =>
+      _getCat(() => _remoteDatasource.getCatByTag(params));
 
   @override
   Future<Either<Failure, Cat>> getRandomCat(
     GetRandomCatUsecaseParams params,
-  ) async {
-    return await _getCat(() => _remoteDatasource.getRandomCat(params));
-  }
+  ) async =>
+      _getCat(() => _remoteDatasource.getRandomCat(params));
 
   @override
   Future<Either<Failure, Cat>> getCatByIdOrTag(
     GetCatByIdOrTagUsecaseParams params,
-  ) async {
-    return await _getCat(() => _remoteDatasource.getCatByIdOrTag(params));
-  }
+  ) async =>
+      _getCat(() => _remoteDatasource.getCatByIdOrTag(params));
 
   @override
   Future<Either<Failure, void>> saveCatLocally(

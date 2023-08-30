@@ -39,8 +39,8 @@ class NoInternetConnectionFailure extends Failure {
   const NoInternetConnectionFailure();
 
   @override
-  String get message =>
-      "Uh oh, it looks like you don't have internet connection 😿. Could you please try again later?";
+  String get message => """
+Uh oh, it looks like you don't have internet connection 😿. Could you please try again later?""";
 
   @override
   List<Object?> get props => [];
@@ -67,8 +67,8 @@ class ServerFailure extends Failure {
   });
 
   @override
-  String get message =>
-      'Sorry, we are having some problems with our servers 🙀. Could you please try again later?';
+  String get message => '''
+Sorry, we are having some problems with our servers 🙀. Could you please try again later?''';
 
   @override
   List<Object?> get props => [exception];
@@ -81,8 +81,9 @@ class GeneralFailure extends Failure {
   });
 
   @override
-  String get message =>
-      'Uh oh, it appears something went wrong 🙀. Could you please try again later?';
+  String get message => '''
+Uh oh, it appears something went wrong 🙀. 
+Could you please try again later?''';
 
   @override
   List<Object?> get props => [exception];
@@ -103,8 +104,8 @@ class ShareCatFailure extends Failure {
   const ShareCatFailure();
 
   @override
-  String get message =>
-      'It appears that an error happened when we tried to share this cat. We are sorry 😿.';
+  String get message => '''
+It appears that an error happened when we tried to share this cat. We are sorry 😿.''';
 
   @override
   List<Object?> get props => [];

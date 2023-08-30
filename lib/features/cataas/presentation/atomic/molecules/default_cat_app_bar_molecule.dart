@@ -9,10 +9,10 @@ class DefaultCatAppBarMolecule extends StatelessWidget
   final List<AppBarIconAtom> icons;
 
   const DefaultCatAppBarMolecule({
-    Key? key,
     required this.title,
     required this.icons,
-  }) : super(key: key);
+    super.key,
+  });
 
   final double preferredSizeHeight = 117;
   final double appBarHeight = 72;

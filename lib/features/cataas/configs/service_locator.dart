@@ -38,76 +38,77 @@ class ServiceLocator {
   static void initServices() {
     // Core
     // Network
-    sl.registerLazySingleton<INetworkInfo>(
-      () => NetworkInfoImpl(
-        connectionChecker: InternetConnectionChecker(),
-      ),
-    );
-    // Services
-    sl.registerLazySingleton<ISaveImageLocallyService>(
-      () => const SaveImageLocallyServiceImpl(),
-    );
-    sl.registerLazySingleton<IOpenUrlOnBrowserService>(
-      () => const OpenUrlOnBrowserServiceImpl(),
-    );
-    sl.registerLazySingleton<IShareImageService>(
-      () => ShareImageServiceImpl(),
-    );
+    sl
+      ..registerLazySingleton<INetworkInfo>(
+        () => NetworkInfoImpl(
+          connectionChecker: InternetConnectionChecker(),
+        ),
+      )
+      // Services
+      ..registerLazySingleton<ISaveImageLocallyService>(
+        () => const SaveImageLocallyServiceImpl(),
+      )
+      ..registerLazySingleton<IOpenUrlOnBrowserService>(
+        () => const OpenUrlOnBrowserServiceImpl(),
+      )
+      ..registerLazySingleton<IShareImageService>(
+        ShareImageServiceImpl.new,
+      )
 
-    // Feature/CatAAS
-    // Cubits
-    sl.registerFactory<CatCubit>(
-      () => CatCubit(
-        getRandomCatUsecase: sl<IGetRandomCatUsecase>(),
-        getCatByIdOrTagUsecase: sl<IGetCatByIdOrTagUsecase>(),
-      ),
-    );
+      // Feature/CatAAS
+      // Cubits
+      ..registerFactory<CatCubit>(
+        () => CatCubit(
+          getRandomCatUsecase: sl<IGetRandomCatUsecase>(),
+          getCatByIdOrTagUsecase: sl<IGetCatByIdOrTagUsecase>(),
+        ),
+      )
 
-    // Datasources
-    sl.registerLazySingleton<ICatRemoteDatasource>(
-      () => CatRemoteDatasourceImpl(
-        client: Dio(),
-        shareImageService: sl<IShareImageService>(),
-      ),
-    );
-    sl.registerLazySingleton<ICatLocalDatasource>(
-      () => CatLocalDatasourceImpl(
-        service: sl<ISaveImageLocallyService>(),
-      ),
-    );
+      // Datasources
+      ..registerLazySingleton<ICatRemoteDatasource>(
+        () => CatRemoteDatasourceImpl(
+          client: Dio(),
+          shareImageService: sl<IShareImageService>(),
+        ),
+      )
+      ..registerLazySingleton<ICatLocalDatasource>(
+        () => CatLocalDatasourceImpl(
+          service: sl<ISaveImageLocallyService>(),
+        ),
+      )
 
-    // Repositories
-    sl.registerLazySingleton<ICatRepository>(
-      () => CatRepositoryImpl(
-        remoteDatasource: sl<ICatRemoteDatasource>(),
-        localDatasource: sl<ICatLocalDatasource>(),
-        networkInfo: sl<INetworkInfo>(),
-      ),
-    );
+      // Repositories
+      ..registerLazySingleton<ICatRepository>(
+        () => CatRepositoryImpl(
+          remoteDatasource: sl<ICatRemoteDatasource>(),
+          localDatasource: sl<ICatLocalDatasource>(),
+          networkInfo: sl<INetworkInfo>(),
+        ),
+      )
 
-    // Usecases
-    sl.registerLazySingleton<IGetRandomCatUsecase>(
-      () => GetRandomCatUsecaseImpl(sl<ICatRepository>()),
-    );
-    sl.registerLazySingleton<IGetCatByIdUsecase>(
-      () => GetCatByIdUsecaseImpl(sl<ICatRepository>()),
-    );
-    sl.registerLazySingleton<IGetCatByTagUsecase>(
-      () => GetCatByTagUsecaseImpl(sl<ICatRepository>()),
-    );
-    sl.registerLazySingleton<IGetCatByIdOrTagUsecase>(
-      () => GetCatByIdOrTagUsecaseImpl(sl<ICatRepository>()),
-    );
-    sl.registerLazySingleton<ISaveCatLocallyUsecase>(
-      () => SaveCatLocallyUsecaseImpl(sl<ICatRepository>()),
-    );
-    sl.registerLazySingleton<IShareCatUsecase>(
-      () => ShareCatUsecaseImpl(sl<ICatRepository>()),
-    );
+      // Usecases
+      ..registerLazySingleton<IGetRandomCatUsecase>(
+        () => GetRandomCatUsecaseImpl(sl<ICatRepository>()),
+      )
+      ..registerLazySingleton<IGetCatByIdUsecase>(
+        () => GetCatByIdUsecaseImpl(sl<ICatRepository>()),
+      )
+      ..registerLazySingleton<IGetCatByTagUsecase>(
+        () => GetCatByTagUsecaseImpl(sl<ICatRepository>()),
+      )
+      ..registerLazySingleton<IGetCatByIdOrTagUsecase>(
+        () => GetCatByIdOrTagUsecaseImpl(sl<ICatRepository>()),
+      )
+      ..registerLazySingleton<ISaveCatLocallyUsecase>(
+        () => SaveCatLocallyUsecaseImpl(sl<ICatRepository>()),
+      )
+      ..registerLazySingleton<IShareCatUsecase>(
+        () => ShareCatUsecaseImpl(sl<ICatRepository>()),
+      )
 
-    // Atoms
-    sl.registerLazySingleton<IShowToastAtom>(
-      () => ShowToastAtomImpl(),
-    );
+      // Atoms
+      ..registerLazySingleton<IShowToastAtom>(
+        ShowToastAtomImpl.new,
+      );
   }
 }

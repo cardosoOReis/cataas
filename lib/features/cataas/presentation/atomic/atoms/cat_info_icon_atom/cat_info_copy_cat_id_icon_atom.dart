@@ -10,10 +10,10 @@ import 'cat_info_icon_atom.dart';
 
 class CatInfoCopyCatIdIconAtom extends CatInfoIconAtom {
   CatInfoCopyCatIdIconAtom({
-    super.key,
     required IShowToastAtom showToastAtom,
     required String catId,
     required BuildContext context,
+    super.key,
   }) : super(
           color: AppColors.lightGrey,
           icon: const FaIcon(Icons.copy),

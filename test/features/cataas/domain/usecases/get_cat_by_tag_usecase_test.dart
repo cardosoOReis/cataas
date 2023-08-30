@@ -1,7 +1,7 @@
 import 'package:cataas/features/cataas/domain/repositories/i_cat_repository.dart';
 import 'package:cataas/features/cataas/domain/usecases/get_cat_by_tag_usecase_impl.dart';
-import 'package:fpdart/fpdart.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:fpdart/fpdart.dart';
 import 'package:mocktail/mocktail.dart';
 
 import '../../mocks.dart';

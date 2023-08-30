@@ -1,4 +1,3 @@
-
 import 'service_locator.dart';
 
 class AppInitializer {

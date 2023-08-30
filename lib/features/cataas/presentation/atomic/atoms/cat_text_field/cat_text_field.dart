@@ -6,12 +6,12 @@ class CatTextField extends StatefulWidget {
   final void Function(String)? onValueChanged;
   final TextEditingController? controller;
   const CatTextField({
-    Key? key,
     required this.labelText,
     required this.hintText,
+    super.key,
     this.onValueChanged,
     this.controller,
-  }) : super(key: key);
+  });
 
   @override
   State<CatTextField> createState() => _CatTextFieldState();
@@ -19,15 +19,13 @@ class CatTextField extends StatefulWidget {
 
 class _CatTextFieldState extends State<CatTextField> {
   @override
-  Widget build(BuildContext context) {
-    return TextField(
-      controller: widget.controller,
-      decoration: InputDecoration(
-        labelText: widget.labelText,
-        hintText: widget.hintText,
-        border: const OutlineInputBorder(),
-      ),
-      onChanged: widget.onValueChanged,
-    );
-  }
+  Widget build(BuildContext context) => TextField(
+        controller: widget.controller,
+        decoration: InputDecoration(
+          labelText: widget.labelText,
+          hintText: widget.hintText,
+          border: const OutlineInputBorder(),
+        ),
+        onChanged: widget.onValueChanged,
+      );
 }

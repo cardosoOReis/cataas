@@ -10,17 +10,18 @@ import 'cat_info_icon_atom.dart';
 
 class CatInfoShareCatIconAtom extends CatInfoIconAtom {
   CatInfoShareCatIconAtom({
-    super.key,
     required IShareCatUsecase usecase,
     required IShowToastAtom showToastAtom,
     required String url,
     required BuildContext context,
+    super.key,
   }) : super(
-            color: AppColors.secondary,
-            icon: const FaIcon(Icons.share),
-            onTap: () async {
-              await _shareCat(usecase, url, context, showToastAtom);
-            });
+          color: AppColors.secondary,
+          icon: const FaIcon(Icons.share),
+          onTap: () async {
+            await _shareCat(usecase, url, context, showToastAtom);
+          },
+        );
 
   static Future<void> _shareCat(
     IShareCatUsecase usecase,

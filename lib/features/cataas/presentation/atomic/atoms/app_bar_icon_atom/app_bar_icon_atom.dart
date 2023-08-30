@@ -4,16 +4,14 @@ class AppBarIconAtom extends StatelessWidget {
   final void Function() onIconTap;
   final Widget icon;
   const AppBarIconAtom({
-    Key? key,
     required this.onIconTap,
     required this.icon,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onIconTap,
-      child: icon,
-    );
-  }
+  Widget build(BuildContext context) => GestureDetector(
+        onTap: onIconTap,
+        child: icon,
+      );
 }

@@ -5,27 +5,25 @@ class GetCatButtonAtom extends StatelessWidget {
   final String title;
   final Color backgroundColor;
   const GetCatButtonAtom({
-    super.key,
     required this.onTap,
     required this.title,
     required this.backgroundColor,
+    super.key,
   });
 
   @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      width: 200,
-      height: 40,
-      child: ElevatedButton(
-        onPressed: onTap,
-        style: ButtonStyle(
-          backgroundColor: MaterialStatePropertyAll<Color>(backgroundColor),
+  Widget build(BuildContext context) => SizedBox(
+        width: 200,
+        height: 40,
+        child: ElevatedButton(
+          onPressed: onTap,
+          style: ButtonStyle(
+            backgroundColor: MaterialStatePropertyAll<Color>(backgroundColor),
+          ),
+          child: Text(
+            title,
+            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
+          ),
         ),
-        child: Text(
-          title,
-          style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
-        ),
-      ),
-    );
-  }
+      );
 }

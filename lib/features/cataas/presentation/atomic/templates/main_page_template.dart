@@ -9,28 +9,26 @@ class MainPageTemplate extends StatelessWidget {
   final String title;
   final List<AppBarIconAtom> appBarIcons;
   const MainPageTemplate({
-    super.key,
     required this.appBarIcons,
     required this.title,
+    super.key,
   });
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: DefaultCatAppBarMolecule(
-        title: title,
-        icons: appBarIcons,
-      ),
-      body: ListView(
-        padding: const EdgeInsets.all(10),
-        children: const [
-          Padding(
-            padding: EdgeInsets.all(8.0),
-            child: ResultDisplayOrganism(),
-          ),
-          CatControlsOrganism(),
-        ],
-      ),
-    );
-  }
+  Widget build(BuildContext context) => Scaffold(
+        appBar: DefaultCatAppBarMolecule(
+          title: title,
+          icons: appBarIcons,
+        ),
+        body: ListView(
+          padding: const EdgeInsets.all(10),
+          children: const [
+            Padding(
+              padding: EdgeInsets.all(8.0),
+              child: ResultDisplayOrganism(),
+            ),
+            CatControlsOrganism(),
+          ],
+        ),
+      );
 }

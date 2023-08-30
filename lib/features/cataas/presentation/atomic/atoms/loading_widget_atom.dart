@@ -4,15 +4,13 @@ import '../../../configs/app_colors.dart';
 
 class LoadingWidgetAtom extends StatelessWidget {
   final double? value;
-  const LoadingWidgetAtom({Key? key, this.value}) : super(key: key);
+  const LoadingWidgetAtom({super.key, this.value});
 
   @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: CircularProgressIndicator(
-        color: AppColors.primary,
-        value: value,
-      ),
-    );
-  }
+  Widget build(BuildContext context) => Center(
+        child: CircularProgressIndicator(
+          color: AppColors.primary,
+          value: value,
+        ),
+      );
 }
