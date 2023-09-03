@@ -19,12 +19,12 @@ class ResultDisplayOrganism extends StatelessWidget {
         ),
         child: MainCatFrameAtom(
           child: BlocBuilder<CatCubit, CatState>(
-            builder: (context, state) => switch (state.status) {
-              CatStatus.initial => const InitialMessageDisplayAtom(),
-              CatStatus.loading => const LoadingWidgetAtom(),
-              CatStatus.failure =>
-                MessageDisplayAtom(message: state.failure!.message),
-              CatStatus.success => CatSucessOrganism(cat: state.catEntity!),
+            builder: (context, state) => switch (state) {
+              CatInitial() => const InitialMessageDisplayAtom(),
+              CatLoading() => const LoadingWidgetAtom(),
+              CatSuccess(:final cat) => CatSucessOrganism(cat: cat),
+              CatFailure(:final failure) =>
+                MessageDisplayAtom(message: failure.message),
             },
           ),
         ),

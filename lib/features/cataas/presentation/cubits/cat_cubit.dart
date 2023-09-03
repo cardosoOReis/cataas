@@ -18,14 +18,14 @@ class CatCubit extends Cubit<CatState> {
     required IGetCatByIdOrTagUsecase getCatByIdOrTagUsecase,
   })  : _getCatByIdOrTagUsecase = getCatByIdOrTagUsecase,
         _getRandomCatUsecase = getRandomCatUsecase,
-        super(const CatState());
+        super(const CatInitial());
   String? _text;
   String? _filter;
 
   Future<void> onInit() async => getWelcomeCat();
 
   Future<void> getWelcomeCat() async {
-    emit(state.copyWith(status: CatStatus.loading));
+    emit(const CatLoading());
     const params = GetRandomCatUsecaseParams(
       text: Some(AppStrings.initialCatText),
       textColor: None(),
@@ -36,23 +36,23 @@ class CatCubit extends Cubit<CatState> {
   }
 
   Future<void> onGetRandomCatButtonTap() async {
-    emit(state.copyWith(status: CatStatus.loading));
+    emit(const CatLoading());
     final params = GetRandomCatUsecaseParams(
-      text: _text.toOption(),
+      text: optionOf(_text),
       textColor: const Option.none(),
-      filter: _filter.toOption(),
+      filter: optionOf(_filter),
     );
     final result = await _getRandomCatUsecase(params);
     emit(_foldCatOrFailure(result));
   }
 
   Future<void> onGetCatByIdOrTagButtonTap(String value) async {
-    emit(state.copyWith(status: CatStatus.loading));
+    emit(const CatLoading());
     final params = GetCatByIdOrTagUsecaseParams(
       value: value,
-      text: _text.toOption(),
+      text: optionOf(_text),
       textColor: const Option.none(),
-      filter: _filter.toOption(),
+      filter: optionOf(_filter),
     );
     final result = await _getCatByIdOrTagUsecase(params);
     emit(_foldCatOrFailure(result));
@@ -67,13 +67,7 @@ class CatCubit extends Cubit<CatState> {
   }
 
   CatState _foldCatOrFailure(Either<Failure, Cat> result) => result.fold(
-        (failure) => state.copyWith(
-          status: CatStatus.failure,
-          failure: failure,
-        ),
-        (cat) => state.copyWith(
-          status: CatStatus.success,
-          catEntity: cat,
-        ),
+        (failure) => CatFailure(failure: failure),
+        (cat) => CatSuccess(cat: cat),
       );
 }

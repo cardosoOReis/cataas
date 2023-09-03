@@ -280,6 +280,7 @@ and the status code is not >= 500 or == 404, should throw an [ApiException]''',
                 contains(mockGetCatByTagUsecaseParams.tag),
               ),
         );
+        /// https://cataas.com/cat/sunshi, {data: null, queryParameters: {json: true, textColor: red, filter: sepia}
         verify(() {
           final text = mockGetCatByTagUsecaseParams.text.toNullable();
           final textColor = mockGetCatByTagUsecaseParams.textColor.toNullable();

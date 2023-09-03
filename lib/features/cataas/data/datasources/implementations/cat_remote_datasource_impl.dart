@@ -2,7 +2,6 @@ import 'package:dio/dio.dart';
 import 'package:fpdart/fpdart.dart';
 
 import '../../../../../core/error/exceptions.dart';
-import '../../../../../core/extensions/fpdart_extensions.dart';
 import '../../../../../core/services/share_image/i_share_image_service.dart';
 import '../../../presentation/usecases/i_get_cat_by_id_or_tag_usecase.dart';
 import '../../../presentation/usecases/i_get_cat_by_id_usecase.dart';
@@ -23,8 +22,7 @@ class CatRemoteDatasourceImpl implements ICatRemoteDatasource {
         _client = client;
 
   @override
-  Future<CatModel> getCatById(GetCatByIdUsecaseParams params) async =>
-      _getCat(
+  Future<CatModel> getCatById(GetCatByIdUsecaseParams params) async => _getCat(
         ApiEndpoints.getCatById(params.id),
         params: _QueryParams(
           text: params.text,
@@ -71,24 +69,14 @@ class CatRemoteDatasourceImpl implements ICatRemoteDatasource {
     required _QueryParams params,
   }) async {
     try {
-      var finalUrl = url;
-      final queryParameters = <String, dynamic>{'json': 'true'};
-      params.text.ifSome(
-        (text) => finalUrl += '/says/$text',
-      );
-      params.textColor.ifSome(
-        (textColor) {
-          queryParameters.addAll({'textColor': textColor});
-        },
-      );
-      params.filter.ifSome(
-        (filter) {
-          queryParameters.addAll({'filter': filter});
-        },
-      );
+      final sb = StringBuffer(url)
+        ..write(params.text.map((t) => '/says/$t').toNullable());
+      final queryParameters = <String, dynamic>{'json': 'true'}
+        ..addAll(optionalToMap(params.textColor, 'textColor'))
+        ..addAll(optionalToMap(params.filter, 'filter'));
 
       final response = await _client.get(
-        url,
+        sb.toString(),
         queryParameters: queryParameters,
       );
       try {
@@ -119,6 +107,9 @@ class CatRemoteDatasourceImpl implements ICatRemoteDatasource {
       rethrow;
     }
   }
+
+  Map<String, dynamic> optionalToMap(Option<String> o, String key) =>
+      o.map((t) => {key: t}).getOrElse(() => {});
 
   @override
   Future<void> shareCat(ShareCatUsecaseParams params) async {

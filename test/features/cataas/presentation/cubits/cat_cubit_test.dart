@@ -35,24 +35,13 @@ void main() {
         },
         build: () => cubit,
         act: (bloc) => bloc.onGetRandomCatButtonTap(),
-        expect: () => <dynamic>[
-          const CatState(status: CatStatus.loading),
-          isA<CatState>()
-              .having(
-                (state) => state.status,
-                'status',
-                CatStatus.success,
-              )
-              .having(
-                (state) => state.catEntity,
-                'catEntity',
-                mockCatEntity,
-              )
-              .having(
-                (state) => state.isSaveCatButtonEnabled,
-                'isSaveCatButtonEnabled',
-                true,
-              ),
+        expect: () => <Matcher>[
+          isA<CatLoading>(),
+          isA<CatSuccess>().having(
+            (state) => state.cat,
+            'cat',
+            mockCatEntity,
+          ),
         ],
         verify: (bloc) {
           verify(
@@ -69,24 +58,13 @@ void main() {
         },
         build: () => cubit,
         act: (bloc) => bloc.onGetRandomCatButtonTap(),
-        expect: () => <dynamic>[
-          const CatState(status: CatStatus.loading),
-          isA<CatState>()
-              .having(
-                (state) => state.status,
-                'status',
-                CatStatus.failure,
-              )
-              .having(
-                (state) => state.failure,
-                'failure',
-                mockFailure,
-              )
-              .having(
-                (state) => state.isSaveCatButtonEnabled,
-                'isSaveCatButtonEnabled',
-                false,
-              ),
+        expect: () => <Matcher>[
+          isA<CatLoading>(),
+          isA<CatFailure>().having(
+            (state) => state.failure,
+            'failure',
+            mockFailure,
+          ),
         ],
         verify: (bloc) {
           verify(
@@ -107,24 +85,13 @@ void main() {
         },
         build: () => cubit,
         act: (_) => cubit.onGetCatByIdOrTagButtonTap(''),
-        expect: () => <dynamic>[
-          const CatState(status: CatStatus.loading),
-          isA<CatState>()
-              .having(
-                (state) => state.status,
-                'status',
-                CatStatus.success,
-              )
-              .having(
-                (state) => state.catEntity,
-                'catEntity',
-                mockCatEntity,
-              )
-              .having(
-                (state) => state.isSaveCatButtonEnabled,
-                'isSaveCatButtonEnabled',
-                isTrue,
-              )
+        expect: () => <Matcher>[
+          isA<CatLoading>(),
+          isA<CatSuccess>().having(
+            (state) => state.cat,
+            'cat',
+            mockCatEntity,
+          ),
         ],
         verify: (_) {
           verify(
@@ -141,24 +108,13 @@ void main() {
         },
         build: () => cubit,
         act: (bloc) => bloc.onGetCatByIdOrTagButtonTap(''),
-        expect: () => <dynamic>[
-          const CatState(status: CatStatus.loading),
-          isA<CatState>()
-              .having(
-                (state) => state.status,
-                'status',
-                CatStatus.failure,
-              )
-              .having(
-                (state) => state.failure,
-                'failure',
-                mockFailure,
-              )
-              .having(
-                (state) => state.isSaveCatButtonEnabled,
-                'isSaveCatButtonEnabled',
-                false,
-              ),
+        expect: () => <Matcher>[
+          isA<CatLoading>(),
+          isA<CatFailure>().having(
+            (state) => state.failure,
+            'failure',
+            mockFailure,
+          ),
         ],
         verify: (bloc) {
           verify(
@@ -179,24 +135,13 @@ void main() {
         },
         build: () => cubit,
         act: (bloc) => bloc.getWelcomeCat(),
-        expect: () => <dynamic>[
-          const CatState(status: CatStatus.loading),
-          isA<CatState>()
-              .having(
-                (state) => state.status,
-                'status',
-                CatStatus.success,
-              )
-              .having(
-                (state) => state.catEntity,
-                'catEntity',
-                mockCatEntity,
-              )
-              .having(
-                (state) => state.isSaveCatButtonEnabled,
-                'isSaveCatButtonEnabled',
-                true,
-              ),
+        expect: () => <Matcher>[
+          isA<CatLoading>(),
+          isA<CatSuccess>().having(
+            (state) => state.cat,
+            'cat',
+            mockCatEntity,
+          ),
         ],
         verify: (bloc) {
           verify(
@@ -213,24 +158,13 @@ void main() {
         },
         build: () => cubit,
         act: (bloc) => bloc.getWelcomeCat(),
-        expect: () => <dynamic>[
-          const CatState(status: CatStatus.loading),
-          isA<CatState>()
-              .having(
-                (state) => state.status,
-                'status',
-                CatStatus.failure,
-              )
-              .having(
-                (state) => state.failure,
-                'failure',
-                mockFailure,
-              )
-              .having(
-                (state) => state.isSaveCatButtonEnabled,
-                'isSaveCatButtonEnabled',
-                false,
-              ),
+        expect: () => <Matcher>[
+          isA<CatLoading>(),
+          isA<CatFailure>().having(
+            (state) => state.failure,
+            'failure',
+            mockFailure,
+          ),
         ],
         verify: (bloc) {
           verify(

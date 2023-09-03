@@ -1,41 +1,37 @@
 part of 'cat_cubit.dart';
 
-class CatState extends Equatable {
-  final CatStatus status;
-  final Cat? catEntity;
-  final Failure? failure;
-  const CatState({
-    this.status = CatStatus.initial,
-    this.catEntity,
-    this.failure,
-  });
-
-  bool get isSaveCatButtonEnabled => status.isSuccess;
-
-  @override
-  List<Object?> get props => [
-        status,
-        catEntity,
-        failure,
-      ];
-
-  CatState copyWith({
-    CatStatus? status,
-    Cat? catEntity,
-    Failure? failure,
-  }) =>
-      CatState(
-        status: status ?? this.status,
-        catEntity: catEntity ?? this.catEntity,
-        failure: failure ?? this.failure,
-      );
+sealed class CatState extends Equatable {
+  const CatState();
 }
 
-enum CatStatus { initial, loading, success, failure }
+final class CatInitial extends CatState {
+  const CatInitial();
 
-extension CatStatusX on CatStatus {
-  bool get isInitial => this == CatStatus.initial;
-  bool get isLoading => this == CatStatus.loading;
-  bool get isSuccess => this == CatStatus.success;
-  bool get isFailure => this == CatStatus.failure;
+  @override
+  List<Object?> get props => [];
+}
+
+final class CatLoading extends CatState {
+  const CatLoading();
+
+  @override
+  List<Object?> get props => [];
+}
+
+final class CatSuccess extends CatState {
+  final Cat cat;
+
+  const CatSuccess({required this.cat});
+
+  @override
+  List<Object?> get props => [cat];
+}
+
+final class CatFailure extends CatState {
+  final Failure failure;
+
+  const CatFailure({required this.failure});
+
+  @override
+  List<Object?> get props => [failure];
 }
