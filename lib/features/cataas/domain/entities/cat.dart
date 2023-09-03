@@ -1,5 +1,7 @@
 import 'package:equatable/equatable.dart';
 
+import 'filters.dart';
+
 class Cat extends Equatable {
   final String id;
   final FileType fileType;
@@ -8,7 +10,7 @@ class Cat extends Equatable {
   final List<String> tags;
   final String? text;
   final String? textColor;
-  final String? filter;
+  final Filters? filter;
   const Cat({
     required this.id,
     required this.fileType,

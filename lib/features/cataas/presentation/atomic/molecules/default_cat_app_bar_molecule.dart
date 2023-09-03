@@ -43,14 +43,12 @@ class DefaultCatAppBarMolecule extends StatelessWidget
                 ),
               ),
               const Spacer(),
-              ...icons
-                  .map(
-                    (icon) => Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 10),
-                      child: icon,
-                    ),
-                  )
-                  .toList(),
+              ...icons.map(
+                (icon) => Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  child: icon,
+                ),
+              ),
             ],
           ),
         ),

@@ -3,6 +3,7 @@ import 'package:fpdart/fpdart.dart';
 
 import '../../../../../core/error/exceptions.dart';
 import '../../../../../core/services/share_image/i_share_image_service.dart';
+import '../../../domain/entities/filters.dart';
 import '../../../presentation/usecases/i_get_cat_by_id_or_tag_usecase.dart';
 import '../../../presentation/usecases/i_get_cat_by_id_usecase.dart';
 import '../../../presentation/usecases/i_get_cat_by_tag_usecase.dart';
@@ -70,10 +71,15 @@ class CatRemoteDatasourceImpl implements ICatRemoteDatasource {
   }) async {
     try {
       final sb = StringBuffer(url)
-        ..write(params.text.map((t) => '/says/$t').toNullable());
+        ..write(params.text.map((t) => '/says/$t').getOrElse(() => ''));
       final queryParameters = <String, dynamic>{'json': 'true'}
         ..addAll(optionalToMap(params.textColor, 'textColor'))
-        ..addAll(optionalToMap(params.filter, 'filter'));
+        ..addAll(
+          optionalToMap(
+            params.filter.flatMap((t) => optionOf(t.value)),
+            'filter',
+          ),
+        );
 
       final response = await _client.get(
         sb.toString(),
@@ -126,7 +132,7 @@ class CatRemoteDatasourceImpl implements ICatRemoteDatasource {
 class _QueryParams {
   Option<String> text;
   Option<String> textColor;
-  Option<String> filter;
+  Option<Filters> filter;
   _QueryParams({
     required this.text,
     required this.textColor,

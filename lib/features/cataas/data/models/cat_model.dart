@@ -1,6 +1,7 @@
 import 'package:fpdart/fpdart.dart';
 
 import '../../domain/entities/cat.dart';
+import '../../domain/entities/filters.dart';
 import '../datasources/api_endpoints.dart';
 
 class CatModel extends Cat {
@@ -19,7 +20,7 @@ class CatModel extends Cat {
     required Map<String, dynamic> json,
     required Option<String> text,
     required Option<String> textColor,
-    required Option<String> filter,
+    required Option<Filters> filter,
   }) {
     final body = _CatModelFromRequest.fromJson(json);
 

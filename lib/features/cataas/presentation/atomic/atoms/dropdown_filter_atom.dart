@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 
 import '../../../../../core/extensions/string_extensions.dart';
 import '../../../configs/app_colors.dart';
+import '../../../domain/entities/filters.dart';
 
 class DropdownFilterAtom extends StatefulWidget {
-  final void Function(String?) onFilterFieldValueChanged;
+  final void Function(Filters) onFilterFieldValueChanged;
 
   const DropdownFilterAtom({
     required this.onFilterFieldValueChanged,
@@ -16,7 +17,7 @@ class DropdownFilterAtom extends StatefulWidget {
 }
 
 class _DropdownFilterAtomState extends State<DropdownFilterAtom> {
-  String? _currentValue;
+  Filters _currentValue = Filters.none;
 
   @override
   Widget build(BuildContext context) {
@@ -30,10 +31,10 @@ class _DropdownFilterAtomState extends State<DropdownFilterAtom> {
       child: DropdownButton(
         value: _currentValue,
         hint: const Text('Filters'),
-        items: FilterValues.values
+        items: Filters.values
             .map(
               (filter) => DropdownMenuItem(
-                value: filter.name,
+                value: filter,
                 child: Text(
                   filter.name.capitalize(),
                 ),
@@ -41,14 +42,13 @@ class _DropdownFilterAtomState extends State<DropdownFilterAtom> {
             )
             .toList(),
         onChanged: (filter) {
-          setState(() => _currentValue = filter);
-          widget.onFilterFieldValueChanged(filter);
+          setState(() => _currentValue = filter!);
+          widget.onFilterFieldValueChanged(filter!);
         },
+        padding: const EdgeInsets.only(left: 4),
         alignment: Alignment.center,
         underline: const SizedBox.shrink(),
       ),
     );
   }
 }
-
-enum FilterValues { none, blur, mono, sepia, negative, paint, pixel }

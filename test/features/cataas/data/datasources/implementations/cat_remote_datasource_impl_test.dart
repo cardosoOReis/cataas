@@ -159,7 +159,7 @@ the returned model should have the text, textColor and filter as it was passed b
             queryParameters: {
               'json': 'true',
               'textColor': textColor,
-              'filter': filter,
+              'filter': filter?.value,
             },
           );
         }).called(1);
@@ -290,7 +290,7 @@ and the status code is not >= 500 or == 404, should throw an [ApiException]''',
             queryParameters: {
               'json': 'true',
               'textColor': textColor,
-              'filter': filter,
+              'filter': filter?.value,
             },
           );
         }).called(1);
@@ -413,7 +413,7 @@ the returned model should have the tag, text, textColor and filter as it was pas
             queryParameters: {
               'json': 'true',
               'textColor': textColor,
-              'filter': filter,
+              'filter': filter?.value,
             },
           );
         }).called(1);
@@ -537,7 +537,7 @@ the returned model should have the tag, text, textColor and filter as it was pas
             queryParameters: {
               'json': 'true',
               'textColor': textColor,
-              'filter': filter,
+              'filter': filter?.value,
             },
           );
         }).called(1);

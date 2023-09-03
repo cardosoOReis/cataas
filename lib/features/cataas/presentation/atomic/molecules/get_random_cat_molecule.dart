@@ -23,7 +23,7 @@ class GetRandomCatMolecule extends StatelessWidget {
             onTap: cubit.onGetRandomCatButtonTap,
           ),
         ),
-        CatMessageTextField(onValueChanged: cubit.onTextTextFieldValueChanged),
+        CatMessageTextField(controller: cubit.textController),
       ],
     );
   }

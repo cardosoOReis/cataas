@@ -8,6 +8,7 @@ import 'package:cataas/features/cataas/data/datasources/i_cat_local_datasource.d
 import 'package:cataas/features/cataas/data/datasources/i_cat_remote_datasource.dart';
 import 'package:cataas/features/cataas/data/models/cat_model.dart';
 import 'package:cataas/features/cataas/domain/entities/cat.dart';
+import 'package:cataas/features/cataas/domain/entities/filters.dart';
 import 'package:cataas/features/cataas/domain/repositories/i_cat_repository.dart';
 import 'package:cataas/features/cataas/domain/usecases/get_cat_by_id_usecase_impl.dart';
 import 'package:cataas/features/cataas/domain/usecases/get_cat_by_tag_usecase_impl.dart';
@@ -102,25 +103,25 @@ const Option<String> mockOptionString = Some('');
 const mockGetRandomCatUsecaseParams = GetRandomCatUsecaseParams(
   text: Some('hello'),
   textColor: Some('red'),
-  filter: Some('sepia'),
+  filter: Some(Filters.sepia),
 );
 const mockGetCatByIdUsecaseParams = GetCatByIdUsecaseParams(
   id: 'exvMtoKhGj3R7FGL',
   text: Some('hello'),
   textColor: Some('red'),
-  filter: Some('sepia'),
+  filter: Some(Filters.sepia),
 );
 const mockGetCatByTagUsecaseParams = GetCatByTagUsecaseParams(
   tag: 'sunshi',
   text: Some('hello'),
   textColor: Some('red'),
-  filter: Some('sepia'),
+  filter: Some(Filters.sepia),
 );
 const mockGetCatByIdOrTagUsecaseParams = GetCatByIdOrTagUsecaseParams(
   value: 'value',
   text: Some('text'),
   textColor: Some('textColor'),
-  filter: Some('filter'),
+  filter: Some(Filters.sepia),
 );
 
 const mockSaveCatLocallyUsecaseParams = SaveCatLocallyUsecaseParams(url: '');

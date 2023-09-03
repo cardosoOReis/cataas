@@ -30,7 +30,7 @@ class CatInfoSaveCatIconAtom extends CatInfoIconAtom {
     String url,
     BuildContext context,
   ) async {
-    final result = await usecase.call(SaveCatLocallyUsecaseParams(url: url));
+    final result = await usecase(SaveCatLocallyUsecaseParams(url: url));
     final toast = result.fold(
       (failure) => const CatToastFailureAtom(
         text: AppStrings.saveCatLocallyFailure,

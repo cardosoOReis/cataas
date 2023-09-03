@@ -1,10 +1,12 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter/widgets.dart';
 import 'package:fpdart/fpdart.dart';
 
 import '../../../../core/error/failures.dart';
 import '../../configs/app_strings.dart';
 import '../../domain/entities/cat.dart';
+import '../../domain/entities/filters.dart';
 import '../usecases/i_get_cat_by_id_or_tag_usecase.dart';
 import '../usecases/i_get_random_cat_usecase.dart';
 
@@ -19,8 +21,17 @@ class CatCubit extends Cubit<CatState> {
   })  : _getCatByIdOrTagUsecase = getCatByIdOrTagUsecase,
         _getRandomCatUsecase = getRandomCatUsecase,
         super(const CatInitial());
-  String? _text;
-  String? _filter;
+  final textController = TextEditingController();
+  Filters currentFilter = Filters.none;
+
+  @override
+  Future<void> close() async {
+    textController.dispose();
+    await super.close();
+  }
+
+  Option<String> get textControllerValue =>
+      textController.text.isNotEmpty ? some(textController.text) : none();
 
   Future<void> onInit() async => getWelcomeCat();
 
@@ -38,9 +49,9 @@ class CatCubit extends Cubit<CatState> {
   Future<void> onGetRandomCatButtonTap() async {
     emit(const CatLoading());
     final params = GetRandomCatUsecaseParams(
-      text: optionOf(_text),
+      text: textControllerValue,
       textColor: const Option.none(),
-      filter: optionOf(_filter),
+      filter: Option.fromNullable(currentFilter),
     );
     final result = await _getRandomCatUsecase(params);
     emit(_foldCatOrFailure(result));
@@ -50,20 +61,16 @@ class CatCubit extends Cubit<CatState> {
     emit(const CatLoading());
     final params = GetCatByIdOrTagUsecaseParams(
       value: value,
-      text: optionOf(_text),
+      text: textControllerValue,
       textColor: const Option.none(),
-      filter: optionOf(_filter),
+      filter: Option.fromNullable(currentFilter),
     );
     final result = await _getCatByIdOrTagUsecase(params);
     emit(_foldCatOrFailure(result));
   }
 
-  void onTextTextFieldValueChanged(String? text) {
-    _text = text;
-  }
-
-  void onFilterTextFieldValueChanged(String? text) {
-    _filter = text;
+  void onFilterTextFieldValueChanged(Filters filter) {
+    currentFilter = filter;
   }
 
   CatState _foldCatOrFailure(Either<Failure, Cat> result) => result.fold(
