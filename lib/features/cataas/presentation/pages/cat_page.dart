@@ -16,7 +16,7 @@ class CatPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final openUrlOnBrowserService = sl<IOpenUrlOnBrowserService>();
     final appBarIcons = <AppBarIconAtom>[
-      AppBarInfoIconAtom(),
+      AppBarInfoIconAtom(context: context, service: openUrlOnBrowserService),
       AppBarBeerIconAtom(service: openUrlOnBrowserService),
       AppBarTweeterIconAtom(service: openUrlOnBrowserService),
     ];

@@ -9,4 +9,4 @@ You can also save the cat you just recieved locally in your files!
 
 ## Architecture
 
-I'm using Clean Architexture for this project https://medium.com/ruangguru/an-introduction-to-flutter-clean-architecture-ae00154001b0
+I'm using Clean Architexture for this project <https://medium.com/ruangguru/an-introduction-to-flutter-clean-architecture-ae00154001b0>

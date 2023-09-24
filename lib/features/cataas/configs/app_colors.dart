@@ -10,4 +10,5 @@ class AppColors {
   static const grey = Colors.grey;
   static final lightGrey = Colors.grey.shade300;
   static const white = Colors.white;
+  static const textLink = terciary;
 }
