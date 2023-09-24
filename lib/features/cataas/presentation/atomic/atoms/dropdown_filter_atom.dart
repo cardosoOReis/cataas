@@ -36,7 +36,10 @@ class _DropdownFilterAtomState extends State<DropdownFilterAtom> {
               (filter) => DropdownMenuItem(
                 value: filter,
                 child: Text(
-                  filter.name.capitalize(),
+                  switch (filter) {
+                    Filters.none => 'Filters',
+                    _ => filter.name.capitalize(),
+                  },
                 ),
               ),
             )
