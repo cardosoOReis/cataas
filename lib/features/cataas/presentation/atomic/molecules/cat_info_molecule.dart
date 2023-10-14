@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 
 import '../../../configs/service_locator.dart';
 import '../../../domain/entities/cat.dart';
-import '../atoms/cat_info_icon_atom/cat_info_copy_cat_id_icon_atom.dart';
+import '../../usecases/i_save_cat_locally_usecase.dart';
+import '../../usecases/i_share_cat_usecase.dart';
 import '../atoms/cat_info_icon_atom/cat_info_save_cat_icon_atom.dart';
 import '../atoms/cat_info_icon_atom/cat_info_share_cat_icon_atom.dart';
 import '../atoms/show_toast_atom/i_show_toast_atom.dart';
+import 'copy_cat_id_molecule.dart';
 
 class CatInfoMolecule extends StatelessWidget {
   final Cat cat;
@@ -20,36 +22,25 @@ class CatInfoMolecule extends StatelessWidget {
       width: double.maxFinite,
       height: 50,
       decoration: const BoxDecoration(
-        border: Border(
-          top: BorderSide(
-            width: 2,
-          ),
-        ),
+        border: Border(top: BorderSide(width: 2)),
       ),
       child: Row(
         children: [
           Expanded(
-            child: Row(
-              children: [
-                Text('Cat ID: ${cat.id}'),
-                const SizedBox(width: 10),
-                CatInfoCopyCatIdIconAtom(
-                  showToastAtom: showToastAtom,
-                  context: context,
-                  catId: cat.id,
-                ),
-              ],
+            child: CopyCatIdMolecule(
+              id: cat.id,
+              showToastAtom: showToastAtom,
             ),
           ),
           CatInfoShareCatIconAtom(
-            usecase: sl(),
+            usecase: sl<IShareCatUsecase>(),
             showToastAtom: showToastAtom,
             url: cat.url,
             context: context,
           ),
           const SizedBox(width: 10),
           CatInfoSaveCatIconAtom(
-            usecase: sl(),
+            usecase: sl<ISaveCatLocallyUsecase>(),
             showToastAtom: showToastAtom,
             url: cat.url,
             context: context,

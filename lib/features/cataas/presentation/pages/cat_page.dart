@@ -7,6 +7,7 @@ import '../atomic/atoms/app_bar_icon_atom/app_bar_beer_icon_atom.dart';
 import '../atomic/atoms/app_bar_icon_atom/app_bar_icon_atom.dart';
 import '../atomic/atoms/app_bar_icon_atom/app_bar_info_icon_atom.dart';
 import '../atomic/atoms/app_bar_icon_atom/app_bar_tweeter_icon_atom.dart';
+import '../atomic/atoms/show_toast_atom/i_show_toast_atom.dart';
 import '../atomic/templates/main_page_template.dart';
 
 class CatPage extends StatelessWidget {
@@ -16,7 +17,11 @@ class CatPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final openUrlOnBrowserService = sl<IOpenUrlOnBrowserService>();
     final appBarIcons = <AppBarIconAtom>[
-      AppBarInfoIconAtom(context: context, service: openUrlOnBrowserService),
+      AppBarInfoIconAtom(
+        context: context,
+        service: openUrlOnBrowserService,
+        showToastAtom: sl<IShowToastAtom>(),
+      ),
       AppBarBeerIconAtom(service: openUrlOnBrowserService),
       AppBarTweeterIconAtom(service: openUrlOnBrowserService),
     ];

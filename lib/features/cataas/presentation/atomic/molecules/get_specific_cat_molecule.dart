@@ -6,7 +6,7 @@ import '../../../configs/app_strings.dart';
 import '../../cubits/cat_cubit.dart';
 import '../atoms/cat_text_field/cat_id_or_tag_text_field.dart';
 import '../atoms/dropdown_filter_atom.dart';
-import '../atoms/get_cat_button_atom.dart';
+import '../atoms/get_cat_button_atom/get_cat_button_atom.dart';
 
 class GetSpecificCatMolecule extends StatefulWidget {
   const GetSpecificCatMolecule({super.key});

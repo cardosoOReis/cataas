@@ -9,12 +9,6 @@ class AppStrings {
 
   static const getCatByIdOrTag = 'Get a Cat by Id or Tag';
 
-  static const description =
-      'Cat as a Service, or Cataas, is a mobile application to spread peace and love (or not) thanks to cats.';
-
-  static const description2 =
-      "This isn't an official mobile application, we use the Cat as a Service API to provide us our cats!";
-
   static const initialStateText = 'Get a Cat 😺!';
 
   static const initialCatText = 'Welcome Back!';
@@ -22,6 +16,8 @@ class AppStrings {
   static const saveCatLocallySuccess = 'Saved! 😸';
 
   static const copyCatIdSucess = 'Copied! 😸';
+
+  static const defaultCatId = 'u1S16RJ8tmhFgJ1J';
 
   static const saveCatLocallyFailure =
       'Sorry, it looks like something went wrong when saving your cat 😿.';
@@ -35,8 +31,6 @@ class AppStrings {
   static const twitterUrl = 'https://twitter.com/apicataas';
 
   static const buyMeABeerUrl = 'https://www.buymeacoffee.com/kevinbalicot';
-
-  static const officialWebsiteLabel = 'Official website: ';
 
   static const officialWebsiteUrl = 'https://cataas.com/';
 }
